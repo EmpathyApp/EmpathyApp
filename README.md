@@ -28,6 +28,7 @@ Shortcode: Does not have a shortcode, instead Ninja Forms is used with some extr
 One for the caller to send a donation
 http://empathy.ihavearrived.org/wp/home/id10/
 Shortcode: [ea_donation]
+For testing use 4242 4242 4242 4242 as the credit card number and anything for the other fields. We are using a test key so you can test all you want without any real money being transfered. To verify that the transfer was made you need access to the Empathy App stripe account but we also print the result and the amount transfered on the "thank you" page
 
 And one for displaying a thank you to the caller (this page actually takes the donation but the user does not see this)
 http://empathy.ihavearrived.org/wp/home/thank-you/
