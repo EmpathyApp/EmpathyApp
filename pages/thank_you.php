@@ -1,44 +1,40 @@
 <?php
 
-/* 
+/*
  * License: GPLv3
  * 
  * php code for making the actual charge of the credit card. Also displays the
  * page that the user comes to after making the donation
  */
 
-
-// preheader
-function ea_preheader(){
-    if( !is_admin() ){
+// Preheader - used for loading the stripe lib
+function ea_preheader() {
+    if (!is_admin()) {
         global $post, $current_user;
-        if( !empty( $post->post_content ) && strpos( $post->post_content, "[ea_thankyou]" ) !== false ){
-            
+        if (!empty($post->post_content) && strpos($post->post_content, "[ea_thankyou]") !== false) {
             // Loading the stripe lib
-            chdir(dirname(__FILE__));
+            chdir(dirname(__FILE__)); // chdir(__DIR__) doesn't work
             require_once('../includes/lib/Stripe.php');
-            
-            
         }
     }
 }
+
 add_action('wp', 'ea_preheader', 1);
 
-
-// Shortcode for the thank you! page
-function ea_thankyou_shortcode(){
+// Shortcode for the thank you page
+function ea_thankyou_shortcode() {
     ob_start();
 
-    
+
     // php code inserted with shortcode ++++++++++++++++++++++++++++++++++++++++
-    
-    
+
+
     // Set your secret key: remember to change this to your live secret key in production
     // See your keys here https://dashboard.stripe.com/account
     Stripe::setApiKey("sk_test_uEGJelp5bfMDnLp0LSfb9E7N");
     // Get the credit card details submitted by the form
     $token = $_POST['stripeToken'];
-    $amount = 1100; // TODO: Change to dynamic
+    $amountCents = $_POST['amountCents']; // TODO: Change to dynamic
     /*
      * -please note that (1) the amound is given in cents and (2) the amount is
      * given two times, once on the client side and also here on the server side
@@ -52,25 +48,32 @@ function ea_thankyou_shortcode(){
     // Create the charge on Stripe's servers - this will charge the user's card
     try {
         $charge = Stripe_Charge::create(array(
-          "amount" => $amount, // amount in cents, again
-          "currency" => "usd",
-          "card" => $token,
-          "description" => $descr)
+                    "amount" => $amountCents, // amount in cents, again
+                    "currency" => "usd",
+                    "card" => $token,
+                    "description" => $descr)
         );
-    } catch(Stripe_CardError $e) {
+    } catch (Stripe_CardError $e) {
         // The card has been declined
-        echo "<h4>Card has been declined</h3>";
+        echo "<h4>Card has been declined</h4>";
+    } catch (Exception $e) {
+        echo "Error: " + $e->getMessage();
+        /*
+         * TODO: More exceptions here (thank you to sebaste):
+         * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+         */
     }
-    echo "<h3>Success! Charged $$amount cents</h3>";
+    echo "<h3>Success! Charged {$amountCents} cents</h3>";
 
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
+
 
     $tmp_content = ob_get_contents();
     ob_end_clean();
     return $tmp_content;
 }
+
 /*
  * Create shortcode for the thank you page
  * First argument is the name of the shortcode so it will be used like this
