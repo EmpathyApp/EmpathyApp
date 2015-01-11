@@ -5,42 +5,78 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.0.1
+ * Version: 0.1
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
 
-require_once 'pages/donation.php';
-require_once 'pages/thank_you.php';
-
-define("SKYPE_NAME", "40"); // <--- note: 40 is the form id for ninja forms
-
-function filterEmailAddress($iSetting, $iSettingName, $iId) {
-    if ($iSettingName == 'to') {
-        global $ninja_forms_processing;
-        $userName = $ninja_forms_processing->get_field_value(SKYPE_NAME);
-        $iSetting[0] = getEmailByUserName($userName);
-    }
-    return $iSetting;
-}
-
-add_filter('nf_email_notification_process_setting', 'filterEmailAddress', 10, 3);
-
-/*
-  Returns the email for the user with a matching user name (skype-id)
+/* 
+ * Copyright (C) 2015 sunyata
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function getEmailByUserName($iUserName) {
-    global $wpdb; //Getting access to the wordpress database
 
-    $resArray = $wpdb->get_results("SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+//#####################Things that need to be customized for each installation##
+
+/*
+ * Debug, please comment out at production
+ * Please note that the .htaccess file does not have to be changed
+ */
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(-1);
+ */
+require_once 'console_debug.php';
+//require_once 'includes/lib/FirePHPCore/FirePHP.class.php';
+
+require_once 'db_init.php';
+require_once 'pages/donation_form.php';
+require_once 'pages/donation_sent.php';
+require_once 'pages/email_form.php';
+require_once 'pages/email_sent.php';
+
+define("EMAIL_SENT", "http://kuanyin.ihavearrived.org/?page_id=7");
+define("DONATION_SENT", "http://kuanyin.ihavearrived.org/?page_id=11");
+define("DONATION_FORM", "http://kuanyin.ihavearrived.org/?page_id=9");
+
+//##############################################################################
+
+function getEmailByUserName($iUserName) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+            "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
     //^Please note that we need to surround the variable with single quotes
-    //var_dump($resArray);
     $userEmailString = $resArray[0]->user_email;
     return $userEmailString;
 }
 
+function getIdByUserName($iUserName) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+            "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+    $userId = $resArray[0]->ID;
+    return $userId;
+}
 
+function ea_send_email($iEmail, $iTitle, $iMessage){
+    $tNewLine = "\r\n";
+    $tHeaders = "From: noreply@ihavearrived.org" . $tNewLine .
+        "X-Mailer: PHP/" . PHP_VERSION;
+    mail($iEmail, $iTitle, $iMessage, $tHeaders);
+}
 
 /*
  * WP filter that validates that the skype name exists, if it doesn't an
@@ -55,7 +91,7 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER , true);
     curl_setopt($ch, CURLOPT_POSTFIELDS , "new_username=$iSkypeName");
     $tResponse = curl_exec($ch);
-    $tResultInfo = curl_getinfo($ch); //-unused at present
+    $tResultInfo = curl_getinfo($ch);
     curl_close($ch);
     // Check if the skype name is avalilable for registration (meaning that no user has it)..
     if( substr_count($tResponse, "not available") == 0 ){
@@ -67,4 +103,10 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
 }
 add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
 
-?>
+
+/*
+ * http://codex.wordpress.org/Function_Reference/wp_insert_post
+ * 
+ * Please note that the recommended and actual donations are set here to -1 and
+ * will be updated later on (in thank_you.php when we know more)
+ */

@@ -16,12 +16,9 @@
  * TODO Use built-in wp jquery (jQuery UI as well?)
  */
 
-function ea_donation_shortcode() {
-    ob_start();
+function ea_donation_form_shortcode() {
+    ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ?>
-
-
-    <!-- Text inserted with shortcode ++++++++++++++++++++++++++++++++++++++ -->
 
 
     <p>
@@ -29,7 +26,6 @@ function ea_donation_shortcode() {
     </p>
     <input type="text" id="amountDollars" readonly style="border:0; color:#f6931f; font-weight:bold;">
     <div id="sliderDollars"></div>
-
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -97,7 +93,7 @@ function ea_donation_shortcode() {
     </script>
 
 
-    <form id="stripeForm" action="http://empathy.ihavearrived.org/wp/home/thank-you/" method="POST">
+    <form id="stripeForm" action=<?php echo DONATION_SENT; ?> method="POST">
         <script src="http://checkout.stripe.com/checkout.js"></script>
         <button id="customButton">☙Donate❧</button>
         <!-- -html for the custom stripe button needs to be placed before the script (why?) -->
@@ -135,15 +131,11 @@ function ea_donation_shortcode() {
     </form>
 
 
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-
     <?php
-    $tmp_content = ob_get_contents();
+    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
     ob_end_clean();
-    return $tmp_content;
+    return $ob_content;
 }
-
 /*
  * Create shortcode for the caller donation page
  * First argument is the name of the shortcode so it will be used like this
@@ -151,5 +143,5 @@ function ea_donation_shortcode() {
  * Second argument is the name of the php function above which will be used
  * to insert text into the web page
  */
-add_shortcode('ea_donation', 'ea_donation_shortcode');
+add_shortcode('ea_donation_form', 'ea_donation_form_shortcode');
 ?>

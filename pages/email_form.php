@@ -1,0 +1,42 @@
+<?php
+/* 
+ * Copyright (C) 2015 sunyata
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+function ea_email_form_shortcode() {
+    ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    ?>
+
+
+    <form
+        id="empathizerForm"
+        action=<?php echo EMAIL_SENT; ?>
+        type="hidden"
+        method="POST"
+    >
+        <input name="skype_name" type="text">
+        <input name="length" type="number">
+        <input type="submit" value="Send!">
+    </form>
+    
+    
+    <?php
+    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
+    ob_end_clean();
+    return $ob_content;
+}
+
+add_shortcode('ea_email_form', 'ea_email_form_shortcode');
