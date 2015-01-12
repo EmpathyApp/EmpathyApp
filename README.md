@@ -1,15 +1,14 @@
 EmpathyApp
 ==========
 
-Empathy App connects trained empathizers to people in need of empathy
-
-Technically Empathy App is a Wordpress plugin and is integrated into websites with the help of Wordpress shortcodes
+Empathy App is a Wordpress plugin and is integrated into websites with the help of Wordpress shortcodes
 
 
 
 #### Technology stack
 
-LAMP + Wordpress
+* LAMP
+* Wordpress
 
 Also relies on these wp plugins:
 
@@ -32,13 +31,15 @@ Administrator | administrator  | any valid wp login name
 
 [link](http://kuanyin.ihavearrived.org/)
 
-You may want to create an account so that you can test the "empathizer email" page and send yourself emails
+You may want to create an empathizer (contributor) account and a caller (subscriber) account so that you can test the "empathizer email" page and send emails
 
 
 
 #### Website overview
 
 The website using EmpathyApp needs to have five pages with different shortcodes. php code (and js, html) is inserted through shortcodes (we cannot load pages directly because of how Wordpress is built)
+
+A graphical overview in two parts: [before call](https://cloud.githubusercontent.com/assets/10245688/5697024/e43f9c26-99e4-11e4-9060-9edaf79a66dd.jpg), [after call](https://cloud.githubusercontent.com/assets/10245688/5697023/e3815e96-99e4-11e4-94db-98df20afe3a4.jpg)
 
 
 ##### 1. Front page
@@ -48,7 +49,6 @@ The website using EmpathyApp needs to have five pages with different shortcodes.
 * Plugin dependencies: Neat skype status v2 (pro) *please note that "pro" version is required*
 * How it works: Clicking the icon will call one of the people in the list of skype names
 * Used by: Caller
-* File: n/a (since the shortcode is for an plugin that we havn't developed)
 
 
 ##### 2. Page with form for sending email with donation link
@@ -57,7 +57,6 @@ The website using EmpathyApp needs to have five pages with different shortcodes.
 * Dev perspective: The actual sending of the email is done on the next page below
 * [Example](http://kuanyin.ihavearrived.org/?page_id=5)
 * Shortcode: [ea_email_form]
-* Plugin dependencies: None
 * How it works: While logged in as an empathizer (currently using the administrator role), entering a user name for a caller (currently using the subscriber role) and number of minutes for preceding call and pressing button will send an email to the caller with a link to the donation form
 * Used by: Empathizer
 * File: pages/email_form.php
@@ -69,8 +68,6 @@ The website using EmpathyApp needs to have five pages with different shortcodes.
 * Dev perspective: Sends email and also stores call record in the database
 * [Example](http://kuanyin.ihavearrived.org/?page_id=7)
 * Shortcode: [ea_email_sent]
-* Plugin dependencies: None
-* How it works: 
 * Used by: Empathizer
 * File: pages/email_sent.php
 
@@ -80,7 +77,6 @@ The website using EmpathyApp needs to have five pages with different shortcodes.
 * Caller perspective: Arrives at this page after clicking link received in an email (see previous step)
 * [Example](http://kuanyin.ihavearrived.org/?page_id=9)
 * Shortcode: [ea_donation_form]
-* Plugin dependencies: None
 * For testing use 4242 4242 4242 4242 as the credit card number and anything for the other fields. We are using a test key so you can test all you want without any real money being transfered. To verify that the transfer was made you need access to the Empathy App stripe account but we also print the result and the amount transfered on the "thank you" page
 * Used by: Caller
 * File: pages/donation_form.php
