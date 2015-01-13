@@ -1,4 +1,5 @@
 <?php
+
 /* 
  * Copyright (C) 2015 sunyata
  *
@@ -16,27 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ea_email_form_shortcode() {
-    ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    ?>
 
-
-    <form
-        id="empathizerForm"
-        action=<?php echo EMAIL_SENT; ?>
-        type="hidden"
-        method="POST"
-    >
-        <input name="skype_name" type="text">
-        <input name="length" type="number">
-        <input type="submit" value="Send!">
-    </form>
-    
-    
-    <?php
-    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
-    ob_end_clean();
-    return $ob_content;
+class pages{
+    const home = ''; //-unused
+    const email_form = 'email-form'; //-unused
+    const email_sent = 'email-sent';
+    const donation_sent = 'donation-sent';
+    const donation_form = 'donation-form';
 }
-
-add_shortcode('ea_email_form', 'ea_email_form_shortcode');

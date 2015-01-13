@@ -28,36 +28,45 @@
  */
 
 
-//#####################Things that need to be customized for each installation##
+//Things that need to be customized for each installation#######################
 
 /*
- * Debug, please comment out at production
- * Please note that the .htaccess file does not have to be changed
+ * Displaying errors, please comment out at production
+ * Please note that the .htaccess file does not have to be changed for debugging
+ * be enabled, only the lines below
  */
 /*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
- */
+*/
+
 require_once 'console_debug.php';
-//require_once 'includes/lib/FirePHPCore/FirePHP.class.php';
+require_once 'includes/lib/firephp/FirePHP.class.php';
 
+require_once 'classes/constants.php';
 require_once 'db_init.php';
-require_once 'pages/donation_form.php';
-require_once 'pages/donation_sent.php';
-require_once 'pages/email_form.php';
-require_once 'pages/email_sent.php';
+require_once 'pages/donation-form_sc.php';
+require_once 'pages/donation-sent_sc.php';
+require_once 'pages/email-form_sc.php';
+require_once 'pages/email-sent_sc.php';
 
-define("EMAIL_SENT", "http://kuanyin.ihavearrived.org/?page_id=7");
-define("DONATION_SENT", "http://kuanyin.ihavearrived.org/?page_id=11");
-define("DONATION_FORM", "http://kuanyin.ihavearrived.org/?page_id=9");
 
 //##############################################################################
+
+function getBaseUrl(){
+    if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
+        $tProtocol = 'https://';
+    }else{
+        $tProtocol = 'http://';
+    }
+    return $tProtocol . $_SERVER['SERVER_NAME'] . '/';
+}
 
 function getEmailByUserName($iUserName) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
-            "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
     //^Please note that we need to surround the variable with single quotes
     $userEmailString = $resArray[0]->user_email;
     return $userEmailString;
@@ -66,14 +75,14 @@ function getEmailByUserName($iUserName) {
 function getIdByUserName($iUserName) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
-            "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
     $userId = $resArray[0]->ID;
     return $userId;
 }
 
 function ea_send_email($iEmail, $iTitle, $iMessage){
     $tNewLine = "\r\n";
-    $tHeaders = "From: noreply@ihavearrived.org" . $tNewLine .
+    $tHeaders = "From: noreply@" . $_SERVER['SERVER_NAME'] . $tNewLine .
         "X-Mailer: PHP/" . PHP_VERSION;
     mail($iEmail, $iTitle, $iMessage, $tHeaders);
 }
@@ -102,11 +111,3 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
     return $modErrors;
 }
 add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
-
-
-/*
- * http://codex.wordpress.org/Function_Reference/wp_insert_post
- * 
- * Please note that the recommended and actual donations are set here to -1 and
- * will be updated later on (in thank_you.php when we know more)
- */
