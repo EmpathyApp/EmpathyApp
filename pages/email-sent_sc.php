@@ -50,8 +50,8 @@ function ea_email_sent_shortcode() {
     $t_caller_email = getEmailByUserName($t_caller_skype_name);
     $t_message = "
 Hi from php!
-Please check out the link below"
-. DONATION_FORM . "&recamount=$t_length " .
+Please check out this link "
+    . getBaseUrl() . pages::donation_form . "?recamount=$t_length " .
 "(your skype name is $t_caller_skype_name and the call length was $t_length)
 Warm regards,
 The Empathy App team

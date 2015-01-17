@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 sunyata
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,11 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+class pages {
 
-class pages{
     const home = ''; //-unused
-    const email_form = 'email-form'; //-unused
-    const email_sent = 'email-sent';
-    const donation_sent = 'donation-sent';
-    const donation_form = 'donation-form';
+    const email_form = 'email-form/'; //-unused
+    const email_sent = 'email-sent/';
+    const donation_sent = 'donation-sent/';
+    const donation_form = 'donation-form/';
+
 }

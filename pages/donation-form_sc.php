@@ -93,7 +93,7 @@ function ea_donation_form_shortcode() {
     </script>
 
 
-    <form id="stripeForm" action=<?php echo DONATION_SENT; ?> method="POST">
+    <form id="stripeForm" action=<?php echo getBaseUrl() . pages::donation_sent; ?> method="POST">
         <script src="http://checkout.stripe.com/checkout.js"></script>
         <button id="customButton">☙Donate❧</button>
         <!-- -html for the custom stripe button needs to be placed before the script (why?) -->
