@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.1.2
+ * Version: 0.1.3
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -111,3 +111,15 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
     return $modErrors;
 }
 add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
+
+function ea_terms_and_conditions_textarea(){
+    ?>
+    
+    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+    <br>
+    <input id="tccb1" type="checkbox">
+    <label for="tccb1">I accept these terms and conditions</label>
+
+    <?php
+}
+add_action('register_form', 'ea_terms_and_conditions_textarea');
