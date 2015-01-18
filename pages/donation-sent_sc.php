@@ -37,41 +37,53 @@ function ea_donation_sent_shortcode() {
     $token = $_POST['stripeToken'];
     $amountCents = $_POST['amountCents']; // TODO: Change to dynamic
     /*
-     * -please note that (1) the amound is given in cents and (2) the amount is
-     * given two times, once on the client side and also here on the server side
-     * and the amount is not transferred automatically (as long as we use the
-     * "custom" https://stripe.com/docs/checkout#integration-custom checkout
-     * button) which means that we can see a value in the stripe dialog which
-     * gives one value and then another value will be charged from the user's
-     * credit card
+     * Checking if we have gotten here by a (the) form action in donation-for_sc.php,
+     * if so withdraw the amount sent from the previous page
      */
-    $descr = "test description"; // TODO: remove?
-    // Create the charge on Stripe's servers - this will charge the user's card
-    try {
-        $charge = Stripe_Charge::create(array(
-            "amount" => $amountCents, // amount in cents, again
-            "currency" => "usd",
-            "card" => $token,
-            "description" => $descr)
-        );
-    } catch (Stripe_CardError $e) {
-        // The card has been declined
-        echo "<h4>Card has been declined</h4>";
-    } catch (Exception $e) {
-        echo "Error: " + $e->getMessage();
+    if(isset($token) == true){
         /*
-         * TODO: More exceptions here (thank you to sebaste):
-         * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+         * -please note that (1) the amound is given in cents and (2) the amount is
+         * given two times, once on the client side and also here on the server side
+         * and the amount is not transferred automatically (as long as we use the
+         * "custom" https://stripe.com/docs/checkout#integration-custom checkout
+         * button) which means that we can see a value in the stripe dialog which
+         * gives one value and then another value will be charged from the user's
+         * credit card
          */
+        $descr = "test description"; // TODO: remove?
+        // Create the charge on Stripe's servers - this will charge the user's card
+        //$tSuccess = false;
+        try {
+            $charge = Stripe_Charge::create(array(
+                "amount" => $amountCents, // amount in cents, again
+                "currency" => "usd",
+                "card" => $token,
+                "description" => $descr)
+            );
+            $tSuccess = true;
+        } catch (Stripe_CardError $e) {
+            // The card has been declined
+            echo "<h4>Card has been declined</h4>";
+        } catch (Exception $e) {
+            echo "Error: " + $e->getMessage();
+            /*
+             * TODO: More exceptions here (thank you to sebaste):
+             * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+             */
+        }
+        /*
+         * From stripe support:
+         * "Yes as long as you get a Charge object back from our API, it means the
+         * payment was successful and you can update your database from that point.
+         * You should definitely catch all types of exceptions that can be thrown
+         * by our API to ensure you're catching all of our errors."
+         */
+        if($tSuccess === true){
+            echo "<h3>Success! Charged {$amountCents} cents</h3>";
+        }else{
+            echo "<h4>Some failure occured</h4>"; //-TODO: details needed here or elsewhere
+        }
     }
-    /*
-     * From stripe support:
-     * "Yes as long as you get a Charge object back from our API, it means the
-     * payment was successful and you can update your database from that point.
-     * You should definitely catch all types of exceptions that can be thrown
-     * by our API to ensure you're catching all of our errors."
-     */
-    echo "<h3>Success! Charged {$amountCents} cents</h3>";
 
 
     $tmp_content = ob_get_contents(); //++++++++++++++++++++++++++++++++++++++++
