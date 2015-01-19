@@ -37,30 +37,62 @@ function ea_donation_form_shortcode() {
             'noRedirectDonationDollars': '42',
             'minDonationDollars': '0',
             'maxDonationDollars': '100',
-            'donationStepSizeDollars': '1'
+            'donationStepSizeDollars': '1',
+            'animationMargin': '2'
         };
-
+        
+        var tScaleNr = 1;
+        var tInitialDonationAmount = getInitialDonationAmount();
         $(function () {
             // Setup for jQuery UI slider
             $("#sliderDollars").slider({
-                value: getInitialDonationAmount(),
+                value: tInitialDonationAmount,
                 min: gConst.minDonationDollars,
                 max: gConst.maxDonationDollars,
                 step: gConst.donationStepSizeDollars,
                 slide: function (iEvent, iUi) {
                     //..event handling for when user drags slider
+                    console.log("iUi.value = " + iUi.value);
                     $("#amountDollars").val("$" + iUi.value); //-Issue #17
-                    tScaleNr = iUi.value / getInitialDonationAmount();
+                    tScaleNr = iUi.value / tInitialDonationAmount;
                     tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
                     /*
                      * -the last two values (at the time of writing zeroes)
                      * determine the point relative to which the scaling will be done
                      */
+                    if(iUi.value >= gConst.maxDonationDollars - gConst.animationMargin){ //-adding to the margin
+                        startAnim();
+                    }else{
+
+                    }
                 }
             });
             // Showing the initial value as text
             $("#amountDollars").val("$" + $("#sliderDollars").slider("value"));
         });
+
+        function startAnim(){
+            var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
+                function(){
+                    /* 
+                     * Putting the lines below inside this callback makes sure that
+                     * the system will execute them after the first animation is completed
+                     */
+                    var tAnim = Raphael.animation({'transform':"S" + tScaleNr + "," + tScaleNr + ",0,0"}, 600);
+                    tHeartSet.animate(tAnim);
+                }
+            );
+            tHeartSet.animate(tAnim);
+        }
+
+        /*
+         * Side-effect: Changes the size of the svg/raphael object
+         */
+        /*
+        function scaleFunction(){
+            tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+        }
+    */
 
         /*
          * Gives an inital donation amount which can come from the url parameter
@@ -123,7 +155,6 @@ function ea_donation_form_shortcode() {
                         //$('#stripeForm').append(tokenInput).submit();
                         var tAmountStr = $('<input type=hidden name=amountCents />').val( tAmount );
                         $('#stripeForm').append(tokenInput).append(tAmountStr).submit();
-
                     },
                     name: 'Demo Site',
                     description: 'Empathy App Donation',
@@ -142,7 +173,7 @@ function ea_donation_form_shortcode() {
     <!-- Dynamically updated image connected to the donation slider -->
     <div id="container"></div>
     <script> // svg image made with inkscape and http://readysetraphael.com/
-        var paper = Raphael('container', '300', '300'); //'121', '99'
+        var paper = Raphael('container', '310', '310'); //'121', '99'
         var path3053 = paper.path("");
         path3053.attr({id: 'path3053',fill: '#000000','stroke-width': '0','stroke-opacity': '1'}).data('id', 'path3053');
         var path3051 = paper.path("");
