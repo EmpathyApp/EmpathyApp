@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.1.3
+ * Version: 0.2.0
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -112,6 +112,10 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
 }
 add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
 
+/*
+ * Text area containing terms and conditions that will be shown at caller user
+ * registration
+ */
 function ea_terms_and_conditions_textarea(){
     ?>
     
