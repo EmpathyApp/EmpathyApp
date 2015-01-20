@@ -61,15 +61,35 @@ function ea_donation_sent_shortcode() {
                 "description" => $descr)
             );
             $tSuccess = true;
-        } catch (Stripe_CardError $e) {
+        } 
+
+        /*
+         * TODO: More exceptions here (thank you to sebaste):
+         * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+         */
+
+        catch (Stripe_CardError $e) {
             // The card has been declined
             echo "<h4>Card has been declined</h4>";
-        } catch (Exception $e) {
+        }
+        catch (Stripe_InvalidRequestError $e) { 
+            // Invalid parameters were supplied to Stripe's API
+            echo "<h4>Error: Invalid Request</h4>";
+        }
+        catch (Stripe_AuthenticationError $e) { 
+            // Authentication with Stripe's API failed
+            echo "<h4>Error: Internal Stripe API Error</h4>";
+        }
+        catch (Stripe_ApiConnectionError $e) { 
+            // Network communication with Stripe failed
+            echo "<h4>Error: Failed to communicate with Stripe</h4>";
+        }
+        catch (Stripe_Error $e) {
+            // Generic stripe error
+            echo "<h4>Error: Internal Stripe Error </h4>";
+        } 
+        catch (Exception $e) {
             echo "Error: " + $e->getMessage();
-            /*
-             * TODO: More exceptions here (thank you to sebaste):
-             * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
-             */
         }
         /*
          * From stripe support:
