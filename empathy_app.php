@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.2.0
+ * Version: 0.2.4
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -27,9 +27,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 //Things that need to be customized for each installation#######################
-
 /*
  * Displaying errors, please comment out at production
  * Please note that the .htaccess file does not have to be changed for debugging
@@ -40,6 +38,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
 */
+//##############################################################################
 
 require_once 'console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
@@ -50,80 +49,6 @@ require_once 'pages/donation-form_sc.php';
 require_once 'pages/donation-sent_sc.php';
 require_once 'pages/email-form_sc.php';
 require_once 'pages/email-sent_sc.php';
-
-
-//##############################################################################
-
-function getBaseUrl(){
-    if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
-        $tProtocol = 'https://';
-    }else{
-        $tProtocol = 'http://';
-    }
-    return $tProtocol . $_SERVER['SERVER_NAME'] . '/';
-}
-
-function getEmailByUserName($iUserName) {
-    global $wpdb; //-Getting access to the wordpress database
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
-    //^Please note that we need to surround the variable with single quotes
-    $userEmailString = $resArray[0]->user_email;
-    return $userEmailString;
-}
-
-function getIdByUserName($iUserName) {
-    global $wpdb; //-Getting access to the wordpress database
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
-    $userId = $resArray[0]->ID;
-    return $userId;
-}
-
-function ea_send_email($iEmail, $iTitle, $iMessage){
-    $tNewLine = "\r\n";
-    $tHeaders = "From: noreply@" . $_SERVER['SERVER_NAME'] . $tNewLine .
-        "X-Mailer: PHP/" . PHP_VERSION;
-    mail($iEmail, $iTitle, $iMessage, $tHeaders);
-}
-
-/*
- * WP filter that validates that the skype name exists, if it doesn't an
- * error is added to the list of registration errors
- */
-function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
-    // Using curl to do a http post request to skype
-    $tUrl = "https://login.skype.com/json/validator";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $tUrl);
-    curl_setopt($ch, CURLOPT_POST , 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER , true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS , "new_username=$iSkypeName");
-    $tResponse = curl_exec($ch);
-    $tResultInfo = curl_getinfo($ch);
-    curl_close($ch);
-    // Check if the skype name is avalilable for registration (meaning that no user has it)..
-    if( substr_count($tResponse, "not available") == 0 ){
-        // ..if so, add skype error to the list of registration errors
-        $modErrors -> add('skype_error', __('<strong>ERROR:</strong> Skype name could not be verified, please recheck'), '-');
-        //-domain?? doesn't seem to matter what we choose here
-    }
-    return $modErrors;
-}
-add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
-
-/*
- * Text area containing terms and conditions that will be shown at caller user
- * registration
- */
-function ea_terms_and_conditions_textarea(){
-    ?>
-    
-    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
-    <br>
-    <input id="tccb1" type="checkbox">
-    <label for="tccb1">I accept these terms and conditions</label>
-
-    <?php
-}
-add_action('register_form', 'ea_terms_and_conditions_textarea');
+require_once 'adminpages/settings.php';
+require_once 'includes/functions.php';
+require_once 'includes/user-registration.php';
