@@ -16,6 +16,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+    ?>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <?php
+    
+    
+    
+/*
+ * Text area containing terms and conditions that will be shown at caller user
+ * registration
+ */
+function ea_terms_and_conditions_textarea(){
+    ?>
+    
+    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+    <br>
+    <input id="termsCheckbox" name="termsCheckbox" type="checkbox" value="1">
+    <label for="termsCheckbox">I accept these terms and conditions</label>
+
+    <?php
+}
+add_action('register_form', 'ea_terms_and_conditions_textarea');
 
 
 
@@ -37,27 +58,18 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
     // Check if the skype name is avalilable for registration (meaning that no user has it)..
     if( substr_count($tResponse, "not available") == 0 ){
         // ..if so, add skype error to the list of registration errors
-        $modErrors -> add('skype_error', __('<strong>ERROR:</strong> Skype name could not be verified, please recheck'), '-');
+        $modErrors -> add('skype_error', __('<strong>ERROR:</strong> Skype name could not be verified, please recheck'), 'domain1');
         //-domain?? doesn't seem to matter what we choose here
     }
     return $modErrors;
 }
 add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
 
-/*
- * Text area containing terms and conditions that will be shown at caller user
- * registration
- */
-function ea_terms_and_conditions_textarea(){
-    ?>
-    
-    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
-    <br>
-    <input id="tccb1" type="checkbox">
-    <label for="tccb1">I accept these terms and conditions</label>
-
-    <?php
+function ea_validate_terms_accepted($modErrors, $iSkypeName, $iUserEmail){
+    //echo "<h3>checkbox: " . $_POST[termsCheckbox] . "</h3>";
+    if(!isset($_POST[termsCheckbox])){ //-if checkbox false this value will not even be set
+        $modErrors -> add('terms_error', __('<strong>ERROR:</strong> You must accept the terms and conditions to register'), 'domain1');
+    }
+    return $modErrors;
 }
-add_action('register_form', 'ea_terms_and_conditions_textarea');
-
-
+add_filter('registration_errors', 'ea_validate_terms_accepted', 10, 3);
