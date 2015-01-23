@@ -47,6 +47,9 @@ function ea_email_sent_shortcode() {
         array('date' => current_time('mysql'))
     );
 
+    //Issue 37 - https://github.com/EmpathyApp/EmpathyApp/issues/37
+    //$t_caller_first_name = getFirstNameByUserName($t_caller_skype_name);
+    
     $t_caller_email = getEmailByUserName($t_caller_skype_name);
     $t_message = "
 Hi from php!
