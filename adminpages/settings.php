@@ -18,9 +18,6 @@
  */
 
 
-
-
-
 /*
  * Code generated with
  * http://wpsettingsapi.jeroensormani.com/
@@ -33,73 +30,116 @@
  */
 
 
-add_action( 'admin_menu', 'ea_add_admin_menu' );
-add_action( 'admin_init', 'ea_settings_init' );
-
-
 function ea_add_admin_menu(  ) { 
-
 	add_options_page( 'Empathy App', 'Empathy App', 'manage_options', 'empathy_app', 'ea_options_page' );
-        
-
 }
-
+add_action( 'admin_menu', 'ea_add_admin_menu' );
 
 function ea_settings_init(  ) { 
-
 	register_setting( 'pluginPage', 'ea_settings' );
-
-	add_settings_section(
-		'ea_pluginPage_section', 
-		__( 'Your section description', 'wordpress' ), 
-		'ea_settings_section_callback', 
+      	add_settings_section(
+		'ea_pluginPage_donation_multiplier_section', 
+		__( 'Donation multiplier', 'wordpress' ), 
+		'ea_settings_donation_multiplier_section_callback', 
 		'pluginPage'
 	);
-
-	add_settings_field( 
-		'ea_text_field_0', 
-		__( 'Settings field description', 'wordpress' ), 
-		'ea_text_field_0_render', 
-		'pluginPage', 
-		'ea_pluginPage_section' 
+	add_settings_section(
+		'ea_pluginPage_stripe_keys_section', 
+		__( 'Stripe keys', 'wordpress' ), 
+		'ea_settings_stripe_keys_section_callback', 
+		'pluginPage'
 	);
-
-
+	add_settings_field( 
+		'donation_multiplier', 
+		__( 'Multiplier', 'wordpress' ), 
+		'ea_text_field_donation_multiplier_render', 
+		'pluginPage', 
+		'ea_pluginPage_donation_multiplier_section' 
+	);
+	add_settings_field( 
+		'private_stripe_key', 
+		__( 'Private key', 'wordpress' ), 
+		'ea_text_field_private_stripe_key_render', 
+		'pluginPage', 
+		'ea_pluginPage_stripe_keys_section' 
+	);
+        add_settings_field( 
+		'shared_stripe_key', 
+		__( 'Shared (public) key', 'wordpress' ), 
+		'ea_text_field_shared_stripe_key_render', 
+		'pluginPage', 
+		'ea_pluginPage_stripe_keys_section' 
+	);
 }
+add_action( 'admin_init', 'ea_settings_init' );
 
-
-function ea_text_field_0_render(  ) { 
-
-	$options = get_option( 'ea_settings' );
+function ea_text_field_donation_multiplier_render(  ) { 
+        $tDonationMultiplier = get_donation_multiplier();
 	?>
-	<input type='text' name='ea_settings[ea_text_field_0]' value='<?php echo $options['ea_text_field_0']; ?>'>
+	<input type='text' name='ea_settings[ea_text_field_donation_multiplier]'
+               value='<?php echo $tDonationMultiplier; ?>'>
 	<?php
-
 }
 
-
-function ea_settings_section_callback(  ) { 
-
-	echo __( 'This section description', 'wordpress' );
-
+function ea_text_field_private_stripe_key_render(  ) { 
+        $tPrivateStripeKey = get_private_stripe_key();
+	?>
+	<input type='text' name='ea_settings[ea_text_field_private_stripe_key]'
+               value='<?php echo $tPrivateStripeKey; ?>'>
+	<?php
 }
 
+function ea_text_field_shared_stripe_key_render(  ) { 
+        $tSharedStripeKey = get_shared_stripe_key();
+	?>
+	<input type='text' name='ea_settings[ea_text_field_shared_stripe_key]'
+               value='<?php echo $tSharedStripeKey; ?>'>
+	<?php
+}
+
+function get_donation_multiplier(){
+    $tOptions = get_option('ea_settings');
+    $rDonationMultiplier = $tOptions['ea_text_field_donation_multiplier'];
+    if(!isset($rDonationMultiplier) || $rDonationMultiplier == Constants::empty_string){
+        $rDonationMultiplier = stripe_donation::default_amount;
+    }
+    return $rDonationMultiplier;
+}
+function get_private_stripe_key(){
+    $tOptions = get_option('ea_settings');
+    $rPrivateKey = $tOptions['ea_text_field_private_stripe_key'];
+    if(!isset($rPrivateKey) || $rPrivateKey == Constants::empty_string){
+        $rPrivateKey = stripe_donation::private_test_key;
+    }
+    return $rPrivateKey;
+}
+function get_shared_stripe_key(){
+    $tOptions = get_option('ea_settings');
+    $rSharedKey = $tOptions['ea_text_field_shared_stripe_key'];
+    if(!isset($rSharedKey) || $rSharedKey == Constants::empty_string){
+        $rSharedKey = stripe_donation::shared_test_key;
+    }
+    return $rSharedKey;
+}
+
+function ea_settings_donation_multiplier_section_callback(  ) { 
+	//echo __( 'Donation multiplier', 'wordpress' );
+}
+function ea_settings_stripe_keys_section_callback(  ) { 
+	//echo __( 'Stripe keys', 'wordpress' );
+}
 
 function ea_options_page(  ) { 
 
 	?>
 	<form action='options.php' method='post'>
-		
 		<h2>Empathy App</h2>
-		
 		<?php
 		settings_fields( 'pluginPage' );
 		do_settings_sections( 'pluginPage' );
 		submit_button();
 		?>
-		
 	</form>
 	<?php
 
 }
-

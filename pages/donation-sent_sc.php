@@ -29,10 +29,10 @@ require_once('../includes/lib/stripe/Stripe.php');
 function ea_donation_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++
 
-    
     // Set your secret key: remember to change this to your live secret key in production
     // See your keys here https://dashboard.stripe.com/account
-    Stripe::setApiKey("sk_test_uEGJelp5bfMDnLp0LSfb9E7N");
+
+    Stripe::setApiKey(get_shared_stripe_key());
     // Get the credit card details submitted by the form
     $token = $_POST['stripeToken'];
     $amountCents = $_POST['amountCents']; // TODO: Change to dynamic

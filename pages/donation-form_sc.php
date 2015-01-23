@@ -63,7 +63,6 @@ function ea_donation_form_shortcode() {
                     if(iUi.value >= gConst.maxDonationDollars - gConst.animationMargin){ //-adding to the margin
                         startAnim();
                     }else{
-
                     }
                 }
             });
@@ -146,7 +145,7 @@ function ea_donation_form_shortcode() {
                 var tAmount = 100 * $("#sliderDollars").slider("value");
                 // ..open stripe dialog
                 StripeCheckout.open({
-                    key: 'pk_test_ZtBvgdrmlEPZGXUcCzDqVLOo',
+                    key: '<?php echo get_private_stripe_key(); ?>',
                     image: '/square-image.png',
                     token: function (responseToken) {
                         // ..submit the token that we get back from the stripe server to _our_ server
@@ -200,4 +199,3 @@ function ea_donation_form_shortcode() {
  * to insert text into the web page
  */
 add_shortcode('ea_donation_form', 'ea_donation_form_shortcode');
-?>
