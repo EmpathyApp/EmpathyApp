@@ -16,12 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    ?>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <?php
+
     
-    
-    
+
 /*
  * Text area containing terms and conditions that will be shown at caller user
  * registration

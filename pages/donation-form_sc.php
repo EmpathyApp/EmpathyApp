@@ -28,9 +28,6 @@ function ea_donation_form_shortcode() {
     <div id="sliderDollars"></div>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
     <script>
         var gConst = {
             'recDonationDollarsUrlParamName': 'recamount',
@@ -43,17 +40,16 @@ function ea_donation_form_shortcode() {
         
         var tScaleNr = 1;
         var tInitialDonationAmount = getInitialDonationAmount();
-        $(function () {
+        jQuery(function () {
             // Setup for jQuery UI slider
-            $("#sliderDollars").slider({
+            jQuery("#sliderDollars").slider({
                 value: tInitialDonationAmount,
                 min: gConst.minDonationDollars,
                 max: gConst.maxDonationDollars,
                 step: gConst.donationStepSizeDollars,
                 slide: function (iEvent, iUi) {
                     //..event handling for when user drags slider
-                    console.log("iUi.value = " + iUi.value);
-                    $("#amountDollars").val("$" + iUi.value); //-Issue #17
+                    jQuery("#amountDollars").val("$" + iUi.value); //-Issue #17
                     tScaleNr = iUi.value / tInitialDonationAmount;
                     tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
                     /*
@@ -62,12 +58,11 @@ function ea_donation_form_shortcode() {
                      */
                     if(iUi.value >= gConst.maxDonationDollars - gConst.animationMargin){ //-adding to the margin
                         startAnim();
-                    }else{
                     }
                 }
             });
             // Showing the initial value as text
-            $("#amountDollars").val("$" + $("#sliderDollars").slider("value"));
+            jQuery("#amountDollars").val("$" + jQuery("#sliderDollars").slider("value"));
         });
 
         function startAnim(){
@@ -83,15 +78,6 @@ function ea_donation_form_shortcode() {
             );
             tHeartSet.animate(tAnim);
         }
-
-        /*
-         * Side-effect: Changes the size of the svg/raphael object
-         */
-        /*
-        function scaleFunction(){
-            tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
-        }
-    */
 
         /*
          * Gives an inital donation amount which can come from the url parameter
@@ -139,21 +125,21 @@ function ea_donation_form_shortcode() {
         <!-- -html for the custom stripe button needs to be placed before the script (why?) -->
         <script>
         // Checkout on button click..
-        $(function () {
-            $('#customButton').on('click', function (e) {
+        jQuery(function () {
+            jQuery('#customButton').on('click', function (e) {
                 //..get the amount from the slider
-                var tAmount = 100 * $("#sliderDollars").slider("value");
+                var tAmount = 100 * jQuery("#sliderDollars").slider("value");
                 // ..open stripe dialog
                 StripeCheckout.open({
                     key: '<?php echo get_private_stripe_key(); ?>',
                     image: '/square-image.png',
                     token: function (responseToken) {
                         // ..submit the token that we get back from the stripe server to _our_ server
-                        var tokenInput = $('<input type=hidden name=stripeToken />').val(responseToken.id);
+                        var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
                         //-(the token is used on the server side to create the actual charge)
-                        //$('#stripeForm').append(tokenInput).submit();
-                        var tAmountStr = $('<input type=hidden name=amountCents />').val( tAmount );
-                        $('#stripeForm').append(tokenInput).append(tAmountStr).submit();
+                        //jQuery('#stripeForm').append(tokenInput).submit();
+                        var tAmountStr = jQuery('<input type=hidden name=amountCents />').val( tAmount );
+                        jQuery('#stripeForm').append(tokenInput).append(tAmountStr).submit();
                     },
                     name: 'Demo Site',
                     description: 'Empathy App Donation',
@@ -162,7 +148,7 @@ function ea_donation_form_shortcode() {
                 e.preventDefault();
             });
             // Close Checkout on page navigation
-            $(window).on('popstate', function () {
+            jQuery(window).on('popstate', function () {
                 handler.close();
             });
         });

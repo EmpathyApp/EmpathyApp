@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.2.4
+ * Version: 0.2.5
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -39,6 +39,18 @@ ini_set('display_startup_errors', 1);
 error_reporting(-1);
 */
 //##############################################################################
+
+function ea_wp_enqueue_scripts() {
+    //jQuery and jQuery UI
+    wp_enqueue_script('jquery'); //, 'http://code.jquery.com/jquery-1.10.2.js'
+    wp_enqueue_script('jquery-widget');
+    wp_enqueue_script('jquery-mouse');
+    wp_enqueue_script('jquery-ui-core');
+    wp_enqueue_script('jquery-ui-slider');
+    //raphael
+    wp_enqueue_script('raphael', 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js');
+}
+add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
 require_once 'console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
