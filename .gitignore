@@ -1,2 +1,18 @@
+# Netbeans
 /nbproject/private/
 /nbproject/
+
+# Compressed files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Temporary files
+*̈́~
+*.swp
+*.swo
