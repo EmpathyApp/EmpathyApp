@@ -5,6 +5,12 @@ Empathy App is a Wordpress plugin and is integrated into websites with the help 
 
 
 
+#### Installation
+
+Installed as a wp plugin (download the .zip and use it as the installation file). Plugin dependendies and shortcodes to use are described under the headings below
+
+
+
 #### Technology stack
 
 * LAMP
@@ -22,22 +28,8 @@ Also relies on these wp plugins:
 Internal name | Wordpress role | Username restrictions
 ------------- | -------------- | ---------------------
 Empathizer    | contributor    | empathizer_{first-name}, is both wp username and also an existing skype name
-Caller        | subscriber     | is both username and also an existing skype name
+Caller        | subscriber     | is both wp username and also an existing skype name
 Administrator | administrator  | any valid wp login name
-
-
-
-#### Remote sites
-
-##### Demo
-
-[link](http://kuanyin.ihavearrived.org/)
-
-You may want to create an empathizer (contributor) account and a caller (subscriber) account so that you can test the "empathizer email" page and send emails
-
-##### Dev
-
-
 
 
 
@@ -59,7 +51,7 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 
 ##### 2. Page with form for sending email with donation link
 
-* Empathizer perspective: Form for filling in the user name of caller from just finished call and the length of the call, after submitting the form an email will be sent to the caller
+* Empathizer perspective: Form for filling in the user name of caller from just finished call and the length of the call, after submitting the form an email will be automatically sent to the caller
 * Dev perspective: The actual sending of the email is done on the next page below
 * [Example](http://kuanyin.ihavearrived.org/email_form/)
 * Shortcode: [ea_email_form]
