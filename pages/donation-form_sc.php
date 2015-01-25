@@ -37,34 +37,36 @@ function ea_donation_form_shortcode() {
             'donationStepSizeDollars': '1',
             'animationMargin': '2'
         };
-        
+            
         var tScaleNr = 1;
         var tInitialDonationAmount = getInitialDonationAmount();
-        jQuery(function () {
+        jQuery(function() {
             // Setup for jQuery UI slider
             jQuery("#sliderDollars").slider({
                 value: tInitialDonationAmount,
                 min: gConst.minDonationDollars,
                 max: gConst.maxDonationDollars,
                 step: gConst.donationStepSizeDollars,
-                slide: function (iEvent, iUi) {
-                    //..event handling for when user drags slider
-                    jQuery("#amountDollars").val("$" + iUi.value); //-Issue #17
-                    tScaleNr = iUi.value / tInitialDonationAmount;
-                    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
-                    /*
-                     * -the last two values (at the time of writing zeroes)
-                     * determine the point relative to which the scaling will be done
-                     */
-                    if(iUi.value >= gConst.maxDonationDollars - gConst.animationMargin){ //-adding to the margin
-                        startAnim();
-                    }
-                }
+                slide: slideFunction
             });
             // Showing the initial value as text
             jQuery("#amountDollars").val("$" + jQuery("#sliderDollars").slider("value"));
         });
-
+        
+        function slideFunction(iEvent, iUi) {
+            //..event handling for when user drags slider
+            //jQuery("#amountDollars").val("$" + iUi.value); //-Issue #17
+            tScaleNr = iUi.value / tInitialDonationAmount;
+            tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+            /*
+             * -the last two values (at the time of writing zeroes)
+             * determine the point relative to which the scaling will be done
+             */
+            if(iUi.value >= gConst.maxDonationDollars - gConst.animationMargin){ //-adding to the margin
+                startAnim();
+            }
+        }
+        
         function startAnim(){
             var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
                 function(){
