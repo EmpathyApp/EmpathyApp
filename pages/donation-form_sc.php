@@ -32,9 +32,9 @@ function ea_donation_form_shortcode() {
         var gConst = {
             'recDonationDollarsUrlParamName': 'recamount',
             'noRedirectDonationDollars': '42',
-            'minDonationDollars': '0',
-            'maxDonationDollars': '100',
-            'donationStepSizeDollars': '1',
+            'minDonationDollars': 0,
+            'maxDonationDollars': 100,
+            'donationStepSizeDollars': 1,
             'animationMargin': '2'
         };
             
@@ -55,7 +55,7 @@ function ea_donation_form_shortcode() {
         
         function slideFunction(iEvent, iUi) {
             //..event handling for when user drags slider
-            //jQuery("#amountDollars").val("$" + iUi.value); //-Issue #17
+            jQuery("#amountDollars").val("$" + iUi.value); //-Issue #17
             tScaleNr = iUi.value / tInitialDonationAmount;
             tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
             /*
@@ -66,7 +66,7 @@ function ea_donation_form_shortcode() {
                 startAnim();
             }
         }
-        
+
         function startAnim(){
             var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
                 function(){
