@@ -1,9 +1,7 @@
 DocVer: 0.0.1
 
 
-Assuming that a complete bug report has been filed
-https://github.com/EmpathyApp/EmpathyApp/wiki/Bug-reporting-template/_edit
-Otherwise the investigator may need to do some of the bug reporting steps herself
+Assuming that a complete [bug report](bug-report.md) has been filed. Otherwise the investigator may need to do some of the bug reporting steps herself
 
 
 #### Direct research

@@ -3,7 +3,7 @@ DocVer: 0.1.2
 ***not approved***
 
 
-*For a more general ("high-level") understanding of where the information below fits into requirements analysis and the software development process in general, please see* ***[this article](http://en.wikipedia.org/wiki/Requirements_analysis)***
+*For a more general ("high-level") understanding of where the information below fits into requirements analysis and the software development process in general, please see [this article](http://en.wikipedia.org/wiki/Requirements_analysis)*
 
 When editing this document, please do not remove the comments for each section which can be seen when editing (inside the lesser than and greater than signs) since these comments gives suggestions of how to write each section
 

@@ -24,7 +24,7 @@ To be added as a contributor in the github group and recieve login information, 
   * use github extended markdown syntax to show checkboxes (doesn't work the same way here on the wiki, this is the reason for creating and closing instead of using the wiki for this)
   * [Example](https://github.com/EmpathyApp/EmpathyApp/issues/23)
 * Use [templates](../templates) when working and [these docs for ways-of-working](ways-of-working)
-* If you like, order [this book](http://shop.oreilly.com/product/0636920029380.do) about building web apps with wordpress as a platform
+* If you like, order [*this book*](http://shop.oreilly.com/product/0636920029380.do) about building web apps with wordpress as a platform
 
 
 #### What can I do right now?

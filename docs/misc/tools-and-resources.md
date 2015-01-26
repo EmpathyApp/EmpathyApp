@@ -34,4 +34,5 @@ DocVer: 0.0.1
 
 ##### Security [*link*](https://addons.mozilla.org/en-US/firefox/collections/adammuntner/webappsec/)
 * User switching [*link*](https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/)
-* Header tampering [*link*](https://addons.mozilla.org/en-US/firefox/addon/tamper-data/) [2](https://addons.mozilla.org/en-US/firefox/addon/modify-headers/)
+* Header tampering [*link1*](https://addons.mozilla.org/en-US/firefox/addon/tamper-data/) [*link2*](https://addons.mozilla.org/en-US/firefox/addon/modify-headers/)
+

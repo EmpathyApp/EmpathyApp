@@ -11,5 +11,6 @@ jQuery | | | [*SO*](http://stackoverflow.com/questions/tagged/jquery) | [*Link*]
 wordpress | 4.1 | [*codex*](https://codex.wordpress.org/Main_Page) | [*forums*](https://wordpress.org/support/), [*SO*](http://wordpress.stackexchange.com/) |
 [*Neat skype status*](http://neat-wordpress-plugins.mission.lt/neat-skype-status/) | pro/v2 | | | Dual-licensed , *restrictions on multi-use??* (Mail sent)
 skype + clients | - | | |
-raphael | 2.1.x | | | [link](http://caniuse.com/#feat=svg)
-~~WebRTC~~ | | | | [link](http://iswebrtcreadyyet.com/)
+raphael | 2.1.x | | | [*link*](http://caniuse.com/#feat=svg)
+~~WebRTC~~ | | | | [*link*](http://iswebrtcreadyyet.com/)
+

@@ -69,6 +69,7 @@ If you don't have a remote development site, you can use [this site](http://kuan
 
 ### Graphical overview
 
-![Before call](https://cloud.githubusercontent.com/assets/10245688/5697024/e43f9c26-99e4-11e4-9060-9edaf79a66dd.jpg)
+![before_call](_img/before_call.png)
 
-![After call](https://cloud.githubusercontent.com/assets/10245688/5697023/e3815e96-99e4-11e4-94db-98df20afe3a4.jpg)
+![after_call](_img/after_call.png)
+

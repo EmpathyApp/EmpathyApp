@@ -3,7 +3,7 @@ EmpathyApp
 
 Empathy App is a Wordpress plugin and is integrated into websites with the help of Wordpress shortcodes
 
-This document gives a technical overview, for more details please investigate the [docs/ directory](docs/) as well as the source code itself
+This document gives a technical overview, for more technical details please investigate the [docs/ directory](docs/) and in particular [docs/intro/](docs/intro/) as well as the source code itself
 
 
 #### Installation

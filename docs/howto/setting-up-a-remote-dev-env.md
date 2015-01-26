@@ -1,3 +1,5 @@
+DocVer: 0.1
+
 
 ### 1. Getting an email with login/access info
 
@@ -53,7 +55,7 @@ In summary, you now have access to:
 
 #### Example 1: Filezilla
 
-![fz_remote_ftp](fz_remote_ftp.png)
+![fz_remote_ftp](_img/fz_remote_ftp.png)
 
 #### Example 2: NetBeans
 
