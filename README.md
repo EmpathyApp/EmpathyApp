@@ -3,6 +3,7 @@ EmpathyApp
 
 Empathy App is a Wordpress plugin and is integrated into websites with the help of Wordpress shortcodes
 
+This document gives a technical overview, for more details please investigate the [docs/ directory](docs/) as well as the source code itself
 
 
 #### Installation
@@ -18,8 +19,8 @@ Installed as a wp plugin (download the .zip and use it as the installation file)
 
 Also relies on these wp plugins:
 
-* Neat skype status v2 (PRO) [link](http://neat-wordpress-plugins.mission.lt/neat-skype-status/)
-* Posts 2 posts (p2p) [link](https://wordpress.org/plugins/posts-to-posts/)
+* Neat skype status v2/pro [*link*](http://neat-wordpress-plugins.mission.lt/neat-skype-status/)
+* Posts 2 posts (p2p) [*link*](https://wordpress.org/plugins/posts-to-posts/)
 
 
 
@@ -88,3 +89,4 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 * Plugin dependencies: p2p wp plugin
 * Used by: Caller
 * File: pages/donation_sent_sc.php
+

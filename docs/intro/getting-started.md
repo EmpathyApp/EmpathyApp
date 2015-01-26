@@ -1,15 +1,15 @@
 DocVer: 0.1
 
 
-To be added as a contributor, please contact SunyataZero (Tord) who is volunteer coordinator for Empathy App at tord(dot)dellsen(at)gmail(dot)com (alternatively through skype: tord_dellsen)
+To be added as a contributor in the github group and recieve login information, please contact SunyataZero (Tord) who is volunteer coordinator for Empathy App at tord(dot)dellsen(at)gmail(dot)com (alternatively through skype: tord_dellsen)
 
 
 #### How do I get an overview of the project?
 
-* Check out [the wiki's Home page](https://github.com/EmpathyApp/EmpathyApp/wiki)
+* Go to [our wiki's Home page](https://github.com/EmpathyApp/EmpathyApp/wiki)
 * Read the [advertisement](../misc/advertisement-for-devs.md) for new people
-* Follow [this guide](../howto/setting-up-a-dev-env.md) to set up a remote development environment
-* Check out this [Interactive intro](interactive-intro.md) (please contact SunyataZero(Tord) for admin access to a wp installation)
+* Follow [this guide](../howto/setting-up-a-remote-dev-env.md) to set up a remote development environment
+* Go through this [Interactive intro](interactive-intro.md)
 * A tech-oriented introduction can be found in the [readme file](../../README.md)
 * For more details, please see the [Requirements specification](../design/requirements-spec.md)
 

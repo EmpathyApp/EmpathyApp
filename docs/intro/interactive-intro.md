@@ -13,8 +13,7 @@ For a graphical overview, please see the images at the end of this text
 
 ### Testing area
 
-If you have a remote development site, you can use this, otherwise [this site](http://kuanyin.ihavearrived.org/) can be used instead
-
+If you don't have a remote development site, you can use [this site](http://kuanyin.ihavearrived.org/) instead
 
 
 ### Definitions

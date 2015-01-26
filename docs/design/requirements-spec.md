@@ -3,7 +3,7 @@ DocVer: 0.1.2
 ***not approved***
 
 
-*For a more general ("high-level") understanding of where the information below fits into requirements analysis and the software development process in general, please see this article:* ***http://en.wikipedia.org/wiki/Requirements_analysis***
+*For a more general ("high-level") understanding of where the information below fits into requirements analysis and the software development process in general, please see* ***[this article](http://en.wikipedia.org/wiki/Requirements_analysis)***
 
 When editing this document, please do not remove the comments for each section which can be seen when editing (inside the lesser than and greater than signs) since these comments gives suggestions of how to write each section
 
@@ -394,7 +394,7 @@ Q: Will user information be transferrable from version 1 to version 2?
 ### Appendix A: Glossary
 <Define all the terms necessary to properly interpret the SRS, including acronyms and abbreviations. You may wish to build a separate glossary that spans multiple projects or the entire organization, and just include terms specific to a single project in each SRS.>
 
-See [[Abbreviations and explanations]]
+See [Glossary and abbreviations](../glossary-and-abbreviations.md)
 
 
 ### Appendix B: Analysis Models

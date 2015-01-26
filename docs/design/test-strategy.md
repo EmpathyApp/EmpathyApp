@@ -2,9 +2,9 @@ DocVer: 0.0.1
 
 
 Books:
-* **BWAFWP chapter**
-* Producing open source software chapter
-* PHP programming chapter
+* **Chapter in "Building Web Apps for Wordpress**
+* Chapter in "Producing open source software"
+* Chapter in "PHP programming"
 
 OWASP:
 * https://www.owasp.org/
@@ -25,7 +25,8 @@ Testing types:
 ### Testing areas
 
 #### (Usability and accessability testing)
-* _____
+
+TODO
 
 #### Security
 
@@ -55,5 +56,3 @@ Reasons for securing the site:
 * browser compat
 * os compat
 * skype client version compat
-
-

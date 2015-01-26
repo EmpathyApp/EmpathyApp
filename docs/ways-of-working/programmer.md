@@ -9,7 +9,7 @@ DocVer: 0.0.1
 2. Research
   * Finding other solutions
     * Finding two or more examples doing what we are interested in. *Reading* code
-    * [Searchcode](https://searchcode.com/)
+    * [*Searchcode*](https://searchcode.com/)
   * Official documentation
 3. Pseudocode Programming Process
   * Comments (ex: "//Drawing a box..")

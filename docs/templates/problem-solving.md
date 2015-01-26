@@ -8,18 +8,24 @@ Otherwise the investigator may need to do some of the bug reporting steps hersel
 
 #### Direct research
 
-Google | [Searchcode](https://searchcode.com/) | Book references | [Official documentation](https://github.com/EmpathyApp/EmpathyApp/wiki/External-software)
+[*Google*](https://www.google.com/) | [*Searchcode*](https://searchcode.com/) | Book references | [Official documentation](../dependencies/sw-dependencies.md)
 --- | --- | --- | ---
 Search terms, results | Search terms, results | 1, 2 |
 
+
 #### Slow research
 
-##### Email the support [link](https://github.com/EmpathyApp/EmpathyApp/wiki/External-software)
+##### Email the support [link](../dependencies/sw-dependencies.md)
 
-##### Posting on stackoverflow [link](https://github.com/EmpathyApp/EmpathyApp/wiki/External-software)
+##### Posting on stackoverflow [link](../dependencies/sw-dependencies.md)
+
 
 #### Listing approaches for solving
 * 
+* 
+
 
 #### Implement the solution
-Go back to [[construction|https://github.com/EmpathyApp/EmpathyApp/wiki/Development-checklist)]], step 3: PPP
+
+Go to [way of working for programmers](../ways-of-working/programmer.md), step 3: PPP
+
