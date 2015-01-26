@@ -51,15 +51,10 @@ function ea_send_email($iEmail, $iTitle, $iMessage){
     mail($iEmail, $iTitle, $iMessage, $tHeaders);
 }
 
-/*
-//After getting access to DB to verify first_name field, can use this method to get first name of wp user and use in donation emails
-//Issue 37 - https://github.com/EmpathyApp/EmpathyApp/issues/37
-
-function getFirstNameByUserName($iUserName) {
+function getDisplayNameByUserName($iUserName) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
         "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);    
-    $userFirstNameString = $resArray[0]->first_name;
-    return $userFirstNameString;
+    $userDisplayNameString = $resArray[0]->display_name;
+    return $userDisplayNameString;
 }
-*/

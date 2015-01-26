@@ -45,13 +45,13 @@ function ea_email_sent_shortcode() {
         array('date' => current_time('mysql'))
     );
 
-    //Issue 37 - https://github.com/EmpathyApp/EmpathyApp/issues/37
-    //$t_caller_first_name = getFirstNameByUserName($t_caller_skype_name);
+    $tCallerDisplayName = getDisplayNameByUserName($tCallerSkypeName);
+    $displayNameForEmail = isset($tCallerDisplayName) ? " ".$tCallerDisplayName : "";
     
     $tCallerEmail = getEmailByUserName($tCallerSkypeName);
     $tRecDonation = round(get_donation_multiplier() * $tLength);
     $tMessage = "
-Hi from php!
+Hi".$displayNameForEmail.",
 Please check out this link "
     . getBaseUrl() . pages::donation_form . "?recamount=$tRecDonation " .
 "(your skype name is $tCallerSkypeName and the call length was $tLength)
