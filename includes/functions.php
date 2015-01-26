@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 sunyata
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,19 @@
 
 
 function getBaseUrl(){
-    if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
+
+/*if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
+        $tProtocol = 'https://';
+    }else{
+        $tProtocol = 'http://';
+    }*/
+//using filtering access
+if( filter_input(INPUT_SERVER, 'HTTPS') && (string)filter_input(INPUT_SERVER, 'HTTPS') != 'off' ){
         $tProtocol = 'https://';
     }else{
         $tProtocol = 'http://';
     }
-    return $tProtocol . $_SERVER['SERVER_NAME'] . '/';
+    return $tProtocol . (string)filter_input(INPUT_SERVER,'SERVER_NAME') . '/';
 }
 
 function getEmailByUserName($iUserName) {
@@ -54,7 +61,7 @@ function ea_send_email($iEmail, $iTitle, $iMessage){
 function getDisplayNameByUserName($iUserName) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);    
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
     $userDisplayNameString = $resArray[0]->display_name;
     return $userDisplayNameString;
 }
