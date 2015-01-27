@@ -61,7 +61,16 @@ Each person may choose to use the Pseudocode programming process which results i
 TODO
 
 
+#### Tools
 
-
-
+Tool | Function | Notes
+---|---|---
+[*Firebug*](https://getfirebug.com/) | Debugging js |
+[*FirePHP*](http://www.firephp.org/) | Debugging PHP | Depends on Firebug
+[*Display php version*](https://wordpress.org/plugins/display-php-version/) | PHP version |
+[*NetBeans*](https://netbeans.org/) | IDE | 
+[*FileZilla*](https://filezilla-project.org/) | FTP client |
+[*SIDU*](http://topnew.net/sidu/) | Database access | Installed on ihavearrived.org, can be accessed [here](http://ihavearrived.org/sidu/)
+[*wp database browser*](https://wordpress.org/plugins/database-browser/) | |
+[*jsfiddle*](http://jsfiddle.net/) | |
 
