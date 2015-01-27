@@ -18,103 +18,103 @@
  */
 
 /*
- * php code for making the actual charge of the credit card. Also displays the
- * page that the user comes to after making the donation
+ * PHP code for making the actual charge of the credit card. Also displays the
+ * page that the user comes to after making the donation.
  */
 
-chdir(dirname(__FILE__)); //-chdir(__DIR__) doesn't work
+chdir(dirname(__FILE__));
 require_once('../includes/lib/stripe/Stripe.php');
 
-// Shortcode for the thank you page
+// Shortcode for the thank you page.
 function ea_donation_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++
 
-    // Set your secret key: remember to change this to your live secret key in production
+    // Set your secret key: remember to change this to your live secret key in production.
     // See your keys here https://dashboard.stripe.com/account
 
     Stripe::setApiKey(get_shared_stripe_key());
     // Get the credit card details submitted by the form
     $token = $_POST['stripeToken'];
-    $amountCents = $_POST['amountCents']; // TODO: Change to dynamic
-    /*
-     * Checking if we have gotten here by a (the) form action in donation-for_sc.php,
-     * if so withdraw the amount sent from the previous page
-     */
-    if(isset($token) == true){
-        /*
-         * -please note that (1) the amound is given in cents and (2) the amount is
-         * given two times, once on the client side and also here on the server side
-         * and the amount is not transferred automatically (as long as we use the
-         * "custom" https://stripe.com/docs/checkout#integration-custom checkout
-         * button) which means that we can see a value in the stripe dialog which
-         * gives one value and then another value will be charged from the user's
-         * credit card
-         */
-        $descr = "test description"; // TODO: remove?
-        // Create the charge on Stripe's servers - this will charge the user's card
+    // TODO: change to dynamic.
+    $amountCents = $_POST['amountCents'];
+
+    // Check that we have gotten here through the form action in donation-for_sc.php.
+    // If so, withdraw the amount sent in the previous page.
+    if (isset($token) == true) {
+
+        // Note that:
+        // 1) The amount is given in cents.
+        // 2) The amount is given two times: once on the client side and also once here on
+        //    the server side.
+        // 3) FIXME:
+        //    The amount is not transferred automatically (as long as we use the "custom"
+        //    https://stripe.com/docs/checkout#integration-custom checkout button), which
+        //    means that the value stated in the Stripe dialogue != the value actually
+        //    charged from the user's credit card.
+
+        // TODO: remove this?
+        $descr = "test description";
+
+        // Create the charge on Stripe's servers - this will charge the user's card.
+        // TODO: should this be set to false here? - Otherwise: remove.
         //$tSuccess = false;
         try {
             $charge = Stripe_Charge::create(array(
-                "amount" => $amountCents, // amount in cents, again
-                "currency" => "usd",
-                "card" => $token,
-                "description" => $descr)
-            );
+                "amount"      => $amountCents,
+                "currency"    => "usd",
+                "card"        => $token,
+                "description" => $descr
+            ));
             $tSuccess = true;
-        } 
+        }
 
-        /*
-         * TODO: More exceptions here (thank you to sebaste):
-         * http://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
-         */
-
+        // From the Stripe support:
+        // "Yes as long as you get a Charge object back from our API, it means the
+        // payment was successful and you can update your database from that point.
+        // You should definitely catch all types of exceptions that can be thrown
+        // by our API to ensure you're catching all of our errors."
+        //
+        // Interesting article about Stripe errors:
+        // http://www.larryullman.com/2013/01/30/handling-stripe-errors/
+        //
         catch (Stripe_CardError $e) {
-            // The card has been declined
+            // The card has been declined.
             echo "<h4>Card has been declined</h4>";
         }
         catch (Stripe_InvalidRequestError $e) { 
-            // Invalid parameters were supplied to Stripe's API
+            // Invalid parameters were supplied to Stripe's API (very critical if this appears).
             echo "<h4>Error: Invalid Request</h4>";
         }
         catch (Stripe_AuthenticationError $e) { 
-            // Authentication with Stripe's API failed
+            // Authentication with Stripe's API failed.
             echo "<h4>Error: Internal Stripe API Error</h4>";
         }
         catch (Stripe_ApiConnectionError $e) { 
-            // Network communication with Stripe failed
+            // Network communication with Stripe failed.
             echo "<h4>Error: Failed to communicate with Stripe</h4>";
         }
         catch (Stripe_Error $e) {
-            // Generic stripe error
+            // Generic stripe error.
             echo "<h4>Error: Internal Stripe Error </h4>";
         } 
         catch (Exception $e) {
             echo "Error: " + $e->getMessage();
         }
-        /*
-         * From stripe support:
-         * "Yes as long as you get a Charge object back from our API, it means the
-         * payment was successful and you can update your database from that point.
-         * You should definitely catch all types of exceptions that can be thrown
-         * by our API to ensure you're catching all of our errors."
-         */
-        if($tSuccess === true){
+
+        if ($tSuccess === true) {
             echo "<h3>Success! Charged {$amountCents} cents</h3>";
-        }else{
-            echo "<h4>Some failure occured</h4>"; //-TODO: details needed here or elsewhere
+        } else {
+            // TODO: details needed here or elsewhere.
+            echo "<h4>Some failure occured</h4>";
         }
     }
-
 
     $tmp_content = ob_get_contents(); //++++++++++++++++++++++++++++++++++++++++
     ob_end_clean();
     return $tmp_content;
 }
-/*
- * Create shortcode for the thank you page
- * First argument is the name of the shortcode so it will be used like this
- * [ea_donation] on a wp page
- * Second argument is the name of the php function above which will be used
- * to insert text into the web page
- */
+
+// Create shortcode for the thank you page.
+// The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
+// The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_donation_sent', 'ea_donation_sent_shortcode');
