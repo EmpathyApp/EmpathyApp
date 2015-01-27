@@ -8,7 +8,7 @@ To be added as a contributor in the github group and recieve login information, 
 
 * Go to [our wiki's Home page](https://github.com/EmpathyApp/EmpathyApp/wiki)
 * Read the [advertisement](../misc/advertisement-for-devs.md) for new people
-* Follow [this guide](../howto/setting-up-a-remote-dev-env.md) to set up a remote development environment
+* Follow [this guide](../ways-of-working/howto/setting-up-a-remote-dev-env.md) to set up a remote development environment
 * Go through this [Interactive intro](interactive-intro.md)
 * A tech-oriented introduction can be found in the [readme file](../../README.md)
 * For more details, please see the [Requirements specification](../design/requirements-spec.md)
@@ -23,7 +23,7 @@ To be added as a contributor in the github group and recieve login information, 
   * if you like: create a link in the 2nd column at the wiki home page under the heading "What are the team members up to?"
   * use github extended markdown syntax to show checkboxes (doesn't work the same way here on the wiki, this is the reason for creating and closing instead of using the wiki for this)
   * [Example](https://github.com/EmpathyApp/EmpathyApp/issues/23)
-* Use [templates](../templates) when working and [these docs for ways-of-working](ways-of-working)
+* Use [templates](../ways-of-working/templates) when working and [these docs for ways-of-working](ways-of-working)
 * If you like, order [*this book*](http://shop.oreilly.com/product/0636920029380.do) about building web apps with wordpress as a platform
 
 

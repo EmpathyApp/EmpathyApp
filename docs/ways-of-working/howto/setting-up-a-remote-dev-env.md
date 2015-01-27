@@ -1,6 +1,10 @@
 DocVer: 0.1
 
 
+Prerequisites:
+* A dev site created (normally done by the site mgr Tord), the steps for this part of the setup are listed in [this](setting-up-a-new-site.md) document
+
+
 ### 1. Getting an email with login/access info
 
 You will recieve an email looking something like the one below. If you havn't please contact Tord (SunyataZero) at tord (dot) dellsen (at) gmail (dot) com
@@ -15,7 +19,7 @@ You will recieve an email looking something like the one below. If you havn't pl
 > Password: {ftp password}
 > 
 > Here's also an overview of the different subdomains we use:
-> https://github.com/EmpathyApp/EmpathyApp/wiki/Remote-site-booking-and-overview
+> https://github.com/EmpathyApp/EmpathyApp/wiki/Remote-site-overview
 > 
 > 
 > Some installation details from the wordpress install:
