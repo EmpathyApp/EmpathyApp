@@ -1,4 +1,5 @@
 <?php
+
 /* 
  * Copyright (C) 2015 sunyata
  *
@@ -35,12 +36,16 @@ function ea_email_form_shortcode() {
         <input name="length" id="length" type="number"> <br>
         <input type="submit" value="Send" id="submit">
     </form>
-    
-    
+
+
     <?php
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
     ob_end_clean();
     return $ob_content;
 }
 
+
+// Create shortcode for this page.
+// The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
+// The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_email_form', 'ea_email_form_shortcode');

@@ -15,20 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 function ea_email_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    
+
     $tCallerSkypeName = $_POST["skype_name"];
     $tLength = $_POST["length"];
     $t_empathizer_id = get_current_user_id();
     $t_caller_id = getIdByUserName($tCallerSkypeName);
     $t_post_id = wp_insert_post(array(
-        'post_type' => 'callrecord',
-        'post_title' => 'inserted post x',
+        'post_type'    => 'callrecord',
+        'post_title'   => 'inserted post x',
         'post_content' => 'content for post x',
-        'post_status' => 'publish'
+        'post_status'  => 'publish'
     ));
     
     wp_set_object_terms($t_post_id, $tLength, 'length');
@@ -65,12 +64,9 @@ The Empathy App team
     ob_end_clean();
     return $ob_content;
 }
-/*
- * Create shortcode for the caller donation page
- * First argument is the name of the shortcode so it will be used like this
- * [ea_donation] on a wp page
- * Second argument is the name of the php function above which will be used
- * to insert text into the web page
- */
+
+// Create shortcode for this page.
+// The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
+// The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_email_sent', 'ea_email_sent_shortcode');
 ?>

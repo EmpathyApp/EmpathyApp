@@ -17,27 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ea_console_debug($iData){
-    
-    if(is_null($iData) == true){
+function ea_console_debug($iData) {
+   
+   if (is_null($iData) == true) {
         $outStr = "<script> console.log( 'ea_debug_single is NULL') </script>";
-    }elseif(is_array($iData) == true){
+    } elseif (is_array($iData) == true) {
         $outStr = "<script> console.log( 'ea_debug_array: " . implode(', ', $iData) . "') </script>";
-    }else{
+    } else {
         $outStr = "<script> console.log( 'ea_debug_single: " . $iData . "') </script>";
     }
     
     echo $outStr;
-    
 }
 
-function ea_var_export($iData){
+function ea_var_export($iData) {
     
     $tVarExp = var_export($iData, true);
     $outStr = "<script> console.log( ' . $tVarExp . ') </script>";
     
     echo $outStr;
 }
-
-
-

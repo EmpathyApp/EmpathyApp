@@ -18,15 +18,15 @@
  */
 
 class pages {
-    const email_sent = 'email-sent/';
+    const email_sent    = 'email-sent/';
     const donation_sent = 'donation-sent/';
     const donation_form = 'donation-form/';
 }
 
 class stripe_donation {
-    const default_amount = '0.75';
+    const default_amount   = '0.75';
     const private_test_key = 'pk_test_ZtBvgdrmlEPZGXUcCzDqVLOo';
-    const shared_test_key = 'sk_test_uEGJelp5bfMDnLp0LSfb9E7N';
+    const shared_test_key  = 'sk_test_uEGJelp5bfMDnLp0LSfb9E7N';
 }
 
 class Constants {

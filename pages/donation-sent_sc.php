@@ -29,6 +29,7 @@ require_once('../includes/lib/stripe/Stripe.php');
 function ea_donation_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++
 
+
     // Set your secret key: remember to change this to your live secret key in production.
     // See your keys here https://dashboard.stripe.com/account
 
@@ -109,12 +110,13 @@ function ea_donation_sent_shortcode() {
         }
     }
 
+
     $tmp_content = ob_get_contents(); //++++++++++++++++++++++++++++++++++++++++
     ob_end_clean();
     return $tmp_content;
 }
 
-// Create shortcode for the thank you page.
+// Create shortcode for this page.
 // The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
 // The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_donation_sent', 'ea_donation_sent_shortcode');

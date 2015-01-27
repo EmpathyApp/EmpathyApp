@@ -27,27 +27,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//Things that need to be customized for each installation#######################
 /*
- * Displaying errors, please comment out at production
+ * Things that need to be customized for each installation: ####################
+ *
+ * Displaying errors, please comment out in production.
  * Please note that the .htaccess file does not have to be changed for debugging
- * be enabled, only the lines below
+ * to be enabled, just the lines below.
  */
-/*
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(-1);
-*/
+
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(-1);
+
 //##############################################################################
 
 function ea_wp_enqueue_scripts() {
-    //jQuery and jQuery UI
+    // jQuery and jQuery UI.
     wp_enqueue_script('jquery'); //, 'http://code.jquery.com/jquery-1.10.2.js'
     wp_enqueue_script('jquery-widget');
     wp_enqueue_script('jquery-mouse');
     wp_enqueue_script('jquery-ui-core');
     wp_enqueue_script('jquery-ui-slider');
-    //raphael
+    // Raphael.
     wp_enqueue_script('raphael', 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js');
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
