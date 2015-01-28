@@ -65,7 +65,7 @@ The Empathy App team
     return $ob_content;
 }
 
-// Create shortcode for this page.
+// Create shortcode for the email sent page.
 // The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
 // The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_email_sent', 'ea_email_sent_shortcode');
