@@ -107,6 +107,16 @@ function ea_donation_form_shortcode() {
         // Checkout on button click.
         jQuery(function () {
             jQuery('#customButton').on('click', function (e) {
+                // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
+                // TODO: move somewhere else?
+                <?php
+                   if (is_user_logged_in()) {
+                         $prefill_email = get_userdata(get_current_user_id())->user_email;
+                   } else {
+                         $prefill_email = 'false';
+                   }
+                ?>
+
                 // Get the amount from the slider.
                 var tAmount = 100 * jQuery("#sliderDollars").slider("value");
                 // Open Stripe dialogue.
@@ -122,6 +132,7 @@ function ea_donation_form_shortcode() {
                     },
                     name: 'Demo Site',
                     description: 'Empathy App Donation',
+                    email: '<?php echo $prefill_email ;?>',
                     amount: tAmount
                 });
                 e.preventDefault();
