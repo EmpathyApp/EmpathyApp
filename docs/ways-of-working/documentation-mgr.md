@@ -1,8 +1,10 @@
 DocVer: 0.0.1
 
 
-Resources needed:
+* Please check references to files when renaming or removing by doing a global search
 
+
+Resources needed:
 
 * Set reminder to go through documentation once every two weeks
 
@@ -14,5 +16,6 @@ be sure to check which people are involved and who are simply observing the proj
 
 
 Tools:
+mkdocs
 
 

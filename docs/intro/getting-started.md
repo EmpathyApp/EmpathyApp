@@ -1,4 +1,4 @@
-DocVer: 0.1
+DocVer: 1.0
 
 
 To be added as a contributor in the github group and recieve login information, please contact SunyataZero (Tord) who is volunteer coordinator for Empathy App at tord(dot)dellsen(at)gmail(dot)com (alternatively through skype: tord_dellsen)
@@ -30,4 +30,5 @@ To be added as a contributor in the github group and recieve login information, 
 #### What can I do right now?
 
 * Do code review of the code (it may be easier to learn when being active in the reading, and of course you might find important things that could be improved)
-* Take an unassigned issue from [this list](https://github.com/EmpathyApp/EmpathyApp/issues?q=is%3Aopen+is%3Aissue+-label%3A_security+-label%3A%22tech+design%22+-label%3A%22ux+design%22+no%3Aassignee)
+* See [this howto guide](../ways-of-working/howto/finding-an-issue-to-work-on.md)
+
