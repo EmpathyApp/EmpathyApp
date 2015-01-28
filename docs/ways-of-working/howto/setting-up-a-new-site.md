@@ -15,6 +15,17 @@ Prerequisites:
 3. Create a new subdomain, please choose the name of a person known for his/her empathy (examples: mandela, kuanyin)
 
 
+### Setting the PHP version
+
+1. Login in with cPanel
+
+2. Choose "ntPhpSelector"
+
+3. Choose the subdomain by going into public_html/{name of subdomain} ***Important:*** You need to press the yellow icon to go *into* a directory, if you press the name of the directory you will select the directory for choosing the PHP version
+
+At the time of writing the default PHP version is 5.2 (even though it says 5.3 in ntPhpSelector), and the latest version available is now 5.5
+
+
 ### Wordpress installation
 
 1. Login in with cPanel

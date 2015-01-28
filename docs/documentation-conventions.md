@@ -19,4 +19,4 @@ DocVer: 0.1
   * Exception 2: __________
 * Markdown titles
 * Images are placed locally in directories with the name "_img"
-
+* {text varies} is used to indicate something that varies
