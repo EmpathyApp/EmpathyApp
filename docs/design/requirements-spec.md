@@ -1,4 +1,4 @@
-DocVer: 0.1.2
+DocVer: 0.1.3
 
 ***not approved***
 
@@ -11,6 +11,7 @@ When editing this document, please do not remove the comments for each section w
 # Software Requirements Specification for Empathy App
 
 This document is based on a template with this copyright: "Copyright © 1999 by Karl E. Wiegers. Permission is granted to use, modify, and distribute this document."
+
 
 ### Revision History
 
@@ -30,7 +31,7 @@ Software requirement specification (SRS) for Empathy App version 1.0
 <Describe any standards or typographical conventions that were followed when writing this SRS, such as fonts or highlighting that have special significance. For example, state whether priorities  for higher-level requirements are assumed to be inherited by detailed requirements, or whether every requirement statement is to have its own priority.>
 
 * If a future version is discussed this will be explicitly mentioned in this document. Otherwise version 1.0 is implicitly assumed
-* ***Examples in this document are from the prototype we have at the time of writing, this doesn't mean that we need to use skype or other technologies shown in the examples***
+* Examples in this document are from the prototype we have at the time of writing, this doesn't mean that we need to use skype or other technologies shown in the examples
 
 
 #### 3. Intended Audience and Reading Suggestions
@@ -63,7 +64,7 @@ Goals:
 
 ![product overview](https://cloud.githubusercontent.com/assets/10245688/5824611/fcb0d13c-a0e5-11e4-98d9-73242f0f6917.png)
 
-The latest version of this document can be found [*here*](https://docs.google.com/drawings/d/1hgZ-0tdPJqmyoK4unhMS8gfTUU0RVf4LiA3CCMuaJuQ/edit?usp=sharing)
+The latest version of this image can be found [*here*](https://docs.google.com/drawings/d/1hgZ-0tdPJqmyoK4unhMS8gfTUU0RVf4LiA3CCMuaJuQ/edit?usp=sharing)
 
 
 #### 2. Product Functions
@@ -92,11 +93,11 @@ The latest versions of these images can be found *[here](https://docs.google.com
 #### 3. User Classes and Characteristics
 <Identify the various user classes that you anticipate will use this product. User classes may be differentiated based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, educational level, or experience. Describe the pertinent characteristics of each user class. Certain requirements may pertain only to certain user classes. Distinguish the most important user classes for this product from those who are less important to satisfy.>
 
-User | Considerations
---- | ---
-Caller | Ease of access to software, Minimal usage of the software itself ("counting mouseclicks"), Ease of making donations, Good "onboarding" experience
-Empathizer | Ease of use
-Administrator | Ability to collect call data, (Optional: Ability to change theme settings), Ability to change suggested donation multiplier (based on nr of minutes)
+User | Importance | Considerations
+--- | --- | ---
+Caller | High | Ease of access to software, Ease of usage of the software itself ("counting mouseclicks"), Ease of making donations, Good "onboarding" experience
+Empathizer | Medium | Ease of use
+Administrator | Low | 
 
 
 #### 4. Operating Environment
@@ -108,21 +109,19 @@ We want the software to work with a wide variety of platforms, but especially im
 #### 5. Design and Implementation Constraints
 <Describe any items or issues that will limit the options available to the developers. These might include: corporate or regulatory policies; hardware limitations (timing requirements, memory requirements); interfaces to other applications; specific technologies, tools, and databases to be used; parallel operations; language requirements; communications protocols; security considerations; design conventions or programming standards (for example, if the customer’s organization will be responsible for maintaining the delivered software).>
 
-TODO (Not determined at the time of writing)
+TODO
 
 
 #### 6. User Documentation
 <List the user documentation components (such as user manuals, on-line help, and tutorials) that will be delivered along with the software. Identify any known user documentation delivery formats or standards.>
 
 * Callers: Interface is expected to be intuitive enough to not need a manual
-* Empathizers: A guide for empathizers will be used, (an early version can be found on this wiki: [[Empathizer documentation]])
+* Empathizers: A guide for empathizers will be used
 * Administrators: Low prio because of the small size of this group and the ease of access to knowledge in other ways (communication with developers)
 
 
 #### 7. Assumptions and Dependencies
 <List any assumed factors (as opposed to known facts) that could affect the requirements stated in the SRS. These could include third-party or commercial components that you plan to use, issues around the development or operating environment, or constraints. The project could be affected if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project has on external factors, such as software components that you intend to reuse from another project, unless they are already documented elsewhere (for example, in the vision and scope document or the project plan).>
-
-TODO
 
 Dependencies:
 * Communication software
@@ -130,7 +129,6 @@ Dependencies:
 * Javascript
 * A server-side programming language and framework
 * Payment/donation system
-  * Ex: Stripe
 
 
 
@@ -208,15 +206,19 @@ Screen layout constraints:
 #### 3. Software Interfaces
 <Describe the connections between this product and other specific software components (name and version), including databases, operating systems, tools, libraries, and integrated commercial components. Identify the data items or messages coming into the system and going out and describe the purpose of each. Describe the services needed and the nature of communications. Refer to documents that describe detailed application programming interface protocols. Identify data that will be shared across software components. If the data sharing mechanism must be implemented in a specific way (for example, use of a global data area in a multitasking operating system), specify this as an implementation constraint.>
 
-Here is a list for our current prototype: [[External sw dependencies]]
+TODO
 
-Web browsers:
-* TODO
+(For our current prototype see [this](https://github.com/EmpathyApp/EmpathyApp/blob/master/docs/dependencies/sw-dependencies.md) list)
 
 
 #### 4. Communications Interfaces
 <Describe the requirements associated with any communications functions required by this product, including e-mail, web browser, network server communications protocols, electronic forms, and so on. Define any pertinent message formatting. Identify any communication standards that will be used, such as FTP or HTTP. Specify any communication security or encryption issues, data transfer rates, and synchronization mechanisms.>
 
+User:
+* Email
+* Web browser
+
+Security:
 * SSL (HTTPS)
 
 
@@ -257,7 +259,7 @@ Response: System finds an empathizer (if available) using a queue system as well
 ##### 1. Description and Priority
 <Provide a short description of the feature and indicate whether it is of High, Medium, or Low priority. You could also include specific priority component ratings, such as benefit, penalty, cost, and risk (each rated on a relative scale from a low of 1 to a high of 9).>
 
-An email that contains a message and a link to a donation page is sent to the caller after the call is completed. The link also contains information for setting the recommended donation amount
+An email that contains a message and a link to a donation page is sent to the caller after a call with an empathizer is completed. The link also contains information for setting the recommended donation amount
 
 ##### 2. Stimulus/Response Sequences
 <List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialog elements associated with use cases.>
@@ -272,7 +274,7 @@ Response: An email is sent to the registered email address of the caller
 <Each requirement should be uniquely identified with a sequence number or a meaningful tag of some kind.>
 
 * **MSG-1:** System sends an email message with a donation link to the caller
-
+* **INL-1:** System calculates a recommended donation amount
 
 
 #### 3. Donation from caller
@@ -295,9 +297,10 @@ Response: After the donation has been made, the caller is redirected to a "thank
 
 <Each requirement should be uniquely identified with a sequence number or a meaningful tag of some kind.>
 
-* **WEB-1:** System presents a web page with a donation form
-* **WEB-2:** System presetns a web page with a thank you message
-
+* **WEB-1:** System presents a web page with a donation
+* **INL-2:** System prefills donation form with a variable recommended amount
+* **INL-3:** System gives the user the ability to choose the amount to donate
+* **WEB-2:** System presents a web page with a thank you message
 
 
 
@@ -307,14 +310,14 @@ Response: After the donation has been made, the caller is redirected to a "thank
 ##### 1. Description and Priority
 <Provide a short description of the feature and indicate whether it is of High, Medium, or Low priority. You could also include specific priority component ratings, such as benefit, penalty, cost, and risk (each rated on a relative scale from a low of 1 to a high of 9).>
 
-Call info is stored (for at least one month) so that the empathizer can get paid by the company (Empathy App) each month.
+Call info is stored so that the empathizer can get paid each month
 
 Call info we like to store:
 * Identification of caller
 * Identification of empathizer
 * Length of call
 * Amount donated by caller
-* Time of call (more precisely: when it ended since this we can then gather all information at once)
+* Time of call (more precisely: when it ended since using this time we can then gather all information at once)
 
 Additional information we'd like to store for stastistical purposes (to help setting recommended amount in the future etc):
 * Recommended donation amount that was presented to the user
@@ -326,6 +329,7 @@ Additional information we'd like to store for stastistical purposes (to help set
 Stimulus: End of call
 
 Response: Database updated so that information can be used in the future by administrators
+
 
 ##### 3. Functional Requirements
 <Itemize the detailed functional requirements associated with this feature. These are the software capabilities that must be present in order for the user to carry out the services provided by the feature, or to execute the use case. Include how the product should respond to anticipated error conditions or invalid inputs. Requirements should be concise, complete, unambiguous, verifiable, and necessary. Use "TBD" as a placeholder to indicate when necessary information is not yet available.>
@@ -349,12 +353,13 @@ Response: Database updated so that information can be used in the future by admi
 * **CON-2:** Max 2000 empathizers connected at the same time
 * **CON-3:** Max 10 administrators connected at the same time
 
-(Version 2: These numbers will increase)
+This will vary a lot with the version since the software is expected to start small but grow very large with time. For version 2 we expect that these numbers will increase, but for the very first version we may not need as much as presented above
 
 #### 5.2 Safety Requirements
 <Specify those requirements that are concerned with possible loss, damage, or harm that could result from the use of the product. Define any safeguards or actions that must be taken, as well as actions that must be prevented. Refer to any external policies or regulations that state safety issues that affect the product’s design or use. Define any safety certifications that must be satisfied.>
 
 TODO
+
 
 #### 5.3 Security Requirements
 <Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.>
@@ -376,18 +381,22 @@ TODO
 #### 5.5 Business Rules
 <List any operating principles about the product, such as which individuals or roles can perform which functions under specific circumstances. These are not functional requirements in themselves, but they may imply certain functional requirements to enforce the rules.>
 
-TODO
+Person | Roles
+--- | ---
+Peijman | CEO, system administrator (arvixe hyrax)
+Mica | COO
+Mair | Empathy trainer (TODO: Is this correct?)
+Tord | Volunteer coordinator for foss project
 
-* Peijman: CEO
-* Mica: COO
-* Tord: Volunteer coordinator
+TODO: More?
+
 
 #### 6. Other Requirements
 <Define any other requirements not covered elsewhere in the SRS. This might include database requirements, internationalization requirements, legal requirements, reuse objectives for the project, and so on. Add any new sections that are pertinent to the project.>
 
-TODO
+TODO: Legal?
 
-Q: Will user information be transferrable from version 1 to version 2?
+TODO: Q: Will user information be transferrable from version 1 to version 2?
 
 
 
