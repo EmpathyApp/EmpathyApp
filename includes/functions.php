@@ -65,3 +65,8 @@ function getDisplayNameByUserName($iUserName) {
     $userDisplayNameString = $resArray[0]->display_name;
     return $userDisplayNameString;
 }
+
+function getLogoUri()
+{
+    return Uris::logo16;
+}

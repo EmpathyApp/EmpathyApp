@@ -122,7 +122,7 @@ function ea_donation_form_shortcode() {
                 // Open Stripe dialogue.
                 StripeCheckout.open({
                     key: '<?php echo get_private_stripe_key(); ?>',
-                    image: '/square-image.png',
+                    image: '<?php echo getLogoUri(); ?>',
                     token: function (responseToken) {
                         // Submit the token that we get back from the Stripe server to _our_ server.
                         var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
