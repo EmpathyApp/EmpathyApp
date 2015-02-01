@@ -9,7 +9,7 @@ Hi!
 We are looking for people with server-side experience or interest (please see skill details below) who want to be part of this free open source project
 
 ##### What the project does
-The Empathy App project will connect trained empathizers via a webpage and/or smartphone to people in need of empathy
+The Empathy App project will connect trained empathizers via a webpage and/or smartphone to people in need of empathy. [Here](http://mettacenter.org/wp-content/uploads/2014/08/Peace-Paradigm-Radio-Aug-22-2014.mp3) is an interview with the founders of the project (interview starts at 7:10 into the broadcast)
 
 ##### Project status
 
@@ -24,9 +24,9 @@ http://www.empathyapp.org/
 ##### Languages the project will be coded in
 Client-side: Javascript
 
-Server-side: undetermined (prototype we are working on is in php+wp)
+Server-side: PHP + Wordpress
 
-##### People already involved
+##### Some of the people already involved
 Me (Tord)
 
 I am a tester and programmer, but have almost no experience of web development, but am using this project to learn as i go. My educational background is in computer science/engineering. I also have some background in the peace movement which is how i found out about this project
