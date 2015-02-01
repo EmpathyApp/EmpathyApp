@@ -1,4 +1,4 @@
-DocVer: 1.0
+DocVer: 1.0.1
 
 
 To be added as a contributor in the github group and recieve login information, please contact SunyataZero (Tord) who is volunteer coordinator for Empathy App at tord(dot)dellsen(at)gmail(dot)com (alternatively through skype: tord_dellsen)
@@ -6,6 +6,7 @@ To be added as a contributor in the github group and recieve login information, 
 
 #### How do I get an overview of the project?
 
+* You can find a "non-tech" intro to the project [here](http://mettacenter.org/wp-content/uploads/2014/08/Peace-Paradigm-Radio-Aug-22-2014.mp3) (the interview starts 7:10 into the broadcast)
 * Go to [our wiki's Home page](https://github.com/EmpathyApp/EmpathyApp/wiki)
 * Read the [advertisement](../misc/advertisement-for-devs.md) for new people
 * Follow [this guide](../ways-of-working/howto/setting-up-a-remote-dev-env.md) to set up a remote development environment

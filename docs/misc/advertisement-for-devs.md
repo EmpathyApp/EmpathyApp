@@ -1,4 +1,4 @@
-DocVer: 0.1
+DocVer: 1.0
 
 
 Empathy App looking for web development volunteers!
@@ -25,6 +25,11 @@ http://www.empathyapp.org/
 Client-side: Javascript
 
 Server-side: PHP + Wordpress
+
+##### Tech overview
+
+Please see the [readme file](../../README.md) for a technical overview and also [check out this interactive intro](../intro/interactive-intro.md)
+
 
 ##### Some of the people already involved
 Me (Tord)
