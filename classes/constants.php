@@ -37,5 +37,6 @@ class Constants {
 class Uris {
 	const root = '/wp-content/plugins/empathy_app/';
 	const images = '/wp-content/plugins/empathy_app/images/';
-	const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';	
+	const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
+    const logo256 = '/wp-content/plugins/empathy_app/images/logo_256x256.jpg';	
 }

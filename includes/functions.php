@@ -68,5 +68,5 @@ function getDisplayNameByUserName($iUserName) {
 
 function getLogoUri()
 {
-    return Uris::logo16;
+    return Uris::logo256;
 }
