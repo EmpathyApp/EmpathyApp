@@ -53,11 +53,11 @@ function ea_wp_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
-require_once 'console_debug.php';
+require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
 
 require_once 'classes/constants.php';
-require_once 'db_init.php';
+require_once 'includes/db_init.php';
 require_once 'pages/donation-form_sc.php';
 require_once 'pages/donation-sent_sc.php';
 require_once 'pages/email-form_sc.php';

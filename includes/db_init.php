@@ -56,7 +56,7 @@ function ea_register_post_type_callrecord() {
         'has_archive'         => true,
         'show_ui'             => true,
         'menu_position'       => 4,
-        'menu_icon'           => plugins_url("images/logo_bwa_16x16.png", __FILE__),
+        'menu_icon'           => plugins_url("../images/logo_bwa_16x16.png", __FILE__),
         'can_export'          => true,
         'show_in_nav_menus'   => false,
         'delete_with_user'    => false,
