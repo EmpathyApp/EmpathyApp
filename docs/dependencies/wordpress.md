@@ -32,7 +32,7 @@ This is not done in the ordinary way (by using src inside a script tag), instead
 
 #### Database
 
-Wordpress has several systems for interacting with databases. Please see the code comments in [db_init.php]() for details
+Wordpress has several systems for interacting with databases. Please see the code comments in [db_init.php](../../includes/db_init.php) for details
 
 
 #### Actions and filters
@@ -40,7 +40,7 @@ Wordpress has several systems for interacting with databases. Please see the cod
 Using actions and filters is how we interact with wordpress
 
 Here are a couple of useful links:
-* http://codex.wordpress.org/Function_Reference/add_action
+* http://codex.wordpress.org/Plugin_API/Action_Reference
 * http://codex.wordpress.org/Plugin_API/Filter_Reference
 
 
