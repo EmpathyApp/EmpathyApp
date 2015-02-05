@@ -1,4 +1,4 @@
-DocVer: 1.0
+DocVer: 1.0.1
 
 
 Empathy App looking for web development volunteers!
@@ -32,30 +32,28 @@ Please see the [readme file](../../README.md) for a technical overview and also 
 
 
 ##### Some of the people already involved
-Me (Tord)
+
+###### Me (Tord)
 
 I am a tester and programmer, but have almost no experience of web development, but am using this project to learn as i go. My educational background is in computer science/engineering. I also have some background in the peace movement which is how i found out about this project
 http://ihavearrived.org/
 
-Mica & Peijman
+###### Mica & Peijman
 
 Have a background in Nonviolent Communication (NVC) and in the peace movement
 http://www.emergencypeaceteams.org/
 
 ##### People we are looking for
-We are looking for people who have knowledge in *or interest to learn* about several of these areas (the numbers show the importance):
-* [4] php or other server-side language
-* [2] Javascript
-* [1] CMS (wordpress or drupal)
-* [1] Testing
-* [1] Documentation
-
-We would like to find people who when adding up the numbers above have five or more
+We are looking for people who have knowledge in *or interest to learn* about several of these areas (list is in order of importance):
+* php or other server-side language
+* Wordpress
+* Javascript
+* Testing
+* Documentation
 
 ##### Contact information for follow up
-tord(dot)dellsen(at)gmail.com or empathyapp(at)gmail.com
+tord(dot)dellsen(at)gmail(dot)com or empathyapp(at)gmail(dot)com
 
 Kind Regards,
 
 Tord
-
