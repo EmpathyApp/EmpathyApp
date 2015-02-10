@@ -54,6 +54,9 @@ We are looking for people who have knowledge in *or interest to learn* about sev
 ##### Contact information for follow up
 tord(dot)dellsen(at)gmail(dot)com or empathyapp(at)gmail(dot)com
 
+Please include a line about what draws you to this project and interests you, and if you have used any of the technologies mentioned above
+
+
 Kind Regards,
 
 Tord
