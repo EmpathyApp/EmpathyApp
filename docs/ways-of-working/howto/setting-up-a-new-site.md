@@ -1,4 +1,4 @@
-DocVer: 1.0
+DocVer: 1.0.1
 
 
 Prerequisites:
@@ -73,7 +73,8 @@ Install neat skype status pro/v2 *from file* (ask SunyataZero if you don't have 
 
 1. settings -> neat skype status pro
   * Visible name: set to "empathizer!" ("Call " will be prepended to the name)
-  * activate "initial check"
+  * Activate "initial check"
+  * *we don't need to change the skype name*, this is not used in our case, instead we use a separate system for including multiple skype names
 
 2. settings -> discussion
   * Uncheck "Allow people to post comments on new articles"
