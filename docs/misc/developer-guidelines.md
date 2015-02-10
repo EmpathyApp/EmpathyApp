@@ -29,6 +29,11 @@ Money:
 * empathizers will get paid as well as of course Peijman and Mica
 
 
+#### Volunteer responsibility
+
+No responsibility for any financial or other damage
+
+
 #### *How* development is done
 
 The issue manager asks someone who doesn't have an issue to take one
