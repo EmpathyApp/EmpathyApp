@@ -92,9 +92,9 @@ Pages -> Add new
 
 Please note: You will not see changes until the Empathy App plugin has been uploaded
 
-Title | Shortcode (enter into page body after switching to "text" mode)
---- | ---
-Home | [skype skypenames="echo123, tord_dellsen"]
+Title | Shortcode (enter into page body after switching to "text" mode) | Notes
+--- | --- | ---
+Home | [skype skypenames="echo123, tord_dellsen"] | Skype names are just shown as an example, any one or more skype names can be given
 Email form | [ea_email_form]
 Email sent | [ea_email_sent]
 Donation form | [ea_donation_form]
