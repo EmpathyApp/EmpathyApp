@@ -1,4 +1,4 @@
-DocVer: 0.1
+DocVer: 0.1.1
 
 
 Prerequisites:
@@ -11,13 +11,14 @@ Please note:
 
 1. Download [the latest version](https://github.com/EmpathyApp/EmpathyApp/archive/master.zip) directly
   * (Alternatively: You can find the same file by going to the [code section](https://github.com/EmpathyApp/EmpathyApp) on github and clicking the button "Download ZIP")
-2. Log in as admin on your wp site
-3. *If upgrading:* Go to Plugins -> All plugins
+2. Rename the file to EmpathyApp.zip
+3. Log in as admin on your wp site
+4. *If upgrading:* Go to Plugins -> All plugins
   1. Deactivate the Empathy App plugin
   2. Delete the plugin
-4. Go to Plugins -> Add new -> Upload plugin -> Browse
-5. Find the file you downloaded in the first step above and upload this file
-6. When the install process is complete choose "Activate the plugin"
+5. Go to Plugins -> Add new -> Upload plugin -> Browse
+6. Find the file you downloaded in the first step above and upload this file
+7. When the install process is complete choose "Activate the plugin"
 
 The plugin has settings but they have default values that don't need to be changed (unless you are installing on the actual procuction site where you will need to change the stripe keys)
 
