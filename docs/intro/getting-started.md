@@ -12,7 +12,7 @@ To be added as a contributor in the github group and recieve login information, 
 * Follow [this guide](../ways-of-working/howto/setting-up-a-remote-dev-env.md) to set up a remote development environment
 * Go through this [Interactive intro](interactive-intro.md)
 * A tech-oriented introduction can be found in the [readme file](../../README.md)
-* For more details, please see the [Requirements specification](../design/requirements-spec.md)
+* For more details, please see the [Requirements specification](../planning/requirements-spec.md)
 
 
 #### What can I do to make helping out easier?
