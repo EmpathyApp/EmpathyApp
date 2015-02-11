@@ -1,4 +1,4 @@
-DocVer: 1.0.0
+DocVer: 1.0.1
 
 
 
@@ -16,7 +16,7 @@ The documentation manager is not necessarily the person *writing* the documentat
 
 Set reminder (for example with google calendar) once or twice each week to go through the steps below
 
-1. Reviewing changes in the documentation ([this link](http://stackoverflow.com/questions/4104764/git-show-list-of-files-changed-in-recent-commits-in-a-specific-directory) may be useful)
+1. Reviewing changes in the documentation (see [this link](https://github.com/EmpathyApp/EmpathyApp/commits/master/docs) for a list of recent updates, please also check the [README.md](../../README.md) file)
   * Maintaining a structure for the documentation files (includes being aware of names of documents and directories and also which directories different documents are placed in)
   * Checking references to files when renaming or removing by doing a global search
   * Ensuring that the text is easy to understand for the target audience (audience is normally assumed to be a developer who is new to the project)
@@ -33,5 +33,5 @@ Set reminder (for example with google calendar) once or twice each week to go th
 ### Useful links and tools
 
 * [documentation github issues](https://github.com/EmpathyApp/EmpathyApp/labels/documentation)
-* [](https://empathyapp.slack.com/messages/github/)
 
+* [command line alternative](http://stackoverflow.com/questions/4104764/git-show-list-of-files-changed-in-recent-commits-in-a-specific-directory) for recent updates in the docs/ folder
