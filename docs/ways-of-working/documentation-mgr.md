@@ -1,21 +1,37 @@
-DocVer: 0.0.1
+DocVer: 1.0.0
 
 
-* Please check references to files when renaming or removing by doing a global search
+
+### Prerequisites
+
+* Github write access
 
 
-Resources needed:
+### Role limitation
 
-* Set reminder to go through documentation once every two weeks
-
-* Ask people to give feedback on documentation
-  * ask them to change it themselves if they can improve/fix
-
-be sure to check which people are involved and who are simply observing the project
-(one way to make this easier is to change the groups, so that only people making commits are in the developer group)
+The documentation manager is not necessarily the person *writing* the documentation, instead he/she is the person *reviewing* it (although there is nothing stopping other people reviewing the documentation as well of course, but the documentation manager always does a review as well)
 
 
-Tools:
-mkdocs
+### Recurring tasks
 
+Set reminder (for example with google calendar) once or twice each week to go through the steps below
+
+1. Reviewing changes in the documentation ([this link](http://stackoverflow.com/questions/4104764/git-show-list-of-files-changed-in-recent-commits-in-a-specific-directory) may be useful)
+  * Maintaining a structure for the documentation files (includes being aware of names of documents and directories and also which directories different documents are placed in)
+  * Checking references to files when renaming or removing by doing a global search
+  * Ensuring that the text is easy to understand for the target audience (audience is normally assumed to be a developer who is new to the project)
+  * Fixing spelling errors
+
+2. The actual changes can be made by the documentation mgr if he/she wants, or by another person (depending on the situation)
+
+
+### Tools
+
+* [mkdocs](http://www.mkdocs.org/)
+
+
+### Useful links and tools
+
+* [documentation github issues](https://github.com/EmpathyApp/EmpathyApp/labels/documentation)
+* [](https://empathyapp.slack.com/messages/github/)
 
