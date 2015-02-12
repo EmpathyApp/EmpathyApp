@@ -25,7 +25,7 @@ Please use [this template](../ways-of-working/templates/bug-report.md)
 
 People:
 * Peijman and Mica works at Empathy App
-* Tord is volunteer coordinator and himself a volunteer
+* Tord is volunteer coordinator and also himself a volunteer
 * Empathizers, trained in emapathy
 * Empathy trainers
 
