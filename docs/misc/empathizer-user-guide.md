@@ -31,3 +31,7 @@ DocVer 0.1
 ##### Taking a break
 * Set skype status to "do not disturb"
 * Set status (for example) "online" when you get back
+* 
+
+#### Skype phone app usage
+* Make sure that you take your phone number off the app, otherwise skype will attempt to call you if you are not online. You can do this easily by going to My Account, then changing your call forwarding option by taking your phone number out. 
