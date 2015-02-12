@@ -1,4 +1,4 @@
-DocVer: 1.0.1
+DocVer: 1.0.4
 ***Not approved***
 
 
@@ -32,6 +32,7 @@ People:
 Money:
 * Volunteers are unpaid
 * Empathizers will get paid as well as of course Peijman and Mica
+* When we receive investor funding we will pay a few core developers for their time (but not retro-actively)
 
 
 ### Volunteer responsibility
