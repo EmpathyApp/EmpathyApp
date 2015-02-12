@@ -63,4 +63,3 @@ If conversations are not obviously private we can share them with other team mem
   * http://producingoss.com/en/getting-started.html#developer-guidelines
   * http://producingoss.com/en/social-infrastructure.html
 * [Advertisement for new people](../misc/advertisement-for-devs.md)
-
