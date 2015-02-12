@@ -1,5 +1,4 @@
-DocVer: 1.0.4
-***Not approved***
+DocVer: 1.0.4 - **Approved by Peijman 2015-02-12**
 
 
 The idea for Empathy App comes from Peijman and Mica at the company with the same name as the app. The company is a social enterprise which means that they have a goal not just to make money but also creating a social good
