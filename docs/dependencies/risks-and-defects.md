@@ -1,4 +1,4 @@
-DocVer: 0.1
+DocVer: 1.0
 
 
 This list is used for risks external to our own application but that can effect our application. Please use strikethrough (double tildes on each side) for resolved issues
@@ -20,4 +20,4 @@ fetching data from website with regex | php | "What ever you do: Don't use regul
 problems with xdebug on arvixe/remote? | arvixe | One arvixe support person says that they [*"strongly recommend"*](http://forum.arvixe.com/smf/general/xdebug/) not to use their server for debugging
 **php injection** | |
 One extra db row for each form submit | Ninja forms | Because of this we are making our own forms (at the time of writing)
-
+"undefined variable return_value on line 406" | Neat Skype Status pro/v2 | Minor bug known to the developer of nss, doesn't seem to affect functionality
