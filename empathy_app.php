@@ -64,4 +64,4 @@ require_once 'pages/email-form_sc.php';
 require_once 'pages/email-sent_sc.php';
 require_once 'adminpages/settings.php';
 require_once 'includes/functions.php';
-require_once 'includes/user-registration.php';
+require_once 'includes/user-registration-and-login.php';
