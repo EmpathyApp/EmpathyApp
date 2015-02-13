@@ -385,7 +385,6 @@ Person | Roles
 --- | ---
 Peijman | CEO, system administrator (arvixe hyrax)
 Mica | COO
-Mair | Empathy trainer (TODO: Is this correct?)
 Tord | Volunteer coordinator for foss project
 
 TODO: More?
