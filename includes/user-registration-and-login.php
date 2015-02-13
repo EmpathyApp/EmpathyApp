@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 Empathy App
+ * Copyright (C) 2015 sunyata
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@ function ea_login_redirect($iRedirectTo, $iRequest, $iUser){
     return home_url();
 }
 add_filter('login_redirect', 'ea_login_redirect', 10, 3);
-
 
 
 /*
@@ -80,8 +79,3 @@ function ea_validate_terms_accepted($modErrors, $iSkypeName, $iUserEmail){
     return $modErrors;
 }
 add_filter('registration_errors', 'ea_validate_terms_accepted', 10, 3);
-
-
-
-
-
