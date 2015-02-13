@@ -21,3 +21,4 @@ problems with xdebug on arvixe/remote? | arvixe | One arvixe support person says
 **php injection** | |
 One extra db row for each form submit | Ninja forms | Because of this we are making our own forms (at the time of writing)
 "undefined variable return_value on line 406" | Neat Skype Status pro/v2 | Minor bug known to the developer of nss, doesn't seem to affect functionality
+Neat skype status calls empathizer even if she is logged out | Neat Skype Status pro/v2 | the empathizer will be in the queue and will be called last (2nd to last?)
