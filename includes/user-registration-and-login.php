@@ -35,7 +35,7 @@ add_filter('login_redirect', 'ea_login_redirect', 10, 3);
 function ea_terms_and_conditions_textarea(){
     ?>
     
-    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">TODO: Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
     <br>
     <input id="termsCheckbox" name="termsCheckbox" type="checkbox" value="1">
     <label for="termsCheckbox">I accept these terms and conditions</label>
@@ -79,3 +79,17 @@ function ea_validate_terms_accepted($modErrors, $iSkypeName, $iUserEmail){
     return $modErrors;
 }
 add_filter('registration_errors', 'ea_validate_terms_accepted', 10, 3);
+
+/*
+ * Adding instructions to login page and registration page
+ * WP doc: http://codex.wordpress.org/Customizing_the_Login_Form
+ */
+function ea_login_and_registration_message(){
+    ?>
+    
+    <p>Your username is your valid skype name. If you do not have skype, <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a></p>
+    
+    <?php
+}
+add_filter('login_message', 'ea_login_and_registration_message');
+add_filter('registration_message', 'ea_login_and_registration_message');
