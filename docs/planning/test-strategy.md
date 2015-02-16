@@ -1,24 +1,11 @@
-DocVer: 0.0.1
-
-
-Books:
-* **Chapter in "Building Web Apps for Wordpress**
-* Chapter in "Producing open source software"
-* Chapter in "PHP programming"
-
-OWASP:
-* https://www.owasp.org/
-* https://www.owasp.org/index.php/Appendix_A:_Testing_Tools
-* https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet
-
-Articles:
-* http://en.wikipedia.org/wiki/Web_testing
-* http://thenextweb.com/apps/2013/11/28/guide-testing-web-app-steps-approach-testing-get-sessions/
+*draft*
 
 
 Testing types:
 * Manual integration testing
-* Auto unit
+* Auto unit testing
+  * phpunit.de
+    * [how to write unit tests for procedural code](http://stackoverflow.com/questions/899390/how-do-i-write-unit-tests-in-php-with-a-procedural-codebase)
 * Auto GUI
 
 
@@ -56,3 +43,22 @@ Reasons for securing the site:
 * browser compat
 * os compat
 * skype client version compat
+
+***
+
+#### References
+
+Books:
+* **Chapter in "Building Web Apps for Wordpress**
+* Chapter in "Producing open source software"
+* Chapter in "PHP programming"
+
+OWASP:
+* https://www.owasp.org/
+* https://www.owasp.org/index.php/Appendix_A:_Testing_Tools
+* https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet
+
+Articles:
+* http://en.wikipedia.org/wiki/Web_testing
+* http://thenextweb.com/apps/2013/11/28/guide-testing-web-app-steps-approach-testing-get-sessions/
+

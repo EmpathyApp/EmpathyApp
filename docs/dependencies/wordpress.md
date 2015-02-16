@@ -1,5 +1,3 @@
-DocVer: 0.1
-
 
 This document contains:
 * help for developers who are not used to development of wordpress plugins
@@ -42,5 +40,11 @@ Using actions and filters is how we interact with wordpress
 Here are a couple of useful links:
 * http://codex.wordpress.org/Plugin_API/Action_Reference
 * http://codex.wordpress.org/Plugin_API/Filter_Reference
+
+***
+
+#### References
+
+* [Ten things that are helpful for wp devs to know](http://www.smashingmagazine.com/2011/03/08/ten-things-every-wordpress-plugin-developer-should-know/)
 
 
