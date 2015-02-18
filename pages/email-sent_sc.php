@@ -23,27 +23,21 @@ function ea_email_sent_shortcode() {
     $tLength = $_POST["length"];
     $t_empathizer_id = get_current_user_id();
     $t_caller_id = getIdByUserName($tCallerSkypeName);
-    $t_post_id = wp_insert_post(array(
-        'post_type'    => 'callrecord',
-        'post_title'   => 'inserted post x',
-        'post_content' => 'content for post x',
-        'post_status'  => 'publish'
-    ));
+
     
-    wp_set_object_terms($t_post_id, $tLength, 'length');
+    
+    
+    
+    
+    
 
-    p2p_type('callrecord_and_empathizer') -> connect(
-        $t_post_id,
-        $t_empathizer_id,
-        array('date' => current_time('mysql'))
-    );
-
-    p2p_type('callrecord_and_caller') -> connect(
-        $t_post_id,
-        $t_caller_id,
-        array('date' => current_time('mysql'))
-    );
-
+    
+    
+    
+    
+    
+    
+    
     $tCallerDisplayName = getDisplayNameByUserName($tCallerSkypeName);
     $displayNameForEmail = isset($tCallerDisplayName) ? " ".$tCallerDisplayName : "";
     
@@ -60,6 +54,10 @@ The Empathy App team
     ea_send_email($tCallerEmail, "Subject", $tMessage);
 
 
+    
+    
+    
+    
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
     ob_end_clean();
     return $ob_content;
@@ -69,4 +67,4 @@ The Empathy App team
 // The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
 // The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_email_sent', 'ea_email_sent_shortcode');
-?>
+
