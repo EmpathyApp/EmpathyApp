@@ -11,7 +11,7 @@ Please note:
 
 1. Download [the latest version](https://github.com/EmpathyApp/EmpathyApp/archive/master.zip) directly
   * (Alternatively: You can find the same file by going to the [code section](https://github.com/EmpathyApp/EmpathyApp) on github and clicking the button "Download ZIP")
-2. Open the file and *rename the base directory* to EmpathyApp
+2. Open the file and *rename the base directory* to empathy_app
 3. Log in as admin on your wp site
 4. *If upgrading:* Go to Plugins -> All plugins
   1. Deactivate the Empathy App plugin
