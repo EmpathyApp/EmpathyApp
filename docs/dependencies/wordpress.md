@@ -30,7 +30,7 @@ This is not done in the ordinary way (by using src inside a script tag), instead
 
 #### Database
 
-Wordpress has several systems for interacting with databases. Please see the code comments in [db_init.php](../../includes/db_init.php) for details
+Wordpress has several systems for interacting with databases. Please see the code comments in [database_functions.php](../../includes/database_functions.php) for details
 
 
 #### Actions and filters

@@ -130,16 +130,20 @@ An alternative way to install (requires an ftp account):
   2. Refresh the plugin page and try activating the plugin again
 
 
+### Verify that you can access all the five pages
+
+There may be some notices when running on remote dev accounts since we try to have all warnings etc turned on for the developers
+
+
 ### Adding the site to the site overview
 
 [Remote site overview](https://github.com/EmpathyApp/EmpathyApp/wiki/Remote-site-overview/)
 
 
-***
-
-#### Appendix A: Creating new users
+### Creating new users
 
 This can be done by going to Users -> Add new, and then choosing role: admin, and activate the checkbox "email password to new user"
 
 If you didn't install yourself, ask the person who installed wp to create an admin account
+
 
