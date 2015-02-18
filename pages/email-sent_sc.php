@@ -55,6 +55,7 @@ The Empathy App team
 
 
     
+    echo "<h1>" . current_time('mysql') . "</h1>";
 
     db_insert(array(
         DatabaseAttributes::date_and_time => current_time('mysql'),

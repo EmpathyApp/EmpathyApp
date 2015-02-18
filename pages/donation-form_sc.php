@@ -22,6 +22,7 @@ function ea_donation_form_shortcode() {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script>
         var gConst = {
+            'tokenUrlParamName': 'dbToken',
             'recDonationDollarsUrlParamName': 'recamount',
             'noRedirectDonationDollars': '42',
             'minDonationDollars': 0,
@@ -78,6 +79,14 @@ function ea_donation_form_shortcode() {
             }
             return rVal;
         }
+        
+        function getDatabaseToken() {
+            var rVal = getUrlParamValue(gConst.tokenUrlParamName);
+            if (rVal === "") {
+                //TODO
+            }
+            return rVal;
+        }
 
         // Given the name of an URL parameter (normally coming from an email sent to the user),
         // return its associated value.
@@ -126,9 +135,10 @@ function ea_donation_form_shortcode() {
                     token: function (responseToken) {
                         // Submit the token that we get back from the Stripe server to _our_ server.
                         var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
+                        var tDatabaseTokenSg = jQuery('<input type=hidden name=dbToken />').val(getDatabaseToken());
                         // (The token is used on the server side to create the actual charge).
                         var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
-                        jQuery('#stripeForm').append(tokenInput).append(tAmountStr).submit();
+                        jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
                     },
                     name: 'Demo Site',
                     description: 'Empathy App Donation',

@@ -128,8 +128,8 @@ class Call_Records_Table extends WP_List_Table {
 // overriding
     function get_columns() {
         $rColumns = array(
-            'id' => __('ID'),
-            'time' => __('Time and date'),
+            DatabaseAttributes::id => __('ID'),
+            DatabaseAttributes::date_and_time => __('Time and date'),
             DatabaseAttributes::recommended_donation => __('Recommended donation'),
             DatabaseAttributes::actual_donation => __('Actual donation'),
             DatabaseAttributes::call_length => __('Call length'),
@@ -157,8 +157,8 @@ class Call_Records_Table extends WP_List_Table {
         return $iItem->id;
     }
     function column_date_and_time($iItem){
-        $tDateTimeSg = new DateTime('2001-01-01'); //$iItem->date_and_time
-        $rVal = $tDateTimeSg->format('Y-m-d');
+        $tDateTimeSg = new DateTime($iItem->date_and_time); //$iItem->date_and_time
+        $rVal = $tDateTimeSg->format('Y-m-d H:m:i');
         return $rVal;
     }
     function column_recommended_donation($iItem){
