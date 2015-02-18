@@ -20,17 +20,21 @@ function ea_email_sent_shortcode() {
 
 
     $tCallerSkypeNameSg = $_POST["skype_name"];
+    
+    // Verifying that the skype name exists
+    if(verifyUserNameExistsBl($tCallerSkypeNameSg) === false){
+        echo "<h1>Incorrect skype name. Please go back and try again</h1>";
+        //header(email-form);
+        exit();
+    }
+    
     $tLengthNr = (int)$_POST["length"];
-
     $tEmpathizerIdNr = get_current_user_id();
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
-
     $tUniqueIdentifierSg = uniqid("id-", true);
-    // http://php.net/manual/en/function.uniqid.php
-    
+    //-http://php.net/manual/en/function.uniqid.php
     $tCallerDisplayNameStr = getDisplayNameByUserName($tCallerSkypeNameSg);
     $tDisplayNameForEmailStr = isset($tCallerDisplayNameStr) ? " ".$tCallerDisplayNameStr : "";
-    
     $tCallerEmail = getEmailByUserName($tCallerSkypeNameSg);
     $tRecDonation = round(get_donation_multiplier() * $tLengthNr);
     $tMessage = "
@@ -41,6 +45,7 @@ Please check out this link "
 Warm regards,
 The Empathy App team
 ";
+
     ea_send_email($tCallerEmail, "Subject", $tMessage);
 
     db_insert(array(
@@ -62,4 +67,3 @@ The Empathy App team
 // The 1st argument is the name of the shortcode, meaning that it will be used as "[<NAME>]" on a WP page.
 // The 2nd argument is the name of the PHP function above, which will be used to insert text into the webpage.
 add_shortcode('ea_email_sent', 'ea_email_sent_shortcode');
-

@@ -69,3 +69,16 @@ function getLogoUri()
 {
     return Uris::logo256;
 }
+
+function verifyUserNameExistsBl($iCallerSkypeNameSg){
+    global $wpdb;
+    
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE user_login = '{$iCallerSkypeNameSg}'");
+    
+    if(count($resArray) > 0){
+        return true;
+    }else{
+        return false;
+    }
+}

@@ -65,8 +65,9 @@ function db_insert($iAttributesAy){
 // TODO: check the return with false === $result
 function db_write_actual_donation($iDbToken, $iActualDonationNr){
     global $wpdb;
-    echo "iDbToken = " . $iDbToken;
-    echo "iActualDonationNr = " . $iActualDonationNr;
+    //TODO: If we do not have a token that is 100% unique we could verify that
+    //the token is unique here or just update the latest of the rows that
+    //we get after using the where clause
     $tResult = $wpdb->update(
         getCallRecordTableName(),
         array(DatabaseAttributes::actual_donation => (int)$iActualDonationNr),
@@ -95,8 +96,6 @@ function ea_callrecords_menu_render() {
     $wp_list_table->prepare_items();
 
     $wp_list_table->display();
-    
-
 }
 
 function getCallRecordTableName(){
