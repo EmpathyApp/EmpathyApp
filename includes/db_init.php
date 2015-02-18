@@ -27,17 +27,18 @@ function ea_initiate_database(){
 
     
     global $wpdb;
-    $tTableName = $wpdb->prefix . "callrecords";
+    $tTableName = getCallRecordTableName();
     $tWpCollate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $tTableName (
-      id mediumint(9) NOT NULL AUTO_INCREMENT,
-      time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-      recommendeddonation integer DEFAULT '-1' NOT NULL,
-      actualdonation integer DEFAULT '-1' NOT NULL,
-      length integer DEFAULT '-1' NOT NULL,
-      dbtoken varchar(255) DEFAULT '' NOT NULL,
-      UNIQUE KEY id (id)
+    //Important: Please be careful when editing this, wp db is picky
+    $sql = "CREATE TABLE $tTableName ("
+      . DatabaseAttributes::id . " mediumint(9) NOT NULL AUTO_INCREMENT,"
+      . DatabaseAttributes::date_and_time . " datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,"
+      . DatabaseAttributes::recommended_donation . " integer DEFAULT '-1' NOT NULL,"
+      . DatabaseAttributes::actual_donation . " integer DEFAULT '-1' NOT NULL,"
+      . DatabaseAttributes::call_length . " integer DEFAULT '-1' NOT NULL,"
+      . DatabaseAttributes::database_token . " varchar(31) DEFAULT '' NOT NULL,"
+      . "UNIQUE KEY id (id)
     ) $tWpCollate;";
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -67,14 +68,12 @@ add_action('init', 'ea_initiate_database');
 
 
 
-function db_insert(){
+function db_insert($iAttributesAy){
     global $wpdb;
-    $tTableName = $wpdb->prefix . "callrecords";
     $wpdb->insert(
-        $tTableName,
-        array(
-            'recommendeddonation' => '21'
-        )
+        getCallRecordTableName(),
+        $iAttributesAy
+        //array('recommendeddonation' => '21')
     );
 }
 //add_action('init', 'db_insert');
@@ -85,16 +84,24 @@ function db_insert(){
 // [ ] stripslashes
 // [ ] check the return with false === $result
 
-function db_update_recdon($iIdNr, $iRecDonationNr){
+function db_write_actual_donation($iDbToken, $iActualDonationNr){
     global $wpdb;
-    $tTableName = $wpdb->prefix . "callrecords";
-    $wpdb->update(
-        $tTableName,
-        array('recommendeddonation' => $iRecDonationNr),
-        array('ID' => $iIdNr),
-        array('%d'), // alt: %s for strings
-        array('%d')
+    echo "iDbToken = " . $iDbToken;
+    echo "iActualDonationNr = " . $iActualDonationNr;
+    $tResult = $wpdb->update(
+        getCallRecordTableName(),
+        array(DatabaseAttributes::actual_donation => (int)$iActualDonationNr),
+        array(DatabaseAttributes::database_token => $iDbToken),
+        "%d",
+        "%s"
     );
+    
+    if($tResult === false){
+        echo "ERROR: update failed";
+    }else{
+        echo "result was not false";
+        echo "\ntResult = " . $tResult;
+    }
 }
 
 
@@ -123,10 +130,10 @@ class Call_Records_Table extends WP_List_Table {
         $rColumns = array(
             'id' => __('ID'),
             'time' => __('Time and date'),
-            'recommendeddonation' => __('Recommended donation'),
-            'actualdonation' => __('Actual donation'),
-            'length' => __('Call length'),
-            'dbtoken' => __('Database token')
+            DatabaseAttributes::recommended_donation => __('Recommended donation'),
+            DatabaseAttributes::actual_donation => __('Actual donation'),
+            DatabaseAttributes::call_length => __('Call length'),
+            DatabaseAttributes::database_token => __('Database token')
         );
         return $rColumns;
     }
@@ -142,26 +149,32 @@ class Call_Records_Table extends WP_List_Table {
     ) $tWpCollate;";
 */      
 
-    function column_recommendeddonation($iItem){
-
-        return $iItem->recommendeddonation;
-        
-        
-        //PLEASE NOTE: $iItem[recommendeddonation] does not work!
+    //Important: The names of these function must be matched agains the
+    // db attributes (and prepended by "column_"), the same is true for the
+    // content as well
+    //PLEASE NOTE: $iItem[______] does not work!
+    function column_id($iItem){
+        return $iItem->id;
     }
-    
-    function column_time($iItem){
-
-        return 'column_time-';
-        //return $iItem['time'];
-        
+    function column_date_and_time($iItem){
+        $tDateTimeSg = new DateTime('2001-01-01'); //$iItem->date_and_time
+        $rVal = $tDateTimeSg->format('Y-m-d');
+        return $rVal;
     }
-    
+    function column_recommended_donation($iItem){
+        return $iItem->recommended_donation;
+    }
+    function column_actual_donation($iItem){
+        return $iItem->actual_donation;
+    }
+    function column_call_length($iItem){
+        return $iItem->call_length;
+    }
+    function column_database_token($iItem){
+        return $iItem->database_token;
+    }
     function column_default($iItem, $iColumnName){
-        
-
         return 'column_default-';
-//return print_r($iItem, true);
     }
 
 
@@ -172,7 +185,7 @@ class Call_Records_Table extends WP_List_Table {
 
         
         
-        $tTableName = $wpdb->prefix . "callrecords";
+        $tTableName = getCallRecordTableName();
         $query = "SELECT * FROM $tTableName";
 
         $orderby = !empty($_GET["orderby"]) ? mysql_real_escape_string($_GET["orderby"]) : 'ASC';
@@ -229,4 +242,11 @@ function ea_callrecords_menu_render() {
     $wp_list_table->display();
     
 
+}
+
+
+function getCallRecordTableName(){
+    global $wpdb;
+    $rTableName = $wpdb->prefix . "callrecords";
+    return $rTableName;
 }

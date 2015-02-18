@@ -38,6 +38,8 @@ function ea_donation_sent_shortcode() {
     $token = $_POST['stripeToken'];
     // TODO: change to dynamic.
     $amountCents = $_POST['amountCents'];
+    
+    $dbToken = $_POST['dbToken'];
 
     // Check that we have gotten here through the form action in donation-for_sc.php.
     // If so, withdraw the amount sent in the previous page.
@@ -104,6 +106,9 @@ function ea_donation_sent_shortcode() {
 
         if ($tSuccess === true) {
             echo "<h3>Success! Charged {$amountCents} cents</h3>";
+            
+            db_write_actual_donation($dbToken, $amountCents);
+            
         } else {
             // TODO: details needed here or elsewhere.
             echo "<h4>Some failure occured</h4>";

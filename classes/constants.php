@@ -40,3 +40,13 @@ class Uris {
 	const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
     const logo256 = '/wp-content/plugins/empathy_app/images/logo_256x256.jpg';	
 }
+
+//Important that these are in lower case (wordpress db is picky)
+class DatabaseAttributes {
+    const id = 'id';
+    const date_and_time = 'date_and_time';
+    const recommended_donation = 'recommended_donation';
+    const actual_donation = 'actual_donation';
+    const call_length = 'call_length';
+    const database_token = 'database_token';
+}

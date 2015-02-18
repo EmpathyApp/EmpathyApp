@@ -19,35 +19,35 @@ function ea_email_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-    $tCallerSkypeName = $_POST["skype_name"];
-    $tLength = $_POST["length"];
-    $t_empathizer_id = get_current_user_id();
-    $t_caller_id = getIdByUserName($tCallerSkypeName);
+    $tCallerSkypeNameSg = $_POST["skype_name"];
+    $tLengthNr = (int)$_POST["length"];
+    $tEmpathizerIdNr = get_current_user_id();
+    $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
 
     
     
     
     
+    $tUniqueIdentifierSg = uniqid("id-", true);
     
-    
+    // not set here: 'actual_donation'
+    // also connections with 2 user types: caller and empathizer
 
+    // http://php.net/manual/en/function.uniqid.php
     
     
     
     
+    $tCallerDisplayNameStr = getDisplayNameByUserName($tCallerSkypeNameSg);
+    $tDisplayNameForEmailStr = isset($tCallerDisplayNameStr) ? " ".$tCallerDisplayNameStr : "";
     
-    
-    
-    $tCallerDisplayName = getDisplayNameByUserName($tCallerSkypeName);
-    $displayNameForEmail = isset($tCallerDisplayName) ? " ".$tCallerDisplayName : "";
-    
-    $tCallerEmail = getEmailByUserName($tCallerSkypeName);
-    $tRecDonation = round(get_donation_multiplier() * $tLength);
+    $tCallerEmail = getEmailByUserName($tCallerSkypeNameSg);
+    $tRecDonation = round(get_donation_multiplier() * $tLengthNr);
     $tMessage = "
-Hi".$displayNameForEmail.",
+Hi".$tDisplayNameForEmailStr.",
 Please check out this link "
-    . getBaseUrl() . pages::donation_form . "?recamount=$tRecDonation " .
-"(your skype name is $tCallerSkypeName and the call length was $tLength)
+. getBaseUrl() . pages::donation_form . "?recamount=$tRecDonation&dbToken=$tUniqueIdentifierSg " .
+"(your skype name is $tCallerSkypeNameSg and the call length was $tLengthNr)
 Warm regards,
 The Empathy App team
 ";
@@ -55,7 +55,15 @@ The Empathy App team
 
 
     
-    
+
+    db_insert(array(
+        DatabaseAttributes::date_and_time => current_time('mysql'),
+        DatabaseAttributes::recommended_donation => $tRecDonation,
+        DatabaseAttributes::call_length => $tLengthNr,
+        DatabaseAttributes::database_token => $tUniqueIdentifierSg
+    ));
+
+        
     
     
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
