@@ -23,7 +23,7 @@ function ea_email_sent_shortcode() {
     
     // Verifying that the skype name exists
     if(verifyUserNameExistsBl($tCallerSkypeNameSg) === false){
-        echo "<h1>Incorrect skype name. Please go back and try again</h1>";
+        echo "<h2><i>Incorrect skype name. Please go back and try again</i></h2>";
         //header(email-form);
         exit();
     }

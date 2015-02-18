@@ -30,7 +30,7 @@ function ea_donation_form_shortcode() {
             'donationStepSizeDollars': 1,
             'animationMargin': '2'
         };
-            
+        
         var tScaleNr = 1;
         
         var tInitialDonationAmount = getInitialDonationAmount();
@@ -38,7 +38,7 @@ function ea_donation_form_shortcode() {
             jQuery("#sliderDollars").slider({
                 value: tInitialDonationAmount,
                 min: gConst.minDonationDollars,
-                max: gConst.maxDonationDollars,
+                max: <?php get_max_donation(); ?>,
                 step: gConst.donationStepSizeDollars,
                 slide: slideFunction
             });

@@ -25,6 +25,7 @@ class pages {
 
 class stripe_donation {
     const default_amount   = '0.75';
+    const default_max_amount = '150';
     const private_test_key = 'pk_test_ZtBvgdrmlEPZGXUcCzDqVLOo';
     const shared_test_key  = 'sk_test_uEGJelp5bfMDnLp0LSfb9E7N';
 }
