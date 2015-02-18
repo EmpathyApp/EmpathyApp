@@ -21,22 +21,12 @@ function ea_email_sent_shortcode() {
 
     $tCallerSkypeNameSg = $_POST["skype_name"];
     $tLengthNr = (int)$_POST["length"];
+
     $tEmpathizerIdNr = get_current_user_id();
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
 
-    
-    
-    
-    
     $tUniqueIdentifierSg = uniqid("id-", true);
-    
-    // not set here: 'actual_donation'
-    // also connections with 2 user types: caller and empathizer
-
     // http://php.net/manual/en/function.uniqid.php
-    
-    
-    
     
     $tCallerDisplayNameStr = getDisplayNameByUserName($tCallerSkypeNameSg);
     $tDisplayNameForEmailStr = isset($tCallerDisplayNameStr) ? " ".$tCallerDisplayNameStr : "";
@@ -53,18 +43,14 @@ The Empathy App team
 ";
     ea_send_email($tCallerEmail, "Subject", $tMessage);
 
-
-    
-    echo "<h1>" . current_time('mysql') . "</h1>";
-
     db_insert(array(
         DatabaseAttributes::date_and_time => current_time('mysql'),
         DatabaseAttributes::recommended_donation => $tRecDonation,
         DatabaseAttributes::call_length => $tLengthNr,
-        DatabaseAttributes::database_token => $tUniqueIdentifierSg
+        DatabaseAttributes::database_token => $tUniqueIdentifierSg,
+        DatabaseAttributes::caller_id => $tCallerIdNr,
+        DatabaseAttributes::empathizer_id => $tEmpathizerIdNr
     ));
-
-        
     
     
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++

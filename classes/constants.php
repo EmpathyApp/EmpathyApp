@@ -35,9 +35,9 @@ class Constants {
 
 //TODO: Re-factor to create methods for each Uri that returns a concatenated string of root + [desired URI]
 class Uris {
-	const root = '/wp-content/plugins/empathy_app/';
-	const images = '/wp-content/plugins/empathy_app/images/';
-	const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
+    const root = '/wp-content/plugins/empathy_app/';
+    const images = '/wp-content/plugins/empathy_app/images/';
+    const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
     const logo256 = '/wp-content/plugins/empathy_app/images/logo_256x256.jpg';	
 }
 
@@ -49,4 +49,6 @@ class DatabaseAttributes {
     const actual_donation = 'actual_donation';
     const call_length = 'call_length';
     const database_token = 'database_token';
+    const caller_id = 'caller_id';
+    const empathizer_id = 'empathizer_id';
 }
