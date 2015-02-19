@@ -46,12 +46,14 @@ error_reporting(-1);
 //http://wordpress.stackexchange.com/questions/163407/get-current-user-id-returns-0
 //http://wordpress.stackexchange.com/questions/58429/how-do-i-call-wp-get-current-user-in-a-plugin-when-plugins-are-loaded-before-p
 $ea_global_current_user_id;
+
+/*
 function getCurrentUserFunction(){
     global $ea_global_current_user_id;
     $ea_global_current_user_id = get_current_user_id();
 }
 add_action('init', 'getCurrentUserFunction');
-
+*/
 
 function ea_wp_enqueue_scripts() {
     // jQuery and jQuery UI.
@@ -62,6 +64,9 @@ function ea_wp_enqueue_scripts() {
     wp_enqueue_script('jquery-ui-slider');
     // Raphael.
     wp_enqueue_script('raphael', 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js');
+    
+    global $ea_global_current_user_id;
+    $ea_global_current_user_id = get_current_user_id();
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
