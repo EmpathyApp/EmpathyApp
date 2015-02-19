@@ -92,8 +92,14 @@ class Call_Records_Table extends WP_List_Table {
 
         $tTotalNrOfItems = $wpdb->query($query);
         $tItemsPerPage = 10;
-        $tCurrentPage = !empty($_GET["paged"]) ? mysql_real_escape_string($_GET["paged"]) : '';
-        if(empty($tCurrentPage) || !is_numeric($tCurrentPage) || tCurrentPage<=0){
+        $tCurrentPage = !empty($_GET["paged"]) ? ($_GET["paged"]) : '';
+        /*
+         * ^TODO: find a replacement for "mysql_real_escape_string" for filtering
+         * the 2nd GET parameter (gives warnings and creates real problems as well)
+         * as they do in this example:
+         * http://www.smashingmagazine.com/2011/11/03/native-admin-tables-wordpress/
+         */
+        if(empty($tCurrentPage) || !is_numeric($tCurrentPage) || $tCurrentPage<=0){
             $tCurrentPage = 1;
         }
         $tTotalNrOfPages = ceil($tTotalNrOfItems/$tItemsPerPage);

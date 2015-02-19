@@ -18,8 +18,13 @@
 function ea_email_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    
+    
+
+    global $ea_global_current_user_id;
 
     $tCallerSkypeNameSg = $_POST["skype_name"];
+    
     
     // Verifying that the skype name exists
     if(verifyUserNameExistsBl($tCallerSkypeNameSg) === false){
@@ -29,7 +34,7 @@ function ea_email_sent_shortcode() {
     }
     
     $tLengthNr = (int)$_POST["length"];
-    $tEmpathizerIdNr = get_current_user_id();
+    
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
     $tUniqueIdentifierSg = uniqid("id-", true);
     //-http://php.net/manual/en/function.uniqid.php
@@ -54,7 +59,7 @@ The Empathy App team
         DatabaseAttributes::call_length => $tLengthNr,
         DatabaseAttributes::database_token => $tUniqueIdentifierSg,
         DatabaseAttributes::caller_id => $tCallerIdNr,
-        DatabaseAttributes::empathizer_id => $tEmpathizerIdNr
+        DatabaseAttributes::empathizer_id => $ea_global_current_user_id
     ));
     
     
