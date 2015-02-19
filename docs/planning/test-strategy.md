@@ -6,14 +6,17 @@ Testing types:
 * Auto unit testing
   * phpunit.de
     * [how to write unit tests for procedural code](http://stackoverflow.com/questions/899390/how-do-i-write-unit-tests-in-php-with-a-procedural-codebase)
-* Auto GUI
+* Auto GUI testing
+  * Selenium IDE/webdriver
 
 
 ### Testing areas
 
+
 #### (Usability and accessability testing)
 
 TODO
+
 
 #### Security
 
@@ -28,16 +31,19 @@ Reasons for securing the site:
 * checklist: ---> https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet
 * Tools: https://addons.mozilla.org/en-US/firefox/collections/adammuntner/webappsec/
 
+
 #### Load testing
 * A simple solution is to just analyze the wp statistics
 * Curl-loader
 * Apache JMeter
 * http://stackoverflow.com/questions/22903630/how-to-perform-load-testing-using-selenium-webdriver
 
+
 #### Basic functionality
 * auto: selenium
 * auto: watir
 * manual: people!
+
 
 #### Other considerations
 * browser compat
