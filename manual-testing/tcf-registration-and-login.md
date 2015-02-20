@@ -1,9 +1,8 @@
 DocVer: 0.1
 
 
-# Test case
-
 ### Preparation
+
 Clear cache in browser
 Clear cahce in _____
 Sign out
@@ -16,7 +15,7 @@ latest version of the empathy app plugin
 
 1. Go to the registration page
 
-2. Enter a skype name which has not been registered before, but which is real
+2. Enter a skype name which has not been registered before with skype, but which is real
 3. Enter an email which has not been registered before
 4. Leave the checkbox as it is (unchecked)
 5. Click on the "Register" button
@@ -37,11 +36,6 @@ latest version of the empathy app plugin
 16. Go to the admin account and click on "users"
 
 
-***Repeat this process for empathizers???***
-
-Repeat this process for microsoft account?
-
-
 ### Expected result
 
 1. You can see that
@@ -55,4 +49,10 @@ Repeat this process for microsoft account?
   * the message was recieved at the time noted previously
   * no messages have been recieved from the previous tries to register
 16. You see that one (and only one) new user has been created with the expected name and email
+
+
+### Meta-test notes
+
+* Repeat this process for microsoft account?
+* Add another test for when an account already exists? No: This is not a worry since wp takes care of it
 

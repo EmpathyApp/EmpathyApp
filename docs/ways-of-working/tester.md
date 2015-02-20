@@ -1,14 +1,23 @@
-DocVer: 0.0.1
+DocVer: 0.1
 
 
-1. Copy the manual test specification into a new file
+1. Copy the manual test specification into a new file (so that you can work with this as a guide)
 
 2. Copy the last "test record" for this test into the same file or use as a reference
 
 
 
+### Preparation
 
-#### Tools
+Clear cache in browser
+Clear cahce in _____
+Sign out
+a skype name which has not been registered before
+an email which has not been registered before
+latest version of the empathy app plugin
+
+
+### Tools
 
 Tool | Test area | Notes
 ---|---|---
