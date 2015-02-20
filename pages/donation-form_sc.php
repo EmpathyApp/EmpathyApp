@@ -26,7 +26,6 @@ function ea_donation_form_shortcode() {
             'recDonationDollarsUrlParamName': 'recamount',
             'noRedirectDonationDollars': '42',
             'minDonationDollars': 0,
-            'maxDonationDollars': 100,
             'donationStepSizeDollars': 1,
             'animationMargin': '2'
         };
@@ -38,7 +37,7 @@ function ea_donation_form_shortcode() {
             jQuery("#sliderDollars").slider({
                 value: tInitialDonationAmount,
                 min: gConst.minDonationDollars,
-                max: <?php get_max_donation(); ?>,
+                max: <?php $tmp= get_max_donation(); echo "$tmp" ?>,
                 step: gConst.donationStepSizeDollars,
                 slide: slideFunction
             });
