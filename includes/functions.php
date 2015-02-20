@@ -19,17 +19,19 @@
 
 
 function getBaseUrl(){
-    /*if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
-            $tProtocol = 'https://';
-        }else{
-            $tProtocol = 'http://';
-        }*/
+    if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
+        $tProtocol = 'https://';
+    }else{
+        $tProtocol = 'http://';
+    }
     //using filtering access
+    /*
     if( filter_input(INPUT_SERVER, 'HTTPS') && (string)filter_input(INPUT_SERVER, 'HTTPS') != 'off' ){
         $tProtocol = 'https://';
     }else{
         $tProtocol = 'http://';
     }
+    */
     return $tProtocol . (string) filter_var($_SERVER['SERVER_NAME']) . '/';
 }
 

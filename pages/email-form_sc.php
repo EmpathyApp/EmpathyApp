@@ -21,6 +21,7 @@ chdir(dirname(__FILE__));
 require_once '../classes/constants.php';
 
 function ea_email_form_shortcode() {
+    echo getBaseUrl();
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ?>
 
@@ -31,10 +32,10 @@ function ea_email_form_shortcode() {
         type="hidden"
         method="POST"
     >
-        <label for="skype_name">Skype Name</label><input name="skype_name" id="skype_name" type="text">
-        <label for="skype_name">Call Duration</label> <br>
-        <input name="length" id="length" type="number"> <br>
-        <input type="submit" value="Send" id="submit">
+        <label for="skype_name">Skype Name</label><input name="skype_name" id="skype_name" type="text"><br>
+        <label for="skype_name">Call Duration</label><br>
+        <input name="length" id="length" type="number"><br>
+        <input type="submit" value="Send" id="submit"><br>
     </form>
 
 
