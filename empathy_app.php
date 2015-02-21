@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.3.1
+ * Version: 0.3.2
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */

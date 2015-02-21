@@ -84,7 +84,8 @@ function db_write_actual_donation($iDbToken, $iActualDonationNr){
 function ea_callrecords_menu_init() { 
     add_menu_page('Call Records', 'Call Records', 'activate_plugins',
             'ea_callrecord_slug', 'ea_callrecords_menu_render',
-            plugins_url("../images/logo_bwa_16x16.png", __FILE__), 4);
+            getSmallLogoUri(), 4);
+    // plugins_url("../images/logo_bwa_16x16.png", __FILE__)
     
 }
 add_action( 'admin_menu', 'ea_callrecords_menu_init' );
