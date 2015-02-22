@@ -33,6 +33,7 @@ class stripe_donation {
 class Constants {
     const empty_string = "";
     const default_prio = 10;
+    const not_set = -1;
 }
 
 //TODO: Re-factor to create methods for each Uri that returns a concatenated string of root + [desired URI]

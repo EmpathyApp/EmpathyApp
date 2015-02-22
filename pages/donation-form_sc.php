@@ -9,10 +9,38 @@
  */
 
 function ea_donation_form_shortcode() {
-    //ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    if(isset($_GET['dbToken']) == false){
+        echo "<strong>Error: No token given. Please go back to the email and click on the link again</strong>";
+        exit();
+    }
+    $dbToken = $_GET['dbToken'];
+    
+    $tItemsMix = getItemsArrayForToken($dbToken);
+    $tNrOfItemsNr = count($tItemsMix);
+    if($tNrOfItemsNr > 0){
+        if($tNrOfItemsNr > 1){
+            echo "<strong>More than one match in the database</strong>";
+            //-TODO: Change to firebug
+            //TODO: somehow ensure that the latest record is updated if there are more than one match
+        }
+        if($tItemsMix[0][0] == Constants::not_set){ //-THIS CASE IS THE DEFAULT, WHAT WE EXPECT
+            // do nothing, just continue
+        }else{
+            $tAlreadyDonatatedMsgSg = '<h4>You have already made a donation for this call!</h4>';
+            // 'You can still make another donation by going <a href="' . getCurrentUrlWithoutParams() . '">here</a></h4>';
+            echo "$tAlreadyDonatatedMsgSg";
+            exit();
+        }
+    }else{
+        echo "<strong>Incorrect token! (Token not exist in the database)</strong>";
+        exit();
+    }
+    
+
     ?>
-
-
     <p>
         <label for="amountDollars">Donation Amount:</label>
     </p>
@@ -245,9 +273,9 @@ function ea_donation_form_shortcode() {
 
 
     <?php
-    //$ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
-    //ob_end_clean();
-    //return $ob_content;
+    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
+    ob_end_clean();
+    return $ob_content;
 }
 
 // Create shortcode for the caller donation page.

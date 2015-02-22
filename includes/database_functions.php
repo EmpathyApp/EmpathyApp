@@ -104,3 +104,19 @@ function getCallRecordTableName(){
     $rTableName = $wpdb->prefix . "callrecords";
     return $rTableName;
 }
+
+function getItemsArrayForToken($iDbToken){
+    //Searching the entire db for a matching db token
+
+    global $wpdb;
+
+    $tTableName = getCallRecordTableName();
+    $tDbTokenColNameSg = DatabaseAttributes::database_token;
+    $tActualDonationSg = DatabaseAttributes::actual_donation;
+    $tQuerySg = "SELECT {$tActualDonationSg} FROM {$tTableName} WHERE {$tDbTokenColNameSg}='{$iDbToken}'";
+
+    //exec query and get the number of matches
+    $rItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+
+    return $rItemsMix;
+}

@@ -29,6 +29,11 @@ function getBaseUrl(){
     return $tProtocol . (string) filter_var($_SERVER['SERVER_NAME']) . '/';
 }
 
+function getCurrentUrlWithoutParams(){
+    $tUrlAr = explode("?", $_SERVER['REQUEST_URI']);
+    return $tUrlAr[0];
+}
+
 function getEmailByUserName($iUserName) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
