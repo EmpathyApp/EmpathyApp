@@ -22,59 +22,20 @@ function ea_donation_form_shortcode() {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script>
         jQuery(function () {
+            //-TODO: Investigate why we need to have a special order of the functions, in reverse of how they
+            // are used. We expected to avoid this since we are using "jQuery(function" as per this link:
+            // http://www.sitepoint.com/types-document-ready/
             try {
                 
                 var gConst = {
                     'tokenUrlParamName': 'dbToken',
                     'recDonationDollarsUrlParamName': 'recamount',
                     'noRedirectDonationDollars': 42,
-                    'minDonationDollars': 0,
+                    'minDonationDollars': 1,
                     'donationStepSizeDollars': 1,
                     'animationMargin': 2
                 };
                 
-                // Gives an initial donation amount either from the URL parameter or from a constant value.
-                function getInitialDonationAmount() {
-                    var rVal = getUrlParamValue(gConst.recDonationDollarsUrlParamName);
-                    if (rVal === null) {
-                        rVal = gConst.noRedirectDonationDollars;
-                    }
-                    return rVal;
-                }
-                
-                // Event handling for when the user drags slider.
-                function slideFunction(iEvent, iUi) {
-                    jQuery("#amountDollars").val("$" + iUi.value);
-                    tScaleNr = iUi.value / tInitialDonationAmount; //tInitialDonationAmount
-                    // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
-                    // the last two attribute values to 0, the scaling will be made from the top-left point towards
-                    // the bottom-right instead.
-                    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
-                    if (iUi.value >= gConst.maxDonationDollars - gConst.animationMargin) { // Adding to the margin.
-                        startAnim();
-                    }
-                }
-
-                function startAnim() {
-                    var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
-                        function () {
-                            // Putting the lines below inside this callback makes sure that the system
-                            // will execute them after the first animation is completed.
-                            var tAnim = Raphael.animation({'transform':"S" + tScaleNr + "," + tScaleNr + ",0,0"}, 600);
-                            tHeartSet.animate(tAnim);
-                        }
-                    );
-                    tHeartSet.animate(tAnim);
-                }
-
-                function getDatabaseToken() {
-                    var rVal = getUrlParamValue(gConst.tokenUrlParamName);
-                    if (rVal === "") {
-                        //TODO
-                    }
-                    return rVal;
-                }
-
                 // Given the name of an URL parameter (normally coming from an email sent to the user),
                 // return its associated value.
                 function getUrlParamValue(iParamName) {
@@ -94,14 +55,76 @@ function ea_donation_form_shortcode() {
                     }
                     return null;
                 }
-            
+                
                 var tScaleNr = 1;
+                
+                /*
+                 * Updates the tScaleNr variable and changes the size of the heart
+                 * using this variable
+                 * @param iSliderValueInt
+                 */
+                function updateHeartSize(iSliderValueInt){
+                    tScaleNr = (0.2 * iSliderValueInt.value + 10) / 20;
+                    //-these values are based on some testing to see what looks good
+                    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+                }
+
+                // Gives an initial donation amount either from the URL parameter or from a constant value.
+                function getInitialDonationAmount() {
+                    var rVal = getUrlParamValue(gConst.recDonationDollarsUrlParamName);
+                    if (rVal === null) {
+                        rVal = gConst.noRedirectDonationDollars;
+                    }
+                    return rVal;
+                }
+                
+                updateHeartSize(getInitialDonationAmount() - gConst.minDonationDollars);
+
+                // Event handling for when the user drags slider.
+                function slideFunction(iEvent, iUi) {
+                    jQuery("#amountDollars").val("$" + iUi.value);
+                    updateHeartSize(iUi); //tInitialDonationAmount
+                    // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
+                    // the last two attribute values to 0, the scaling will be made from the top-left point towards
+                    // the bottom-right instead.
+                    
+                    /*
+                    if (iUi.value >= gConst.maxDonationDollars - gConst.animationMargin) { // Adding to the margin.
+                        startAnim();
+                    }
+                    */
+                }
+
+                /*
+                function startAnim() {
+                    var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
+                        function () {
+                            // Putting the lines below inside this callback makes sure that the system
+                            // will execute them after the first animation is completed.
+                            var tAnim = Raphael.animation({'transform':"S" + tScaleNr + "," + tScaleNr + ",0,0"}, 600);
+                            tHeartSet.animate(tAnim);
+                        }
+                    );
+                    tHeartSet.animate(tAnim);
+                }
+                */
+
+                function getDatabaseToken() {
+                    var rVal = getUrlParamValue(gConst.tokenUrlParamName);
+                    if (rVal === "") {
+                        //TODO
+                    }
+                    return rVal;
+                }
+
+
+            
                 var tInitialDonationAmount = getInitialDonationAmount();
                 
                 jQuery("#sliderDollars").slider({
                     value: tInitialDonationAmount,
                     min: gConst.minDonationDollars,
-                    max: <?php $tmp= get_max_donation(); echo "$tmp" ?>,
+                    max: <?php $tmp = get_max_donation(); echo "$tmp" ?>,
                     step: gConst.donationStepSizeDollars,
                     slide: slideFunction
                 });
