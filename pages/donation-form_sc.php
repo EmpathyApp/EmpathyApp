@@ -21,21 +21,83 @@ function ea_donation_form_shortcode() {
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script>
-        try {
+        jQuery(function () {
+            try {
+                
+                var gConst = {
+                    'tokenUrlParamName': 'dbToken',
+                    'recDonationDollarsUrlParamName': 'recamount',
+                    'noRedirectDonationDollars': 42,
+                    'minDonationDollars': 0,
+                    'donationStepSizeDollars': 1,
+                    'animationMargin': 2
+                };
+                
+                // Gives an initial donation amount either from the URL parameter or from a constant value.
+                function getInitialDonationAmount() {
+                    var rVal = getUrlParamValue(gConst.recDonationDollarsUrlParamName);
+                    if (rVal === null) {
+                        rVal = gConst.noRedirectDonationDollars;
+                    }
+                    return rVal;
+                }
+                
+                // Event handling for when the user drags slider.
+                function slideFunction(iEvent, iUi) {
+                    jQuery("#amountDollars").val("$" + iUi.value);
+                    tScaleNr = iUi.value / tInitialDonationAmount; //tInitialDonationAmount
+                    // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
+                    // the last two attribute values to 0, the scaling will be made from the top-left point towards
+                    // the bottom-right instead.
+                    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+                    if (iUi.value >= gConst.maxDonationDollars - gConst.animationMargin) { // Adding to the margin.
+                        startAnim();
+                    }
+                }
 
-            var gConst = {
-                'tokenUrlParamName': 'dbToken',
-                'recDonationDollarsUrlParamName': 'recamount',
-                'noRedirectDonationDollars': '42',
-                'minDonationDollars': 0,
-                'donationStepSizeDollars': 1,
-                'animationMargin': '2'
-            };
+                function startAnim() {
+                    var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
+                        function () {
+                            // Putting the lines below inside this callback makes sure that the system
+                            // will execute them after the first animation is completed.
+                            var tAnim = Raphael.animation({'transform':"S" + tScaleNr + "," + tScaleNr + ",0,0"}, 600);
+                            tHeartSet.animate(tAnim);
+                        }
+                    );
+                    tHeartSet.animate(tAnim);
+                }
 
-            var tScaleNr = 1;
+                function getDatabaseToken() {
+                    var rVal = getUrlParamValue(gConst.tokenUrlParamName);
+                    if (rVal === "") {
+                        //TODO
+                    }
+                    return rVal;
+                }
 
-            var tInitialDonationAmount = getInitialDonationAmount();
-            jQuery(function () {
+                // Given the name of an URL parameter (normally coming from an email sent to the user),
+                // return its associated value.
+                function getUrlParamValue(iParamName) {
+                    // Get the string after the question mark.
+                    var tUrlVarsString = window.location.search.split('?')[1];
+                    if (tUrlVarsString === undefined) {
+                        return null;
+                    }
+                    // If there are several parameters, split into an array.
+                    var tUrlVarsArray = tUrlVarsString.split('&');
+                    for (var i = 0; i < tUrlVarsArray.length; i++) {
+                        // Separate the name from the value.
+                        var tParamNameAndValueArray = tUrlVarsArray[i].split('=');
+                        if (tParamNameAndValueArray[0] === iParamName) {
+                            return tParamNameAndValueArray[1];
+                        }
+                    }
+                    return null;
+                }
+            
+                var tScaleNr = 1;
+                var tInitialDonationAmount = getInitialDonationAmount();
+                
                 jQuery("#sliderDollars").slider({
                     value: tInitialDonationAmount,
                     min: gConst.minDonationDollars,
@@ -45,74 +107,12 @@ function ea_donation_form_shortcode() {
                 });
                 // Display the initial value as text.
                 jQuery("#amountDollars").val("$" + jQuery("#sliderDollars").slider("value"));
-            });
-
-            // Event handling for when the user drags slider.
-            function slideFunction(iEvent, iUi) {
-                jQuery("#amountDollars").val("$" + iUi.value);
-                tScaleNr = iUi.value / tInitialDonationAmount;
-                // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
-                // the last two attribute values to 0, the scaling will be made from the top-left point towards
-                // the bottom-right instead.
-                tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
-                if (iUi.value >= gConst.maxDonationDollars - gConst.animationMargin) { // Adding to the margin.
-                    startAnim();
-                }
+                
             }
-
-            function startAnim() {
-                var tAnim = Raphael.animation({'transform':"S" + tScaleNr * 1.1 + "," + tScaleNr * 1.1 + ",0,0"}, 400,
-                    function () {
-                        // Putting the lines below inside this callback makes sure that the system
-                        // will execute them after the first animation is completed.
-                        var tAnim = Raphael.animation({'transform':"S" + tScaleNr + "," + tScaleNr + ",0,0"}, 600);
-                        tHeartSet.animate(tAnim);
-                    }
-                );
-                tHeartSet.animate(tAnim);
+            catch (e) {
+                console.error("ERROR: ", e.message);
             }
-
-            // Gives an initial donation amount either from the URL parameter or from a constant value.
-            function getInitialDonationAmount() {
-                var rVal = getUrlParamValue(gConst.recDonationDollarsUrlParamName);
-                if (rVal === null) {
-                    rVal = gConst.noRedirectDonationDollars;
-                }
-                return rVal;
-            }
-
-            function getDatabaseToken() {
-                var rVal = getUrlParamValue(gConst.tokenUrlParamName);
-                if (rVal === "") {
-                    //TODO
-                }
-                return rVal;
-            }
-
-            // Given the name of an URL parameter (normally coming from an email sent to the user),
-            // return its associated value.
-            function getUrlParamValue(iParamName) {
-                // Get the string after the question mark.
-                var tUrlVarsString = window.location.search.split('?')[1];
-                if (tUrlVarsString === undefined) {
-                    return null;
-                }
-                // If there are several parameters, split into an array.
-                var tUrlVarsArray = tUrlVarsString.split('&');
-                for (var i = 0; i < tUrlVarsArray.length; i++) {
-                    // Separate the name from the value.
-                    var tParamNameAndValueArray = tUrlVarsArray[i].split('=');
-                    if (tParamNameAndValueArray[0] === iParamName) {
-                        return tParamNameAndValueArray[1];
-                    }
-                }
-                return null;
-            }
-
-        }
-        catch (e) {
-            console.error("ERROR: ", e.message);
-        }
+        });
     </script>
 
     <form id="stripeForm" action=<?php echo getBaseUrl() . pages::donation_sent; ?> method="POST">
