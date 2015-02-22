@@ -31,13 +31,11 @@ function ea_email_form_shortcode() {
         type="hidden"
         method="POST"
     >
-        <label for="skype_name">Skype Name</label><input name="skype_name" id="skype_name" type="text">
-        <br>
-        <label for="skype_name">Call Duration</label>
-        <br>
-        <input name="length" id="length" type="number" pattern="\d*" min="1">
-        <br><br>
-        <input type="submit" value="Send donation email to caller" id="submit">
+        <label for="skype_name">Skype Name</label>
+        <input name="skype_name" id="skype_name" type="text" style="display:block">
+        <label for="length">Call Duration</label>
+        <input name="length" id="length" type="number" pattern="\d*" min="1" style="display:block">
+        <input type="submit" value="Send donation email to caller" id="submit" style="display:block">
     </form>
 
 
