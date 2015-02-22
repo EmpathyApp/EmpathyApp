@@ -32,14 +32,17 @@ class stripe_donation {
 
 class Constants {
     const empty_string = "";
+    const default_prio = 10;
 }
 
 //TODO: Re-factor to create methods for each Uri that returns a concatenated string of root + [desired URI]
 class Uris {
     const root = '/wp-content/plugins/empathy_app/';
-    const images = '/wp-content/plugins/empathy_app/images/';
-    const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
-    const logo256 = '/wp-content/plugins/empathy_app/images/logo_256x256.jpg';	
+    // const images = '/wp-content/plugins/empathy_app/images/';
+    // const logo16 = '/wp-content/plugins/empathy_app/images/logo_bwa_16x16.png';
+    // const logo256 = '/wp-content/plugins/empathy_app/images/logo_256x256.jpg';	
+    const logo16 = '/logo_bwa_16x16.png';
+    const logo256 = '/logo_256x256.jpg';	
 }
 
 //Important that these are in lower case (wordpress db is picky)

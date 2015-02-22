@@ -28,8 +28,7 @@ function ea_email_sent_shortcode() {
     
     // Verifying that the skype name exists
     if(verifyUserNameExistsBl($tCallerSkypeNameSg) === false){
-        echo "<h2><i>Incorrect skype name. Please go back and try again</i></h2>";
-        //header(email-form);
+        echo "<h3><i><b>Incorrect skype name.</b> Email not sent. Please go back and try again</i></h3>";
         exit();
     }
     
@@ -61,6 +60,8 @@ The Empathy App team
         DatabaseAttributes::caller_id => $tCallerIdNr,
         DatabaseAttributes::empathizer_id => $ea_global_current_user_id
     ));
+    
+    echo "<h3>Email successfully sent to caller</h3>";
     
     
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++

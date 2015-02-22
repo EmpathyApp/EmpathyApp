@@ -19,19 +19,13 @@
 
 
 function getBaseUrl(){
+    // PLEASE NOTE: After adding filtering for this, please verify that things are working
+    // on a site the uses ssl. Contact Tord for more info
     if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
         $tProtocol = 'https://';
     }else{
         $tProtocol = 'http://';
     }
-    //using filtering access
-    /*
-    if( filter_input(INPUT_SERVER, 'HTTPS') && (string)filter_input(INPUT_SERVER, 'HTTPS') != 'off' ){
-        $tProtocol = 'https://';
-    }else{
-        $tProtocol = 'http://';
-    }
-    */
     return $tProtocol . (string) filter_var($_SERVER['SERVER_NAME']) . '/';
 }
 
@@ -67,9 +61,26 @@ function getDisplayNameByUserName($iUserName) {
     return $userDisplayNameString;
 }
 
-function getLogoUri()
-{
+function getLogoUri(){
+    /*
+        $rUriSg = "";
+    if(file_exists(Uris::logo256)){
+        $rUriSg = Uris::logo256;
+    }
+    return $rUriSg;
+    */
     return Uris::logo256;
+}
+
+function getSmallLogoUri(){
+    /*
+    $rUriSg = "";
+    if(file_exists(Uris::logo16)){
+        $rUriSg = Uris::logo16;
+    }
+    return $rUriSg;
+     */
+    return Uris::logo16;
 }
 
 function verifyUserNameExistsBl($iCallerSkypeNameSg){

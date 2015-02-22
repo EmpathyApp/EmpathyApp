@@ -18,6 +18,11 @@
  */
 
 
+/*******************************************************************************
+ * Code for customizing the login form, using wp filters and actions
+ * WP doc: http://codex.wordpress.org/Customizing_the_Login_Form
+ ******************************************************************************/
+
 
 /*
  * Redirects all types of users to the main page after they have logged in
@@ -35,7 +40,7 @@ add_filter('login_redirect', 'ea_login_redirect', 10, 3);
 function ea_terms_and_conditions_textarea(){
     ?>
     
-    <textarea rows="5" cols="28" readonly="true" draggable="false" style="resize: none">TODO: Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+    <textarea rows="5" cols="30" readonly="true" draggable="false" style="resize: none">TODO: Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
     <br>
     <input id="termsCheckbox" name="termsCheckbox" type="checkbox" value="1">
     <label for="termsCheckbox">I accept these terms and conditions</label>
@@ -43,7 +48,6 @@ function ea_terms_and_conditions_textarea(){
     <?php
 }
 add_action('register_form', 'ea_terms_and_conditions_textarea');
-
 
 
 /*
@@ -69,25 +73,28 @@ function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
     }
     return $modErrors;
 }
-add_filter('registration_errors', 'ea_validate_skype_name', 10, 3);
+add_filter('registration_errors', 'ea_validate_skype_name', Constants::default_prio, 3);
 
+
+/*
+ * Verifying that the terms have been accepted
+ */
 function ea_validate_terms_accepted($modErrors, $iSkypeName, $iUserEmail){
-    //echo "<h3>checkbox: " . $_POST[termsCheckbox] . "</h3>";
     if(!isset($_POST[termsCheckbox])){ //-if checkbox false this value will not even be set
         $modErrors -> add('terms_error', __('<strong>ERROR:</strong> You must accept the terms and conditions to register'), 'domain1');
     }
     return $modErrors;
 }
-add_filter('registration_errors', 'ea_validate_terms_accepted', 10, 3);
+add_filter('registration_errors', 'ea_validate_terms_accepted', Constants::default_prio, 3);
+
 
 /*
  * Adding instructions to login page and registration page
- * WP doc: http://codex.wordpress.org/Customizing_the_Login_Form
  */
 function ea_login_and_registration_message(){
     ?>
     
-    <p>Your username is your valid skype name. If you do not have skype, <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a></p>
+    <p>Your username is your valid skype name. If you do not have a skype name, <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a></p>
     
     <?php
 }

@@ -21,7 +21,6 @@ chdir(dirname(__FILE__));
 require_once '../classes/constants.php';
 
 function ea_email_form_shortcode() {
-    echo getBaseUrl();
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ?>
 
@@ -38,7 +37,7 @@ function ea_email_form_shortcode() {
         <br>
         <input name="length" id="length" type="number" pattern="\d*" min="1">
         <br><br>
-        <input type="submit" value="Send" id="submit">
+        <input type="submit" value="Send donation email to caller" id="submit">
     </form>
 
 
