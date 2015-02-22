@@ -9,7 +9,7 @@
  */
 
 function ea_donation_form_shortcode() {
-    ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ?>
 
 
@@ -21,7 +21,7 @@ function ea_donation_form_shortcode() {
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <script>
-        jQuery(function () {
+        jQuery(document).ready(function(){
             //-TODO: Investigate why we need to have a special order of the functions, in reverse of how they
             // are used. We expected to avoid this since we are using "jQuery(function" as per this link:
             // http://www.sitepoint.com/types-document-ready/
@@ -109,13 +109,7 @@ function ea_donation_form_shortcode() {
                 }
                 */
 
-                function getDatabaseToken() {
-                    var rVal = getUrlParamValue(gConst.tokenUrlParamName);
-                    if (rVal === "") {
-                        //TODO
-                    }
-                    return rVal;
-                }
+
 
 
             
@@ -143,44 +137,93 @@ function ea_donation_form_shortcode() {
         <button id="customButton">Donate</button>
         <script>
         // Checkout on button click.
-        jQuery(function () {
-            jQuery('#customButton').on('click', function (e) {
-                // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
-                // TODO: move somewhere else?
-                <?php
-                   if (is_user_logged_in()) {
-                         $prefill_email = get_userdata(get_current_user_id())->user_email;
-                   } else {
-                         $prefill_email = 'false';
-                   }
-                ?>
+        jQuery(document).ready(function () {
+            try {
+                jQuery('#customButton').on('click', function (e) {
+                    // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
+                    // TODO: move somewhere else?
+                    <?php
+                       if (is_user_logged_in()) {
+                             $prefill_email = get_userdata(get_current_user_id())->user_email;
+                       } else {
+                             $prefill_email = 'false';
+                       }
+                    ?>
 
-                // Get the amount from the slider.
-                var tAmount = 100 * jQuery("#sliderDollars").slider("value");
-                // Open Stripe dialogue.
-                StripeCheckout.open({
-                    key: '<?php echo get_private_stripe_key(); ?>',
-                    image: '<?php echo getLogoUri(); ?>',
-                    token: function (responseToken) {
-                        // Submit the token that we get back from the Stripe server to _our_ server.
-                        var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
-                        var tDatabaseTokenSg = jQuery('<input type=hidden name=dbToken />').val(getDatabaseToken());
-                        // (The token is used on the server side to create the actual charge).
-                        var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
-                        jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
-                    },
-                    name: 'Demo Site',
-                    description: 'Empathy App Donation',
-                    email: '<?php echo $prefill_email ;?>',
-                    amount: tAmount
+
+
+                    ///////////////////////////// TODO: Refactor
+                    var gConst = {
+                        'tokenUrlParamName': 'dbToken',
+                        'recDonationDollarsUrlParamName': 'recamount',
+                        'noRedirectDonationDollars': 42,
+                        'minDonationDollars': 1,
+                        'donationStepSizeDollars': 1,
+                        'animationMargin': 2
+                    };
+
+                    // Given the name of an URL parameter (normally coming from an email sent to the user),
+                    // return its associated value.
+                    function getUrlParamValue(iParamName) {
+                        // Get the string after the question mark.
+                        var tUrlVarsString = window.location.search.split('?')[1];
+                        if (tUrlVarsString === undefined) {
+                            return null;
+                        }
+                        // If there are several parameters, split into an array.
+                        var tUrlVarsArray = tUrlVarsString.split('&');
+                        for (var i = 0; i < tUrlVarsArray.length; i++) {
+                            // Separate the name from the value.
+                            var tParamNameAndValueArray = tUrlVarsArray[i].split('=');
+                            if (tParamNameAndValueArray[0] === iParamName) {
+                                return tParamNameAndValueArray[1];
+                            }
+                        }
+                        return null;
+                    }
+                    /////////////////////////////
+
+
+
+                    function getDatabaseToken() {
+                        var rVal = getUrlParamValue(gConst.tokenUrlParamName);
+                        if (rVal === "") {
+                            //TODO
+                        }
+                        return rVal;
+                    }
+
+                    // Get the amount from the slider.
+                    var tAmount = 100 * jQuery("#sliderDollars").slider("value");
+                    // Open Stripe dialogue.
+                    StripeCheckout.open({
+                        key: '<?php echo get_private_stripe_key(); ?>',
+                        image: '<?php echo getLogoUri(); ?>',
+                        token: function (responseToken) {
+                            // Submit the token that we get back from the Stripe server to _our_ server.
+                            var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
+                            var tDatabaseTokenSg = jQuery('<input type=hidden name=dbToken />').val(getDatabaseToken());
+                            // (The token is used on the server side to create the actual charge).
+                            var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
+                            jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
+                        },
+                        name: 'Demo Site',
+                        description: 'Empathy App Donation',
+                        email: '<?php echo $prefill_email ;?>',
+                        amount: tAmount
+                    });
+                    e.preventDefault();
                 });
-                e.preventDefault();
-            });
-            // Close checkout on page navigation.
-            jQuery(window).on('popstate', function () {
-                handler.close();
-            });
+                // Close checkout on page navigation.
+                jQuery(window).on('popstate', function () {
+                    handler.close();
+                });
+            }
+            catch (e) {
+                console.error("ERROR: ", e.message);
+            }
         });
+
         </script>
     </form>
 
@@ -202,9 +245,9 @@ function ea_donation_form_shortcode() {
 
 
     <?php
-    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
-    ob_end_clean();
-    return $ob_content;
+    //$ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
+    //ob_end_clean();
+    //return $ob_content;
 }
 
 // Create shortcode for the caller donation page.
