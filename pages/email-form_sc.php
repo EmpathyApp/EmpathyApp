@@ -22,6 +22,26 @@ require_once '../classes/constants.php';
 
 function ea_email_form_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    
+    
+    // Checking the user access level..
+    $tCurrrentUserIdNr = get_current_user_id();
+    $tWPUserOt = new WP_User($tCurrrentUserIdNr);
+    $tAdminOrContributorBl = false;
+    foreach($tWPUserOt->roles as $role){
+        $role = get_role($role);
+        //print_r($role);
+        if($role->name === "administrator" || $role->name === 'contributor'){
+            $tAdminOrContributorBl = true;
+        }
+    }
+    if($tAdminOrContributorBl == false){
+        // ..exiting if not empathizer or admin
+        echo "<strong>Access denied!</strong> You need to be logged in as empathizer (or admin) to access this page";
+        exit();
+    }
+
+    
     ?>
 
 
