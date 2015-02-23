@@ -57,15 +57,3 @@ DocVer: 0.1
 * Repeat this process for microsoft account?
 
 
-
-
-
-
-
-
-
-
-admin interface
-
-
-

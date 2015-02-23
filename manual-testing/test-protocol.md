@@ -17,9 +17,13 @@ u: usability
 
 ## Basic functionality
 
-Name | Status of last test | Requirement | Time | Version | **Browser** | Tester | Notes
+Name | Status of last test | Time | Version | **Browser** | Tester | Notes
 --- | --- | --- | --- | --- | ---
 [Registration](tc-registration.md) | Not run | N/A |
+
+
+Other columns: req-mapping, tc-version (git hash), type
+
 
 
 Mobile here as well?? or only for accessability?

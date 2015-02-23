@@ -25,8 +25,6 @@ These documents can be useful to check out before running the test or if somethi
 3. Modify the availabilty of the empathizer accounts and use the caller account to call
 
 
-
-
 ### Expected result
 
 3. The following table shows the results we expect from this part of the test:
@@ -39,7 +37,6 @@ Do not disturb | 2         | 2    | echo123        | echo123
 Offline        | 2         | 2    | echo123        | echo123
 
 Please note that echo123 is always offline
-
 
 
 ### Test notes

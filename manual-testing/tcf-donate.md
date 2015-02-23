@@ -70,7 +70,7 @@ DocVer: 0.1
 15. You get a message similar to this one: "Error: Incorrect token! (Token does not exist in the database)"
 
 
-### Meta-test notes
+### Test notes
 
 
 
