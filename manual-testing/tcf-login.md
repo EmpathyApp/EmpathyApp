@@ -1,10 +1,8 @@
 DocVer: 0.1
 
 
-
 ### Preparation
 
-* latest version of the empathy app plugin
 * One caller account
 * One empathizer account
   * Important: Verify that the empathizer account is really a "contributor" in wordpress
@@ -21,15 +19,13 @@ DocVer: 0.1
 6. Click on the 2nd button from the left in the upper right corner
 
 
-
-Repeat this process for microsoft account?
-
-
 ### Expected result
 
+1. -
 2. You are logged in and come back to the home/first page (www.empathyapp.org)
 3. You get to the "admin" interface (but of course with very limited options) where the profile info can be changed
 
+4. -
 5. You are logged in and come back to the home/first page (www.empathyapp.org)
 6. You get to the "admin" interface (but of course with very limited options) where the profile info can be changed
   * Slightly more options will probably be available here compared with the callers
