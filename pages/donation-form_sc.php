@@ -35,7 +35,7 @@ function ea_donation_form_shortcode() {
             exit();
         }
     }else{
-        echo "<strong>Incorrect token! (Token not exist in the database)</strong>";
+        echo "<strong>Error: Incorrect token! (Token does not exist in the database)</strong>";
         exit();
     }
     

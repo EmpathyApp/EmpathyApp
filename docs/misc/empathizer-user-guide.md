@@ -6,9 +6,10 @@ DocVer 0.1
 1. Download skype
   1. If you have windows 8: Choose the "desktop app" version and not the "metro" version (otherwise your status will not be shown to the callers)
 2. Create a skype account (don't use an ms account)
-  1. Set the user name to empathizer_firstname, for example: empathier_tord
+  1. Set the user name to empathizer_{firstname}, for example: empathizer_tord
   2. Give an email address that you check often and that will not change
 3. Go into skype options, then privacy and choose "allow my status to be shown on the web"
+4. Go to www.empathyapp.org and register with your empathizer_{firstname} skype name
 
 
 ### Using skype

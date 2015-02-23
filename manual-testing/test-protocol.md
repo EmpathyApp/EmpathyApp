@@ -17,7 +17,7 @@ u: usability
 
 ## Basic functionality
 
-Name | Status of last test | Requirement | Time | Version | **Browser** | Notes
+Name | Status of last test | Requirement | Time | Version | **Browser** | Tester | Notes
 --- | --- | --- | --- | --- | ---
 [Registration](tc-registration.md) | Not run | N/A |
 

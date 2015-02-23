@@ -1,10 +1,12 @@
 DocVer: 0.1
 
 
+### Information
 
-../docs/dependencies/neat-skype-status.md
+These documents can be useful to check out before running the test or if something is unclear:
 
-../docs/misc/empathizer-user-guide.md
+* [Neat skype status v2/pro](../docs/dependencies/neat-skype-status.md)
+* [Empathizer user guide](../docs/misc/empathizer-user-guide.md)
 
 
 ### Preparation
