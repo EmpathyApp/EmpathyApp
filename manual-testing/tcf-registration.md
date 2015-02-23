@@ -3,12 +3,9 @@ DocVer: 0.1
 
 ### Preparation
 
-Clear cache in browser
-Clear cahce in _____
-Sign out
-a skype name which has not been registered before
-an email which has not been registered before
-latest version of the empathy app plugin
+* A skype name which has not been registered before (on the test site)
+* An email which has not been registered before
+* The latest version of the empathy app plugin
 
 
 ### Process
@@ -41,9 +38,19 @@ latest version of the empathy app plugin
 1. You can see that
   * There is a text describing that the username must be a skype name
   * There are terms and conditions
+2. -
+3. -
+4. -
 5. You see an error message similar to this one:
   "ERROR: You must accept the terms and conditions to register"
+6. -
+7. -
+8. -
 9. You see an error message telling you that you need to provide a real skype name
+10. -
+11. -
+12. -
+13. 
 14. You see a confirmation message telling you that you have registered
 15. You see that
   * the message was recieved at the time noted previously
@@ -51,7 +58,7 @@ latest version of the empathy app plugin
 16. You see that one (and only one) new user has been created with the expected name and email
 
 
-### Meta-test notes
+### Test case notes
 
 * Repeat this process for microsoft account?
 * Add another test for when an account already exists? No: This is not a worry since wp takes care of it
