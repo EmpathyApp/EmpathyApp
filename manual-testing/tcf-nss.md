@@ -1,39 +1,49 @@
-
-https://docs.google.com/document/d/1SUIQug-AoPBW_RB1_q6dMGVtcqXFMFPuhblg4XnlZ3Q/edit#heading=h.ys0s5udli9uz
-    
+DocVer: 0.1
 
 
-Peijman Kouretchian, CEO
 
-Mica Stumpf COO
+../docs/dependencies/neat-skype-status.md
 
-Empathy App
+../docs/misc/empathizer-user-guide.md
 
-510.943.8310
 
-http://www.empathyapp.org
-empathyapp@gmail.com
+### Preparation
 
-On Mon, Feb 16, 2015 at 5:50 PM, Empathy Jones <empathyapp@gmail.com> wrote:
+* Three skype accounts and three platforms (computer or mobile etc) with skype installed (in this document called "empathizer_1", "empathizer_2" and "caller"
+* Admin account for testing site
 
-    Thanks Tord!
 
-    Yeah this is what I did.
-    We had 4 empathizers and 4 callers. 
-    In neat skype shortcode I put in this order: empathizer_p, empathizer_m, empathizer_tord, empathizer_ben.
+### Procedure
 
-    Then I had first mica call it connected to my empathizer profile. After that I changed my status to do not disturb. Then you called and it connected to Mica's empathizer. Then I called and it connected to your empathizer. Then Ben called from his normal skype and it connected to his empathizer skype. 
+1. Login as admin and go to the edit screen for the main page
 
-    So as long as we change our status to do not disturb, neat skype will go to the next person on the list who is available.
+2. Use the following text for the integrated neat skype status v2/pro shortcode:
+ [skype skypenames="echo123, empathizer_1, empathizer_2"]
 
-    We need to do one more test though. To see how it transitions to another empathizer depending on their status and where they are in the shortcode list.  We want to assign a primary empathizer to a timeslot and a backup. 
+3. Modify the availabilty of the empathizer accounts and use the caller account to call
 
-    Future test questions:
 
-        * What if backup person is higher in the shortcode list than the primary empathizer? If they change their status to away or do not disturb, will it call the primary person first? 
-        * If the backup empathizer has status as do not disturb, will nss still call them if the primary person is on a call and has also set their status to do not disturb?
-        * If primary empathizer is on a call and has not set status to 'do not disturb' will nss still connect to the backup or will it attempt to call the primary again?
 
-Let me know if you think of any other future test questions so we can be sure of what we need to test for our next round of nss testing. My hope is that our next test will be our last test of nss. 
+
+### Expected result
+
+3. The following table shows the results we expect from this part of the test:
+
+emp1 \ emp2->  | Available | Away | Do not disturb | Offline
+-------------- | --------- | ---- | -------------- | -------
+Available      | 1         | 1    | 1              | 1
+Away           | 2         | 1    | 1              | 1
+Do not disturb | 2         | 2    | echo123        | echo123
+Offline        | 2         | 2    | echo123        | echo123
+
+Please note that echo123 is always offline
+
+
+
+### Test notes
+
+* Please note that this is not a load test, only a testing of the functionality
+
+* It does not matter if a user is in a call or not. Only the availability and the order in the integrated nss shortcode matters
 
 
