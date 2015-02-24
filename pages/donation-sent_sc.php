@@ -35,15 +35,15 @@ function ea_donation_sent_shortcode() {
 
     Stripe::setApiKey(get_shared_stripe_key());
     // Get the credit card details submitted by the form
-    $token = $_POST['stripeToken'];
+    $tStripeTokenSg = $_POST['stripeToken'];
     // TODO: change to dynamic.
-    $amountCents = $_POST['amountCents'];
+    $tAmountCentsNr = (int)$_POST['amountCents'];
     
-    $dbToken = $_POST['dbToken'];
+    $tDbTokenSg = $_POST['dbToken'];
 
     // Check that we have gotten here through the form action in donation-for_sc.php.
     // If so, withdraw the amount sent in the previous page.
-    if (isset($token) == true) {
+    if (isset($tStripeTokenSg) == true) {
 
         // Note that:
         // 1) The amount is given in cents.
@@ -63,9 +63,9 @@ function ea_donation_sent_shortcode() {
         //$tSuccess = false;
         try {
             $charge = Stripe_Charge::create(array(
-                "amount"      => $amountCents,
+                "amount"      => $tAmountCentsNr,
                 "currency"    => "usd",
-                "card"        => $token,
+                "card"        => $tStripeTokenSg,
                 "description" => $descr
             ));
             $tSuccess = true;
@@ -105,9 +105,9 @@ function ea_donation_sent_shortcode() {
         }
 
         if ($tSuccess === true) {
-            echo "<h3>Success! Charged {$amountCents} cents</h3>";
+            echo "<h3>Success! Charged {$tAmountCentsNr} cents</h3>";
             
-            db_write_actual_donation($dbToken, $amountCents);
+            db_write_actual_donation($tDbTokenSg, floor($tAmountCentsNr/100));
             
         } else {
             // TODO: details needed here or elsewhere.
