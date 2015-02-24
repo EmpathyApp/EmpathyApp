@@ -52,6 +52,7 @@ function ea_wp_enqueue_scripts() {
     // Raphael.
     wp_enqueue_script('raphael', 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js');
 
+    //login_logo();
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
@@ -67,6 +68,17 @@ foreach($tWPUserOt->roles as $role){
 }
 */
 add_filter('show_admin_bar', '__return_false');
+
+function login_logo(){
+?>
+    <style type="text/css">
+        body.login div#login h1 a {
+            background-image: 'http://dalailama.com/assets/banners/943.jpg';
+            padding-bottom: 30px;
+        }
+    </style>
+<?php
+}
 
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
