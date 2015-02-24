@@ -91,7 +91,7 @@ class Call_Records_Table extends WP_List_Table {
         }
 
         $tTotalNrOfItems = $wpdb->query($query);
-        $tItemsPerPage = 10;
+        $tItemsPerPage = 100;
         $tCurrentPage = !empty($_GET["paged"]) ? ($_GET["paged"]) : '';
         /*
          * ^TODO: find a replacement for "mysql_real_escape_string" for filtering
