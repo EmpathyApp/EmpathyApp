@@ -49,8 +49,7 @@ function ea_donation_sent_shortcode() {
         // 1) The amount is given in cents.
         // 2) The amount is given two times: once on the client side and also once here on
         //    the server side.
-        // 3) FIXME:
-        //    The amount is not transferred automatically (as long as we use the "custom"
+        // 3) The amount is not transferred automatically (as long as we use the "custom"
         //    https://stripe.com/docs/checkout#integration-custom checkout button), which
         //    means that the value stated in the Stripe dialogue != the value actually
         //    charged from the user's credit card.

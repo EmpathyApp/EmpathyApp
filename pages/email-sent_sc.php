@@ -21,8 +21,6 @@ function ea_email_sent_shortcode() {
     
     
 
-    global $ea_global_current_user_id;
-
     $tCallerSkypeNameSg = $_POST["skype_name"];
     
     
@@ -58,7 +56,7 @@ The Empathy App team
         DatabaseAttributes::call_length => $tLengthNr,
         DatabaseAttributes::database_token => $tUniqueIdentifierSg,
         DatabaseAttributes::caller_id => $tCallerIdNr,
-        DatabaseAttributes::empathizer_id => $ea_global_current_user_id
+        DatabaseAttributes::empathizer_id => get_current_user_id()
     ));
     
     echo "<h3>Email successfully sent to caller</h3>";
