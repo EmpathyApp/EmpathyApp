@@ -42,19 +42,6 @@ ini_set('error_reporting', E_ALL);
 //##############################################################################
 
 
-//Important: We need to call get_current_user_id in the init phase
-//http://wordpress.stackexchange.com/questions/163407/get-current-user-id-returns-0
-//http://wordpress.stackexchange.com/questions/58429/how-do-i-call-wp-get-current-user-in-a-plugin-when-plugins-are-loaded-before-p
-$ea_global_current_user_id;
-
-
-function getCurrentUserFunction(){
-    global $ea_global_current_user_id;
-    $ea_global_current_user_id = get_current_user_id();
-}
-add_action('init', 'getCurrentUserFunction');
-
-
 function ea_wp_enqueue_scripts() {
     // jQuery and jQuery UI.
     wp_enqueue_script('jquery'); //, 'http://code.jquery.com/jquery-1.10.2.js'
@@ -67,6 +54,19 @@ function ea_wp_enqueue_scripts() {
 
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
+
+/*
+// Checking the user access level..
+$tCurrrentUserIdNr = get_current_user_id();
+$tWPUserOt = new WP_User($tCurrrentUserIdNr);
+foreach($tWPUserOt->roles as $role){
+    $role = get_role($role);
+    if($role->name === 'subscriber'){
+        add_filter('show_admin_bar', '__return_false');
+    }
+}
+*/
+add_filter('show_admin_bar', '__return_false');
 
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
