@@ -43,7 +43,7 @@ The technical requirements may use some tech/nerd speech, for help please see [[
 #### 4. Product Scope
 <Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.>
 
-Empathy app connects trained empathizers to people in need of empathy.
+Empathy App connects trained empathizers to people in need of empathy.
 
 Goals:
 * Reaching many people over the world in need of empathy
@@ -69,12 +69,12 @@ The latest version of this image can be found [*here*](https://docs.google.com/d
 
 #### 2. Product Functions
 <Summarize the major functions the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.>
-* Connecting callers with empathizers through the internet
+* Connecting callers with empathizers through the Internet
 * Enabling callers to donate money to Empathy App
-* Storing information enabling calculation of how much money is going to each empathizer
-* Storing information enabling understanding of user behavior
+* Storing information needed to calculate the amount of money going to each empathizer
+* Storing information needed for understanding user behavior
 
-Possibly: Connecting callers with empathizers through the standard phone system
+Possibly: connecting callers with empathizers through the standard phone system
 
 Also see *[this](https://docs.google.com/document/d/1_8-Cua7gF3qJ-RRYXt-lavWDeioxmVYAeJpJA6Q_l1k/edit?usp=sharing)* document written by Peijman
 
@@ -95,7 +95,7 @@ The latest versions of these images can be found *[here](https://docs.google.com
 
 User | Importance | Considerations
 --- | --- | ---
-Caller | High | Ease of access to software, Ease of usage of the software itself ("counting mouseclicks"), Ease of making donations, Good "onboarding" experience
+Caller | High | Ease of access to software, ease of usage of the software itself ("counting mouse-clicks"), Ease of making donations, good "onboarding" experience
 Empathizer | Medium | Ease of use
 Administrator | Low | 
 
@@ -103,7 +103,7 @@ Administrator | Low |
 #### 4. Operating Environment
 <Describe the environment in which the software will operate, including the hardware platform, operating system and versions, and any other software components or applications with which it must peacefully coexist.>
 
-We want the software to work with a wide variety of platforms, but especially important is mobile phones
+We want the software to work on a wide variety of platforms, but mobile phone platforms are especially important
 
 
 #### 5. Design and Implementation Constraints
@@ -115,9 +115,9 @@ TODO
 #### 6. User Documentation
 <List the user documentation components (such as user manuals, on-line help, and tutorials) that will be delivered along with the software. Identify any known user documentation delivery formats or standards.>
 
-* Callers: Interface is expected to be intuitive enough to not need a manual
-* Empathizers: A guide for empathizers will be used
-* Administrators: Low prio because of the small size of this group and the ease of access to knowledge in other ways (communication with developers)
+* Callers: the interface is expected to be intuitive enough to not require a manual
+* Empathizers: a guide for empathizers will be used
+* Administrators: low priority because of the small size of this group and the ease of access to knowledge in other ways (communication with developers)
 
 
 #### 7. Assumptions and Dependencies
@@ -174,7 +174,7 @@ Registration and login interfaces as above, and also this:
 
 ![email_form](https://cloud.githubusercontent.com/assets/10245688/5825606/f71744ac-a0ec-11e4-9f16-6aa19a2c4662.png)
 
-(assuming as is the case in our prototype at the time of writing that the empathizer needs to do this manually and that we haven't found a way to fully automate this)
+(Assuming as is the case in our prototype at the time of writing that the empathizer needs to do this manually and that we haven't found a way to fully automate this)
 
 
 ##### Admin interfaces
@@ -208,7 +208,7 @@ Screen layout constraints:
 
 TODO
 
-(For our current prototype see [this](https://github.com/EmpathyApp/EmpathyApp/blob/master/docs/dependencies/sw-dependencies.md) list)
+(For our current prototype, see [this](https://github.com/EmpathyApp/EmpathyApp/blob/master/docs/dependencies/sw-dependencies.md) list)
 
 
 #### 4. Communications Interfaces
@@ -238,9 +238,9 @@ Ability for the "caller" user to call an empathizer
 ##### 2. Stimulus/Response Sequences
 <List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialog elements associated with use cases.>
 
-Stimulus: None
+Stimulus: none
 
-Response: System finds an empathizer (if available) using a queue system as well as presence information, the call is then directed to this empathizer
+Response: the system finds an empathizer, if available, using a queue system as well as presence information. The call is then directed to this empathizer.
 
 ##### 3. Functional Requirements
 <Itemize the detailed functional requirements associated with this feature. These are the software capabilities that must be present in order for the user to carry out the services provided by the feature, or to execute the use case. Include how the product should respond to anticipated error conditions or invalid inputs. Requirements should be concise, complete, unambiguous, verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary information is not yet available.>
@@ -259,14 +259,14 @@ Response: System finds an empathizer (if available) using a queue system as well
 ##### 1. Description and Priority
 <Provide a short description of the feature and indicate whether it is of High, Medium, or Low priority. You could also include specific priority component ratings, such as benefit, penalty, cost, and risk (each rated on a relative scale from a low of 1 to a high of 9).>
 
-An email that contains a message and a link to a donation page is sent to the caller after a call with an empathizer is completed. The link also contains information for setting the recommended donation amount
+An email that contains a message and a link to a donation page is sent to the caller after a call with an empathizer is completed. The link also contains information for setting the recommended donation amount.
 
 ##### 2. Stimulus/Response Sequences
 <List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialog elements associated with use cases.>
 
-Stimulus: End of call
+Stimulus: end of call
 
-Response: An email is sent to the registered email address of the caller
+Response: an email is sent to the registered email address of the caller
 
 ##### 3. Functional Requirements
 <Itemize the detailed functional requirements associated with this feature. These are the software capabilities that must be present in order for the user to carry out the services provided by the feature, or to execute the use case. Include how the product should respond to anticipated error conditions or invalid inputs. Requirements should be concise, complete, unambiguous, verifiable, and necessary. Use "TBD" as a placeholder to indicate when necessary information is not yet available.>
@@ -288,19 +288,19 @@ The caller gets a chance to donate an amount that is recommended, and can change
 ##### 2. Stimulus/Response Sequences
 <List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialog elements associated with use cases.>
 
-Stimulus: Caller checking email inbox and clicking the donation link
+Stimulus: caller checking email inbox and clicking the donation link
 
-Response: After the donation has been made, the caller is redirected to a "thank you" page
+Response: after the donation has been made, the caller is redirected to a "thank you" page
 
 ##### 3. Functional Requirements
 <Itemize the detailed functional requirements associated with this feature. These are the software capabilities that must be present in order for the user to carry out the services provided by the feature, or to execute the use case. Include how the product should respond to anticipated error conditions or invalid inputs. Requirements should be concise, complete, unambiguous, verifiable, and necessary. Use "TBD" as a placeholder to indicate when necessary information is not yet available.>
 
 <Each requirement should be uniquely identified with a sequence number or a meaningful tag of some kind.>
 
-* **WEB-1:** System presents a web page with a donation
-* **INL-2:** System prefills donation form with a variable recommended amount
-* **INL-3:** System gives the user the ability to choose the amount to donate
-* **WEB-2:** System presents a web page with a thank you message
+* **WEB-1:** The system presents a web page with a donation
+* **INL-2:** The system pre-fills the donation form with a recommended amount
+* **INL-3:** The system gives the user the ability to choose the amount to donate
+* **WEB-2:** The system presents a web page with a "thank you" message
 
 
 
@@ -312,19 +312,19 @@ Response: After the donation has been made, the caller is redirected to a "thank
 
 Call info is stored so that the empathizer can get paid each month
 
-Call info we like to sFOSS:
+Call info that we like to store:
 * Identification of caller
 * Identification of empathizer
 * Length of call
 * Amount donated by caller
-* Time of call (more precisely: when it ended since using this time we can then gather all information at once)
+* Time of call (more precisely: when it ended, since by using this time we can gather all information at once)
 
-Additional information we'd like to store for stastistical purposes (to help setting recommended amount in the future etc):
+Additional information we'd like to store for statistical purposes (to help setting recommended amount in the future, etc):
 * Recommended donation amount that was presented to the user
 
 
 ##### 2. Stimulus/Response Sequences
-<List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialog elements associated with use cases.>
+<List the sequences of user actions and system responses that stimulate the behavior defined for this feature. These will correspond to the dialogue elements associated with use cases.>
 
 Stimulus: End of call
 
@@ -336,12 +336,12 @@ Response: Database updated so that information can be used in the future by admi
 
 <Each requirement should be uniquely identified with a sequence number or a meaningful tag of some kind.>
 
-* **DBC-1:** Store call info: Identification of caller
-* **DBC-2:** Store call info: Identification of empathizer
-* **DBC-3:** Store call info: Length of call
-* **DBD-1:** Store donation info: Amount donated by caller
-* **DBD-2:** Store donation info: Time when call ended
-* **DBD-3:** Store donation info: Recommended donation amount that was presented to the user
+* **DBC-1:** Store call info: identification of caller
+* **DBC-2:** Store call info: identification of empathizer
+* **DBC-3:** Store call info: length of call
+* **DBD-1:** Store donation info: amount donated by caller
+* **DBD-2:** Store donation info: time when call ended
+* **DBD-3:** Store donation info: recommended donation amount that was presented to the user
 
 
 ## 5. Other Nonfunctional Requirements
@@ -353,7 +353,7 @@ Response: Database updated so that information can be used in the future by admi
 * **CON-2:** Max 2000 empathizers connected at the same time
 * **CON-3:** Max 10 administrators connected at the same time
 
-This will vary a lot with the version since the software is expected to start small but grow very large with time. For version 2 we expect that these numbers will increase, but for the very first version we may not need as much as presented above
+This will vary a lot depending on the version since the software is expected to start small but grow very large over time. For version 2 we expect that these numbers will increase, but for the very first version we may not need as much as presented above
 
 #### 5.2 Safety Requirements
 <Specify those requirements that are concerned with possible loss, damage, or harm that could result from the use of the product. Define any safeguards or actions that must be taken, as well as actions that must be prevented. Refer to any external policies or regulations that state safety issues that affect the product’s design or use. Define any safety certifications that must be satisfied.>
