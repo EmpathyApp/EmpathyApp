@@ -16,12 +16,12 @@ DocVer: 0.0.1
   * Subcomments (ex: "..drawing a line")
   * **Code**
 4. Run in debug mode
-  * print variables
+  * Print variables
   * Debugger
 5. If fail: Iterate steps 2 - 4
 6. Refactor
   * Rewrite into smaller methods for reusability?
-  * (iterate, go back to PPP)
+  * (Iterate, go back to PPP)
 7. Write comment for function/method header
 8. Writing autotest
   * Repeating [3, 4, 5, 6]
@@ -34,8 +34,8 @@ DocVer: 0.0.1
   * Pomodoro technique
 * Coding standard:
   * Naming system:
-    * using suffix to indicate type (important for loosly typed languages)
-    * using prefix to indicate scope
+    * Using suffix to indicate type (important for loosly typed languages)
+    * Using prefix to indicate scope
   * Comments formatting:
     * Using PPP (Pseudocode programming process)
 
@@ -44,7 +44,7 @@ DocVer: 0.0.1
 
 Wordpress can be seen as an application platform
 
-* All javascript libs needs to be added with "wp_enqueue_script" + "wp_enqueue_scripts" (Important! Otherwise we may get strange errors)
+* All Javascript libs need to be added with "wp_enqueue_script" + "wp_enqueue_scripts" (Important! Otherwise we may get strange errors)
 
 
 #### Coding standard
@@ -65,7 +65,7 @@ TODO
 
 Tool | Function | Notes
 ---|---|---
-[*Firebug*](https://getfirebug.com/) | Debugging js |
+[*Firebug*](https://getfirebug.com/) | Debugging JS |
 [*FirePHP*](http://www.firephp.org/) | Debugging PHP | Depends on Firebug
 [*Display php version*](https://wordpress.org/plugins/display-php-version/) | PHP version |
 [*NetBeans*](https://netbeans.org/) | IDE | 

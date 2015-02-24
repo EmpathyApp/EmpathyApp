@@ -27,7 +27,7 @@ http://www.capterra.com/call-center-software/
 
 
 ### [phono](http://drive.google.com/open?id=1kanWbmOqA4Nax6iw41e5Dc8pDlVTjwJmtnkt2OA10pQ)
-Javascript/jQuery API
+JavaScript/jQuery API
 
 
 ## Protocols
@@ -74,7 +74,7 @@ Links:
 
 ## Software
 
-### subrosa
+### Subrosa
 
 ### [Linphone](http://www.linphone.org/)
 * Uses SIP
@@ -85,7 +85,7 @@ Uses SIP
 ### Jitsi
 Multi-protocol (including SIP)
 
-### skype
+### Skype
 
 
 ## Other
@@ -97,7 +97,7 @@ http://www.macromedia.com/support/documentation/en/flashplayer/help/index.html
 ### Asterisk
 http://www.asterisk.org/
 http://www.asterisk.org/get-started
-Open source
+Open-source
 "Asterisk includes components that allow it to serve a wide range of functions"
 "Up your customer service efficiency and delight your customers by implementing web-based callback and intelligent queuing."
 

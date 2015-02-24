@@ -3,18 +3,18 @@ DocVer 0.1
 
 Abbreviation | Word | Explanation
 --- | --- | ---
-SO | [*stackoverflow*](http://stackoverflow.com/) | Site with qustions and answers aboud programming
-sw | software |
-hw | hardware |
-foss | free open source software |
-free | free as in freedom
-| cost-free | gratis
-ext | external |
-ea | [Empathy App](http://www.empathyapp.org/) |
-js | javascript | client-side language, "the language of the web"
-php | Php Hypertext Processing | server-side programming language
-tc | test case |
+SO | [*stackoverflow*](http://stackoverflow.com/) | Site with questions and answers about programming
+SW | Software |
+HW | Hardware |
+FOSS | Free Open-Source Software |
+free | Free as in freedom
+| Cost-free | Gratis
+ext | External |
+EA | [Empathy App](http://www.empathyapp.org/) |
+JS | JavaScript | Client-side programming language; "the language of the web"
+PHP | PHP Hypertext Processing | Server-side programming language
+TC | Test case |
 dev | development
-ux | user experience
-wp | wordpress |
+UX | User experience
+WP | Wordpress |
 

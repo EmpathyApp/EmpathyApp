@@ -10,7 +10,7 @@ DocVer: 0.1
 ##### Empathy app version
 
 ##### Log output
-cpanel error log, php/js debug output, apache log, etc
+cpanel error log, PHP/JS debug output, Apache log, etc
 ```
 log data here
 ```

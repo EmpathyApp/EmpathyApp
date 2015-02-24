@@ -9,14 +9,14 @@ DocVer: 1.0.1
 
 ### Role limitation
 
-The documentation manager is not necessarily the person *writing* the documentation, instead he/she is the person *reviewing* it (although there is nothing stopping other people reviewing the documentation as well of course, but the documentation manager always does a review as well)
+The documentation manager is not necessarily the person *writing* the documentation. Instead, he/she is the person *reviewing* it (although there is nothing stopping other people reviewing the documentation as well of course, but the documentation manager always does a review as well).
 
 
 ### Recurring tasks
 
-Set reminder (for example with google calendar) once or twice each week to go through the steps below
+Set reminder (for example with google calendar) once or twice each week to go through the steps below.
 
-1. Reviewing changes in the documentation (see [this link](https://github.com/EmpathyApp/EmpathyApp/commits/master/docs) for a list of recent updates, please also check the [README.md](../../README.md) file)
+1. Reviewing changes in the documentation (see [this link](https://github.com/EmpathyApp/EmpathyApp/commits/master/docs) for a list of recent updates; please also check the [README.md](../../README.md) file)
   * Maintaining a structure for the documentation files (includes being aware of names of documents and directories and also which directories different documents are placed in)
   * Checking references to files when renaming or removing by doing a global search
   * Ensuring that the text is easy to understand for the target audience (audience is normally assumed to be a developer who is new to the project)

@@ -1,7 +1,7 @@
 DocVer: 0.1
 
 
-For a graphical overview, please see the images at the end of this text
+For a graphical overview, please see the images at the end of this text.
 
 
 ### Prerequisites
@@ -13,7 +13,7 @@ For a graphical overview, please see the images at the end of this text
 
 ### Testing area
 
-If you don't have a remote development site, you can use [this site](http://kuanyin.ihavearrived.org/) instead
+If you don't have a remote development site, you can use [this site](http://kuanyin.ihavearrived.org/) instead.
 
 
 ### Definitions
@@ -24,25 +24,25 @@ If you don't have a remote development site, you can use [this site](http://kuan
 
 ### Procedure
 
-1. Register a caller on empathy app site by pressing "register" in the sidebar "meta" area
-  1. Enter a valid skype name
+1. Register a caller on Empathy app site by pressing "register" in the sidebar "meta" area
+  1. Enter a valid Skype name
   2. Enter an email address that you have access to
 
-2. Create a skype account with name "empathizer_{your-first-name}"
+2. Create a Skype account with name "empathizer_{your-first-name}"
 
   Log out before proceeding
 
-3. Register an empathizer (called "contributor" in wp) on empathy app site by going to the admin area and then choosing "Users" -> "Add new"
+3. Register an empathizer (called "contributor" in WP) on Empathy app site by going to the admin area and then choosing "Users" -> "Add new"
   1. Use the same name as in step 2 above: empathizer_{your-first-name}
   2. Use another email address than in step 1 above
 
   Before proceeding: Make sure you are logged in as an empathizer
 
-4. Go to front page of empathy app website and see the skype button/icon showing status
+4. Go to front page of Empathy app website and see the Skype button/icon showing status
 
-5. Verify that when hovering over the icon there is a link shown (in firefox in the bottom left corner) with a skype uri (for example "skype:tord_dellsen?call" or "skype:echo123?call")
+5. Verify that when hovering over the icon, there is a link shown (in Firefox it is in the bottom left corner) with a Skype URI (for example "skype:tord_dellsen?call" or "skype:echo123?call")
 
-6. Go to the "Email form" page of the empathy app website
+6. Go to the "Email form" page of the Empathy app website
   1. Fill in the caller name
   2. Fill in a number (number of minutes)
   3. Click send
@@ -56,7 +56,7 @@ If you don't have a remote development site, you can use [this site](http://kuan
 
 9. Drag the slider
 
-10. Click the donate button to open the stripe dialog
+10. Click the donate button to open the Stripe dialog
 
 11. Fill in the test credit card details:
   1. One of your email addresses

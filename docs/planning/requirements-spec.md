@@ -1,11 +1,11 @@
 DocVer: 0.1.3
 
-***not approved***
+***Not approved***
 
 
-*For a more general ("high-level") understanding of where the information below fits into requirements analysis and the software development process in general, please see [this article](http://en.wikipedia.org/wiki/Requirements_analysis)*
+*For a more general ("high-level") understanding of where the information below fits into the requirements analysis and the software development process in general, please see [this article](http://en.wikipedia.org/wiki/Requirements_analysis)*.
 
-When editing this document, please do not remove the comments for each section which can be seen when editing (inside the lesser than and greater than signs) since these comments gives suggestions of how to write each section
+When editing this document, please do not remove the comments for each section which can be seen when editing (inside the lesser than and greater than signs), since these comments gives suggestions on how to write each section.
 
 
 # Software Requirements Specification for Empathy App
@@ -30,20 +30,20 @@ Software requirement specification (SRS) for Empathy App version 1.0
 #### 2. Document Conventions
 <Describe any standards or typographical conventions that were followed when writing this SRS, such as fonts or highlighting that have special significance. For example, state whether priorities  for higher-level requirements are assumed to be inherited by detailed requirements, or whether every requirement statement is to have its own priority.>
 
-* If a future version is discussed this will be explicitly mentioned in this document. Otherwise version 1.0 is implicitly assumed
-* Examples in this document are from the prototype we have at the time of writing, this doesn't mean that we need to use skype or other technologies shown in the examples
+* If a future version is discussed this will be explicitly mentioned in this document. Otherwise version 1.0 is implicitly assumed.
+* Examples in this document are from the prototype we have at the time of writing. This doesn't mean that we need to use Skype or other technologies shown in the examples.
 
 
 #### 3. Intended Audience and Reading Suggestions
 <Describe the different types of reader that the document is intended for, such as developers, project managers, marketing staff, users, testers, and documentation writers. Describe what the rest of this SRS contains and how it is organized. Suggest a sequence for reading the document, beginning with the overview sections and proceeding through the sections that are most pertinent to each reader type.>
 
-The technical requirements may use some tech/nerd speech, for help please see [[Abbreviations and explanations]] in this wiki
+The technical requirements may use some tech/nerd speech, for help please see [[Abbreviations and explanations]] in this wiki.
 
 
 #### 4. Product Scope
 <Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.>
 
-Empathy app connects trained empathizers to people in need of empathy
+Empathy app connects trained empathizers to people in need of empathy.
 
 Goals:
 * Reaching many people over the world in need of empathy
@@ -174,7 +174,7 @@ Registration and login interfaces as above, and also this:
 
 ![email_form](https://cloud.githubusercontent.com/assets/10245688/5825606/f71744ac-a0ec-11e4-9f16-6aa19a2c4662.png)
 
-(assuming as is the case in our prototype at the time of writing that the empathizer needs to do this manually and that we havn't found a way to fully automate this)
+(assuming as is the case in our prototype at the time of writing that the empathizer needs to do this manually and that we haven't found a way to fully automate this)
 
 
 ##### Admin interfaces
@@ -312,7 +312,7 @@ Response: After the donation has been made, the caller is redirected to a "thank
 
 Call info is stored so that the empathizer can get paid each month
 
-Call info we like to store:
+Call info we like to sFOSS:
 * Identification of caller
 * Identification of empathizer
 * Length of call
@@ -385,7 +385,7 @@ Person | Roles
 --- | ---
 Peijman | CEO, system administrator (arvixe hyrax)
 Mica | COO
-Tord | Volunteer coordinator for foss project
+Tord | Volunteer coordinator for FOSS project
 
 TODO: More?
 

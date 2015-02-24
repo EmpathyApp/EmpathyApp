@@ -1,4 +1,4 @@
-*draft*
+*Draft*
 
 
 Testing types:
@@ -20,10 +20,10 @@ TODO
 
 #### Security
 
-As soon as we have a payment/donate button we will be attacked more
+As soon as we have a payment/donate button we will be attacked more.
 
 Reasons for securing the site:
-* Protecting against man-in-the-middle attacks for stripe credit card information
+* Protecting against man-in-the-middle attacks for Stripe credit card information
 * Protecting against manipulation of empathizer donation data
 * Protecting against privacy invasion for callers
 * Simply avoiding to having to take the site down
@@ -47,8 +47,8 @@ Reasons for securing the site:
 
 #### Other considerations
 * browser compat
-* os compat
-* skype client version compat
+* OS compat
+* Skype client version compat
 
 ***
 
@@ -56,7 +56,7 @@ Reasons for securing the site:
 
 Books:
 * **Chapter in "Building Web Apps for Wordpress**
-* Chapter in "Producing open source software"
+* Chapter in "Producing open-source software"
 * Chapter in "PHP programming"
 
 OWASP:

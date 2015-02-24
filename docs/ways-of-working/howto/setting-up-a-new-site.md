@@ -3,7 +3,7 @@ DocVer: 1.0.1
 
 Prerequisites:
 * Access to cPanel (at arvixe) needed
-* The neat skype status v2/pro file
+* The neat Skype status v2/pro file
 
 
 ### Creating a new subdomain
@@ -12,7 +12,7 @@ Prerequisites:
 
 2. Under the heading "domains" you can find "subdomains"
 
-3. Create a new subdomain, please choose the name of a person known for his/her empathy (examples: mandela, kuanyin)
+3. Create a new subdomain - please choose the name of a person known for his/her empathy (examples: mandela, kuanyin)
 
 
 ### Setting the PHP version
@@ -30,15 +30,15 @@ At the time of writing the default PHP version is 5.2 (even though it says 5.3 i
 
 1. Login in with cPanel
 
-2. search for "softaculous" and click this icon
+2. Search for "softaculous" and click this icon
 
-3. find wordpress and click "install"
+3. Find wordpress and click "install"
 
-4. wordpress install settings:
-  * use the subdomain created earlier
-  * use a descriptive name for the db (preferrable the same name as the subdomain, but only 7 characters are allowed)
+4. Wordpress install settings:
+  * Use the subdomain created earlier
+  * Use a descriptive name for the db (preferrable the same name as the subdomain, but only 7 characters are allowed)
   * *Important:* "in directory": remove "wp" from the path so this field is empty
-  * for all email fields: use your own email
+  * For all email fields: use your own email
 
   After the install is done don't forget to save login name and password plus all info that came in the email
 
@@ -71,10 +71,10 @@ Install neat skype status pro/v2 *from file* (ask SunyataZero if you don't have 
 
 #### Settings
 
-1. settings -> neat skype status pro
+1. settings -> neat Skype status pro
   * Visible name: set to "empathizer!" ("Call " will be prepended to the name)
   * Activate "initial check"
-  * *we don't need to change the skype name*, this is not used in our case, instead we use a separate system for including multiple skype names
+  * *we don't need to change the Skype name*, this is not used in our case, instead we use a separate system for including multiple Skype names
 
 2. settings -> discussion
   * Uncheck "Allow people to post comments on new articles"
@@ -124,7 +124,7 @@ An alternative way to install (requires an ftp account):
   * Directory: /public_html/{name_of_subdomain}/wp-content/plugins/empathy_app
     * The path is important because when installing in the way above and when an automatic installation is done the "empathy_app" directory is chosen automatically
     * **Important: The directory name has been changed from "empathyapp" to "empathy_app", please update your developer path if you are using the old path**
-2. Go to the wp admin area, then choose Plugins, and activate
+2. Go to the WP admin area, then choose Plugins, and activate
   If there are problems with any of these two steps (often is unforturnately):
   1. Upload the plugin source again (some directories may not have been created)
   2. Refresh the plugin page and try activating the plugin again

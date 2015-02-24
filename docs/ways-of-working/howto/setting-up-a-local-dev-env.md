@@ -9,7 +9,7 @@ DocVer: 0.0.1
 
 ## git Username and email
 
-So that your contributions show up in github, please set the git name and email for the local env to match the ones that you have given in github
+In order for your contributions to show up in Github, please set the git name and email for the local env to match the ones given in Github.
 
 http://stackoverflow.com/questions/8803714/change-git-commiter-in-netbeans
 

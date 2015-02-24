@@ -1,7 +1,7 @@
 DocVer: 0.0.1
 
 
-Assuming that a complete [bug report](bug-report.md) has been filed. Otherwise the investigator may need to do some of the bug reporting steps herself
+Assuming that a complete [bug report](bug-report.md) has been filed. Otherwise the investigator may need to do some of the bug reporting steps herself.
 
 
 #### Direct research

@@ -9,7 +9,7 @@ Prerequisites:
 
 ### 1. Getting an email with login/access info
 
-You will recieve an email looking something like the one below. If you havn't please contact Tord (SunyataZero) at tord (dot) dellsen (at) gmail (dot) com
+You will receive an email looking something like the one below. If you haven't, please contact Tord (SunyataZero) at tord (dot) dellsen (at) gmail (dot) com.
 
 ```
 > Hi!
@@ -24,7 +24,7 @@ You will recieve an email looking something like the one below. If you havn't pl
 > https://github.com/EmpathyApp/EmpathyApp/wiki/Remote-site-overview
 > 
 > 
-> Some installation details from the wordpress install:
+> Some installation details from the Wordpress install:
 > 
 > Path : /home/sunyata/public_html/{subdomain}
 > URL : http://{subdomain}.ihavearrived.org
@@ -52,12 +52,12 @@ You may also have recieved another email like this (if not the same info will be
 ```
 
 In summary, you now have access to:
-* An ftp account
+* An FTP account
 * A Wordpress database
 * A Wordpress admin login
 
 
-### 2. Using the ftp login details to access the dev site
+### 2. Using the FTP login details to access the dev site
 
 #### Example 1: Filezilla
 

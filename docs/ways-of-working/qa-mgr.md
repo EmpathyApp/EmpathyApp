@@ -1,4 +1,4 @@
-*draft*
+*Draft*
 
 
 
@@ -7,20 +7,20 @@
 
 #### Testing
 
-See [this file](../planning/test-strategy.md) for ways of testing
+See [this file](../planning/test-strategy.md) for ways of testing.
 
 
 
 #### Coding style
 
-We are in general using a procedural coding style (with some object oriented and functional coding here and there if fitting for the situation)
+In general, we use a procedural coding style (with some object oriented and functional coding here and there if fitting for the situation).
 
 
 ##### Variable naming
 
-We use camel case for variable names since there's a distinction between upper and lower case letters for variables in php
+We use camel-case for variable names since there's a distinction between upper and lower case letters for variables in PHP.
 
-There are three parts of variable names:
+Variable names consist of three parts:
 * Prefix: indicates the scope of the variable
 * Description: the typical description of the variable
 * Suffix: indicates the type of the variable
