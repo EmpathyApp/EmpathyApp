@@ -1,23 +1,51 @@
 <?php
-
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2015 sunyata
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
-// Admin table==================================================================
-// for call records, not needed for users (?)
-// http://www.smashingmagazine.com/2011/11/03/native-admin-tables-wordpress/
-// TODO: copy WP_List_Table into our source dependencies/ directory
+/*******************************************************************************
+ * 
+ * Class for displaying data from the Call Records table to the (admin) user
+ * in the administrator interface.
+ * 
+ * Inspired mainly by code from here:
+ * https://wordpress.org/plugins/custom-list-table-example/
+ * Another (less reliable) source of info is this:
+ * http://www.smashingmagazine.com/2011/11/03/native-admin-tables-wordpress/
+ * 
+ ******************************************************************************/
 
+
+/*
+ * Importing the WP_List_Table class.
+ * TODO: To make this future resistant we may want to extract the WP_List_Table
+ * class from Wordpress. This is not very important right based on what i
+ * (Tord) have read but may become an issue far in the future.
+ */
 if(!class_exists('WP_List_Table')){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
+
+/*
+ * The class itself
+ */
 class Call_Records_Table extends WP_List_Table {
-    // overriding
+    
     function __construct() {
         parent::__construct( array(
             'singular' => 'Call record',
@@ -25,9 +53,10 @@ class Call_Records_Table extends WP_List_Table {
             'ajax' => false
         ) );
     }
-    // overriding
+    
+    
     function get_columns() {
-        $rColumns = array(
+        $rColumnsAr = array(
             DatabaseAttributes::id => __('ID'),
             DatabaseAttributes::date_and_time => __('Time and date'),
             DatabaseAttributes::recommended_donation => __('Recommended donation'),
@@ -37,88 +66,93 @@ class Call_Records_Table extends WP_List_Table {
             DatabaseAttributes::caller_id => __('Caller ID'),
             DatabaseAttributes::empathizer_id => __('Empathizer ID')
         );
-        return $rColumns;
+        return $rColumnsAr;
     }
 
-    //Important: The names of these function must be matched agains the
-    // db attributes (and prepended by "column_"), the same is true for the
-    // content as well
-    function column_id($iItem){
-        return $iItem->id;
-    }
-    function column_date_and_time($iItem){
-        $tDateTimeSg = new DateTime($iItem->date_and_time); //$iItem->date_and_time
-        $rVal = $tDateTimeSg->format('Y-m-d H:m:i');
-        return $rVal;
-    }
-    function column_recommended_donation($iItem){
-        return $iItem->recommended_donation;
-    }
-    function column_actual_donation($iItem){
-        return $iItem->actual_donation;
-    }
-    function column_call_length($iItem){
-        return $iItem->call_length;
-    }
-    function column_database_token($iItem){
-        return $iItem->database_token;
-    }
-    function column_caller_id($iItem){
-        $tWordpressUserCs = get_userdata($iItem->caller_id);
-        $rUserNameSg = $tWordpressUserCs->user_login;
-        return $rUserNameSg;
-    }
-    function column_empathizer_id($iItem){
-        $tWordpressUserCs = get_userdata($iItem->empathizer_id);
-        $rUserNameSg = $tWordpressUserCs->user_login;
-        return $rUserNameSg;
-    }
     
-    function column_default($iItem, $iColumnName){
-        return 'column_default-';
-    }
-
-    function prepare_items() {
+    /*
+     * Preparing data before printing out
+     */
+    function prepare_items() { //
         global $wpdb;
 
-        $tTableName = getCallRecordTableName();
-        $query = "SELECT * FROM $tTableName";
+        $tTableNameSg = getCallRecordTableName();
+        $tQuerySg = "SELECT * FROM $tTableNameSg";
 
-        $orderby = !empty($_GET["orderby"]) ? mysql_real_escape_string($_GET["orderby"]) : 'ASC';
-        $order = !empty($_GET["order"]) ? mysql_real_escape_string($_GET["order"]) : '';
-        if(!empty($orderby) & !empty($order)){
-            $query .= ' ORDER BY ' . $orderby . ' ' . $order;
+        // Setup of ordering.
+        // (At present we don't use the GET params for this, but maybe in the future)
+        $tOrderBySg = !empty($_GET["orderby"]) ? mysql_real_escape_string($_GET["orderby"]) : 'ASC';
+        $tOrderSg = !empty($_GET["order"]) ? mysql_real_escape_string($_GET["order"]) : '';
+        if(!empty($tOrderBySg) & !empty($tOrderSg)){
+            $tQuerySg .= ' ORDER BY ' . $tOrderBySg . ' ' . $tOrderSg;
         }
 
-        $tTotalNrOfItems = $wpdb->query($query);
-        $tItemsPerPage = 100;
-        $tCurrentPage = !empty($_GET["paged"]) ? ($_GET["paged"]) : '';
-        /*
-         * ^TODO: find a replacement for "mysql_real_escape_string" for filtering
-         * the 2nd GET parameter (gives warnings and creates real problems as well)
-         * as they do in this example:
-         * http://www.smashingmagazine.com/2011/11/03/native-admin-tables-wordpress/
-         */
-        if(empty($tCurrentPage) || !is_numeric($tCurrentPage) || $tCurrentPage<=0){
-            $tCurrentPage = 1;
-        }
-        $tTotalNrOfPages = ceil($tTotalNrOfItems/$tItemsPerPage);
-        if(!empty($tCurrentPage) && !empty($tItemsPerPage)){
-            $tOffset = ($tCurrentPage - 1) * $tItemsPerPage;
-            $query .= ' LIMIT ' . (int)$tOffset . ',' . (int)$tItemsPerPage;
-        }
+        $tTotalNrOfItemsNr = $wpdb->query($tQuerySg);
+        $tNumberOfItemsPerPageNr = 100;
+        $tCurrentPageNr = !empty($_GET["paged"]) ? ($_GET["paged"]) : '';
 
+        // Limiting the range of results returned.
+        // (We don't want to display all the rows one a single page)
+        if(empty($tCurrentPageNr) || !is_numeric($tCurrentPageNr) || $tCurrentPageNr <= 0){
+            $tCurrentPageNr = 1;
+        }
+        $tTotalNrOfPagesNr = ceil($tTotalNrOfItemsNr/$tNumberOfItemsPerPageNr);
+        if(!empty($tCurrentPageNr) && !empty($tNumberOfItemsPerPageNr)){
+            $tNumberOfItemsOnPageOffsetNr = ($tCurrentPageNr - 1) * $tNumberOfItemsPerPageNr;
+            $tQuerySg .= ' LIMIT ' . (int)$tNumberOfItemsOnPageOffsetNr . ',' . (int)$tNumberOfItemsPerPageNr;
+        }
         $this->set_pagination_args( array(
-            "total_items" => $tTotalNrOfItems,
-            "total_pages" => $tTotalNrOfPages,
-            "per_page" => $tItemsPerPage,
+            "total_items" => $tTotalNrOfItemsNr,
+            "total_pages" => $tTotalNrOfPagesNr,
+            "per_page" => $tNumberOfItemsPerPageNr,
         ) );
 
-        $columns = $this->get_columns();
-        //$_wp_column_headers[$screen->id]=$columns;
-        
-        $this->_column_headers = array($columns, array(), array());
-
-        $this->items = $wpdb->get_results($query);
+        // Updating the data available for this class; this data will later be
+        // rendered for the user
+        $tColumnsAr = $this->get_columns();
+        $this->_column_headers = array($tColumnsAr, array(), array());
+        $this->items = $wpdb->get_results($tQuerySg);
     }
+    
+    
+    /*
+     * Functions used for rendering the data.
+     * Please note: The names of the "column_" functions must be matched against
+     * the db attributes (and prepended by "column_"), the same is true for the
+     * content as well (ex: "$iItem->call_length").
+     */
+    function column_id($iItemOt){
+        return $iItemOt->id;
+    }
+    function column_date_and_time($iItemOt){
+        $tDateTimeSg = new DateTime($iItemOt->date_and_time);
+        $rFormattedDateAndTimeSg = $tDateTimeSg->format('Y-m-d H:m:i');
+        return $rFormattedDateAndTimeSg;
+    }
+    function column_recommended_donation($iItemOt){
+        return $iItemOt->recommended_donation;
+    }
+    function column_actual_donation($iItemOt){
+        return $iItemOt->actual_donation;
+    }
+    function column_call_length($iItemOt){
+        return $iItemOt->call_length;
+    }
+    function column_database_token($iItemOt){
+        return $iItemOt->database_token;
+    }
+    function column_caller_id($iItemOt){
+        $tWordpressUserCs = get_userdata($iItemOt->caller_id);
+        $rUserNameSg = $tWordpressUserCs->user_login;
+        return $rUserNameSg;
+    }
+    function column_empathizer_id($iItemOt){
+        $tWordpressUserCs = get_userdata($iItemOt->empathizer_id);
+        $rUserNameSg = $tWordpressUserCs->user_login;
+        return $rUserNameSg;
+    }
+    function column_default($iItemOt, $iColumnNameSg){
+        return 'ERROR: Column not covered';
+    }
+
 }
