@@ -43,6 +43,8 @@ if(!class_exists('WP_List_Table')){
 
 /*
  * The class itself
+ * Wordpress official documentation for WP_List_Table:
+ * http://codex.wordpress.org/Class_Reference/WP_List_Table
  */
 class Call_Records_Table extends WP_List_Table {
     
@@ -93,13 +95,15 @@ class Call_Records_Table extends WP_List_Table {
 
         // Limiting the range of results returned.
         // (We don't want to display all the rows one a single page)
+        // Documenation for MySQL "LIMIT":
+        // http://www.w3schools.com/php/php_mysql_select_limit.asp
         if(empty($tCurrentPageNr) || !is_numeric($tCurrentPageNr) || $tCurrentPageNr <= 0){
             $tCurrentPageNr = 1;
         }
         $tTotalNrOfPagesNr = ceil($tTotalNrOfItemsNr/$tNumberOfItemsPerPageNr);
         if(!empty($tCurrentPageNr) && !empty($tNumberOfItemsPerPageNr)){
-            $tNumberOfItemsOnPageOffsetNr = ($tCurrentPageNr - 1) * $tNumberOfItemsPerPageNr;
-            $tQuerySg .= ' LIMIT ' . (int)$tNumberOfItemsOnPageOffsetNr . ',' . (int)$tNumberOfItemsPerPageNr;
+            $tNumberOfItemsOffsetNr = ($tCurrentPageNr - 1) * $tNumberOfItemsPerPageNr;
+            $tQuerySg .= ' LIMIT ' . (int)$tNumberOfItemsPerPageNr . ' OFFSET ' . (int)$tNumberOfItemsOffsetNr;
         }
         $this->set_pagination_args( array(
             "total_items" => $tTotalNrOfItemsNr,
