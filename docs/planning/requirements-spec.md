@@ -66,6 +66,10 @@ Goals:
 
 The latest version of this image can be found [*here*](https://docs.google.com/drawings/d/1hgZ-0tdPJqmyoK4unhMS8gfTUU0RVf4LiA3CCMuaJuQ/edit?usp=sharing)
 
+**Database diagram:**
+
+![db design](_img/db_design.png)
+
 
 #### 2. Product Functions
 <Summarize the major functions the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.>
