@@ -85,11 +85,11 @@ Also see *[this](https://docs.google.com/document/d/1_8-Cua7gF3qJ-RRYXt-lavWDeio
 
 **Before call interaction:**
 
-![before call](https://cloud.githubusercontent.com/assets/10245688/5824856/4dc8e568-a0e7-11e4-82f5-64ba1469ab0d.png)
+![before call](_img/before_call.png)
 
 **After call interaction:**
 
-![after call donation](https://cloud.githubusercontent.com/assets/10245688/5824857/4de752a0-a0e7-11e4-85b2-4720b241e98c.png)
+![after call donation](_img/after_call_(donation).png)
 
 The latest versions of these images can be found *[here](https://docs.google.com/drawings/d/12hOU9pnb-KRPLXShBbNHLvM_t3rNvWtYTpedPNwzLm8/edit?usp=sharing)* and *[here](https://docs.google.com/drawings/d/11gqkzMLTLrfhNChdpXUX40kKZHw8PI5NVm6USfZCCME/edit?usp=sharing)*
 
