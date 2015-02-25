@@ -24,11 +24,17 @@
  * Code for showing the Call Records in the admin interface is available in
  * /classes/Call_Records_Table.php
  * 
+ * You can get a graphical overview of the database design here:
+ * https://docs.google.com/drawings/d/1G77dv4-BLSVrLRmMWLudDeM3lQOVILZmQxVShRz4NGE
+ * 
+ * Wordpress offical documentation:
+ * http://codex.wordpress.org/Class_Reference/wpdb
+ * 
  ******************************************************************************/
 
 
 /*
- * Creating the Call Records table.
+ * Creating the Call Records table and adding it to the Wordpress database.
  */
 function ea_initiate_database(){
     
