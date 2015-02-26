@@ -33,14 +33,19 @@ function ea_login_redirect($iRedirectTo, $iRequest, $iUser){
 add_filter('login_redirect', 'ea_login_redirect', 10, 3);
 
 
+
 /*
  * Text area containing terms and conditions that will be shown at caller user
  * registration
  */
 function ea_terms_and_conditions_textarea(){
     ?>
-    
+
+<!--
     <textarea rows="5" cols="30" readonly="true" draggable="false" style="resize: none">TODO: Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+-->
+    <a href="https://www.empathyapp.org/terms-and-conditions/">Terms and conditions</a>
+    <!-- TODO: Make this url dynamic -->
     <br>
     <input id="termsCheckbox" name="termsCheckbox" type="checkbox" value="1">
     <label for="termsCheckbox">I accept these terms and conditions</label>
@@ -48,6 +53,7 @@ function ea_terms_and_conditions_textarea(){
     <?php
 }
 add_action('register_form', 'ea_terms_and_conditions_textarea');
+
 
 
 /*
