@@ -1,4 +1,5 @@
-DocVer: 0.1
+Reviewed by:
+* Tord
 
 
 ### Preparation
@@ -25,6 +26,7 @@ DocVer: 0.1
 7. Leave the "remember me" checkbox unchecked
 8. Press "pay x" and note the time
 9. Go to [the Empathy App stripe payments page](https://dashboard.stripe.com/test/payments/overview) to check that the *virtual* money has been transfered
+  * Please make sure that you are in TEST mode (not LIVE) (there is a switch in the upper left corner)
 10. Go to Call Records in the admin interface and find the new record
 11. For donation link 2: Repeat the process in 3-10 above but activate the "remember me" checkbox and fill in any additional details required
 12. For donation link 3: Repeat the process in 3-10 above
