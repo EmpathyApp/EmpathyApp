@@ -31,6 +31,10 @@ DocVer 0.1.1
 
 #### More
 
+##### If another person calls while you are in a call
+
+This could happen for various reasons. You simply press the "reject call" button. No need to explain (even via text chat), just stay with the person you are talking with / listening to
+
 
 ##### Letting another empathizer get before you in the call queue
 

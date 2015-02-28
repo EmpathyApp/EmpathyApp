@@ -1,4 +1,4 @@
-DocVer: 0.1.3
+DocVer: 0.1.4
 
 ***Not approved***
 
@@ -69,6 +69,8 @@ The latest version of this image can be found [*here*](https://docs.google.com/d
 **Database diagram:**
 
 ![db design](_img/db_design.png)
+
+The latest version of this image can be found [*here*](https://docs.google.com/drawings/d/1G77dv4-BLSVrLRmMWLudDeM3lQOVILZmQxVShRz4NGE/edit?usp=sharing)
 
 
 #### 2. Product Functions
