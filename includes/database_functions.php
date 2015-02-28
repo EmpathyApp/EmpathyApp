@@ -97,6 +97,7 @@ function getItemsArrayForToken($iDbTokenSg){
     $tTableNameSg = getCallRecordTableName();
     $tDbTokenColNameSg = DatabaseAttributes::database_token;
     $tActualDonationSg = DatabaseAttributes::actual_donation;
+    //$tDbToken_EscapedSg = esc_sql($iDbTokenSg);
     $tQuerySg = "SELECT {$tActualDonationSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
 
     //exec query and get an array of matching rows
@@ -121,14 +122,18 @@ function db_insert($iAttributesAy){
  * http://codex.wordpress.org/Class_Reference/wpdb#UPDATE_rows
  * TODO: adding stripslashes
  */
-function db_write_actual_donation($iDbTokenSg, $iActualDonationNr){
+function db_write_actual_donation($iDbTokenSg, $iActualDonationDollarsNr){
     global $wpdb;
     //TODO: If we do not have a token that is 100% unique we could verify that
     //the token is unique here or just update the latest of the rows that
     //we get after using the where clause
+    if(is_numeric($iActualDonationDollarsNr) == false){
+        handleError("Amount of Dollars when writing to database included non-numeric characters, possible SQL injection attempt");
+    }
+    //$tDbToken_EscapedSg = mysql_escape_string($iDbTokenSg);
     $tResultBl = $wpdb->update(
         getCallRecordTableName(),
-        array(DatabaseAttributes::actual_donation => (int)$iActualDonationNr),
+        array(DatabaseAttributes::actual_donation => $iActualDonationDollarsNr),
         array(DatabaseAttributes::database_token => $iDbTokenSg),
         "%d",
         "%s"

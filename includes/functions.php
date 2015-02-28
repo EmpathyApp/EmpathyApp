@@ -17,10 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+/*
+ * We do not filter $_SERVER['HTTPS'], but we do filter $_SERVER['SERVER_NAME'],
+ * see this posting for information:
+ * http://security.stackexchange.com/questions/32299/is-server-a-safe-source-of-data-in-php
+ */
 function getBaseUrl(){
-    // PLEASE NOTE: After adding filtering for this, please verify that things are working
-    // on a site the uses ssl. Contact Tord for more info
     if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){
         $tProtocol = 'https://';
     }else{
@@ -34,19 +36,20 @@ function getCurrentUrlWithoutParams(){
     return $tUrlAr[0];
 }
 
-function getEmailByUserName($iUserName) {
+function getEmailByUserName($iUserNameSg) {
     global $wpdb; //-Getting access to the wordpress database
     $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
     //^Please note that we need to surround the variable with single quotes
     $userEmailString = $resArray[0]->user_email;
     return $userEmailString;
 }
 
-function getIdByUserName($iUserName) {
+function getIdByUserName($iUserNameSg) {
     global $wpdb; //-Getting access to the wordpress database
+    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
     $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
     $userId = $resArray[0]->ID;
     return $userId;
 }
@@ -58,10 +61,11 @@ function ea_send_email($iEmail, $iTitle, $iMessage){
     mail($iEmail, $iTitle, $iMessage, $tHeaders);
 }
 
-function getDisplayNameByUserName($iUserName) {
+function getDisplayNameByUserName($iUserNameSg) {
     global $wpdb; //-Getting access to the wordpress database
+    $tUserName_EscapedSg = esc_sql($iUserNameSg);
     $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserName}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$tUserName_EscapedSg}'", OBJECT);
     $userDisplayNameString = $resArray[0]->display_name;
     return $userDisplayNameString;
 }
@@ -88,9 +92,10 @@ function getSmallLogoUri(){
     return Uris::logo16;
 }
 
-function verifyUserNameExistsBl($iCallerSkypeNameSg){
+function verifyUserNameExists($iCallerSkypeNameSg){
     global $wpdb;
     
+    //$tCallerSkypeName_EscapedSg = esc_sql($iCallerSkypeNameSg);
     $resArray = $wpdb->get_results(
         "SELECT * FROM wp_users WHERE user_login = '{$iCallerSkypeNameSg}'");
     
@@ -99,4 +104,17 @@ function verifyUserNameExistsBl($iCallerSkypeNameSg){
     }else{
         return false;
     }
+}
+
+/*
+ * Function handling error messages, used as a central point so that it is easy
+ * to switch between different ways to handle errors.
+ * 
+ * Idea: Have different leves of severity, for warning, notice, etc.
+ * 
+ * Idea: Use debug_backtrace to show the line number
+ * http://us3.php.net/manual/en/function.debug-backtrace.php
+ */
+function handleError($iErrorMessageSg){
+    die("ERROR: {$iErrorMessageSg}");
 }

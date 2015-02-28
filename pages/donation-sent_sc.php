@@ -35,11 +35,14 @@ function ea_donation_sent_shortcode() {
 
     Stripe::setApiKey(get_shared_stripe_key());
     // Get the credit card details submitted by the form
-    $tStripeTokenSg = $_POST['stripeToken'];
+    $tStripeTokenSg = $_POST['stripeToken']; //-Not escaped since it will only be used by Stripe
     // TODO: change to dynamic.
-    $tAmountCentsNr = (int)$_POST['amountCents'];
+    $tAmountCentsNr = $_POST['amountCents'];
+    if(is_numeric($tAmountCentsNr) === false){
+        handleError("Amount of Cents from POST variable included non-numeric characters, possible SQL injection attempt");
+    }
     
-    $tDbTokenSg = $_POST['dbToken'];
+    $tDbTokenSg = esc_sql($_POST['dbToken']);
 
     // Check that we have gotten here through the form action in donation-for_sc.php.
     // If so, withdraw the amount sent in the previous page.
@@ -58,8 +61,7 @@ function ea_donation_sent_shortcode() {
         $descr = "test description";
 
         // Create the charge on Stripe's servers - this will charge the user's card.
-        // TODO: should this be set to false here? - Otherwise: remove.
-        //$tSuccess = false;
+        $tSuccess = false;
         try {
             $charge = Stripe_Charge::create(array(
                 "amount"      => $tAmountCentsNr,
@@ -93,6 +95,7 @@ function ea_donation_sent_shortcode() {
         }
         catch (Stripe_ApiConnectionError $e) { 
             // Network communication with Stripe failed.
+            // This is the error we get when the connection speed for the website is slow.
             echo "<h4>Error: Failed to communicate with Stripe</h4>";
         }
         catch (Stripe_Error $e) {
@@ -104,9 +107,10 @@ function ea_donation_sent_shortcode() {
         }
 
         if ($tSuccess === true) {
-            echo "<h3>Success! Charged {$tAmountCentsNr} cents</h3>";
+            $tAmountDollarsNr = floor($tAmountCentsNr/100);
+            echo "<h3>Success! Charged {$tAmountDollarsNr} dollars</h3>";
             
-            db_write_actual_donation($tDbTokenSg, floor($tAmountCentsNr/100));
+            db_write_actual_donation($tDbTokenSg, $tAmountDollarsNr);
             
         } else {
             // TODO: details needed here or elsewhere.

@@ -83,21 +83,28 @@ class Call_Records_Table extends WP_List_Table {
 
         // Setup of ordering.
         // (At present we don't use the GET params for this, but maybe in the future)
-        $tOrderBySg = !empty($_GET["orderby"]) ? mysql_real_escape_string($_GET["orderby"]) : 'ASC';
-        $tOrderSg = !empty($_GET["order"]) ? mysql_real_escape_string($_GET["order"]) : '';
+        $tOrderBySg = !empty($_GET["orderby"]) ? esc_sql($_GET["orderby"]) : 'ASC';
+        $tOrderSg = !empty($_GET["order"]) ? esc_sql($_GET["order"]) : '';
         if(!empty($tOrderBySg) & !empty($tOrderSg)){
             $tQuerySg .= ' ORDER BY ' . $tOrderBySg . ' ' . $tOrderSg;
         }
 
         $tTotalNrOfItemsNr = $wpdb->query($tQuerySg);
         $tNumberOfItemsPerPageNr = 100;
-        $tCurrentPageNr = !empty($_GET["paged"]) ? ($_GET["paged"]) : '';
+        $tCurrentPageMix_Verified = '';
+        $tPagedSg = $_GET["paged"];
+        if(empty($tPagedSg) === false){
+            if(is_numeric($tPagedSg) === false){
+                handleError("Page number contained non-numeric characters, possible SQL injection attempt");
+            }
+            $tCurrentPageMix_Verified = $tPagedSg;
+        }
 
         // Limiting the range of results returned.
         // (We don't want to display all the rows one a single page)
         // Documenation for MySQL "LIMIT":
         // http://www.w3schools.com/php/php_mysql_select_limit.asp
-        if(empty($tCurrentPageNr) || !is_numeric($tCurrentPageNr) || $tCurrentPageNr <= 0){
+        if(empty($tCurrentPageMix_Verified) || !is_numeric($tCurrentPageMix_Verified) || $tCurrentPageMix_Verified <= 0){
             $tCurrentPageNr = 1;
         }
         $tTotalNrOfPagesNr = ceil($tTotalNrOfItemsNr/$tNumberOfItemsPerPageNr);
@@ -130,7 +137,7 @@ class Call_Records_Table extends WP_List_Table {
     }
     function column_date_and_time($iItemOt){
         $tDateTimeSg = new DateTime($iItemOt->date_and_time);
-        $rFormattedDateAndTimeSg = $tDateTimeSg->format('Y-m-d H:m:i');
+        $rFormattedDateAndTimeSg = $tDateTimeSg->format('Y-m-d H:i:s');
         return $rFormattedDateAndTimeSg;
     }
     function column_recommended_donation($iItemOt){

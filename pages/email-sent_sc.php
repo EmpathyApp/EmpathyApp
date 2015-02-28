@@ -19,40 +19,40 @@ function ea_email_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     
-    
-
-    $tCallerSkypeNameSg = $_POST["skype_name"];
-    
+    $tCallerSkypeNameSg = esc_sql($_POST["skype_name"]);
     
     // Verifying that the skype name exists
-    if(verifyUserNameExistsBl($tCallerSkypeNameSg) === false){
+    if(verifyUserNameExists($tCallerSkypeNameSg) === false){
         echo "<h3><i><b>Incorrect skype name.</b> Email not sent. Please go back and try again</i></h3>";
         exit();
     }
     
-    $tLengthNr = (int)$_POST["length"];
+    $tLengthNr = $_POST["length"];
+    if(is_numeric($tLengthNr) === false){
+        handleError("Length variable was not numeric, possible SQL injection attempt");
+    }
     
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
     $tUniqueIdentifierSg = uniqid("id-", true);
     //-http://php.net/manual/en/function.uniqid.php
-    $tCallerDisplayNameStr = getDisplayNameByUserName($tCallerSkypeNameSg);
-    $tDisplayNameForEmailStr = isset($tCallerDisplayNameStr) ? " ".$tCallerDisplayNameStr : "";
-    $tCallerEmail = getEmailByUserName($tCallerSkypeNameSg);
-    $tRecDonation = round(get_donation_multiplier() * $tLengthNr);
-    $tMessage = "
-Hi".$tDisplayNameForEmailStr.",
+    $tCallerDisplayNameSg = getDisplayNameByUserName($tCallerSkypeNameSg);
+    $tDisplayNameForEmailSg = isset($tCallerDisplayNameSg) ? " " . $tCallerDisplayNameSg : "";
+    $tCallerEmailSg = getEmailByUserName($tCallerSkypeNameSg);
+    $tRecDonationNr = (int)round(get_donation_multiplier() * $tLengthNr);
+    $tMessageSg = "
+Hi" . $tDisplayNameForEmailSg . ",
 Please check out this link "
-. getBaseUrl() . pages::donation_form . "?recamount=$tRecDonation&dbToken=$tUniqueIdentifierSg " .
-"(your skype name is $tCallerSkypeNameSg and the call length was $tLengthNr)
+. getBaseUrl() . pages::donation_form . "?recamount=$tRecDonationNr&dbToken=$tUniqueIdentifierSg " .
+"(your skype name is {$tCallerSkypeNameSg} and the call length was $tLengthNr)
 Warm regards,
 The Empathy App team
 ";
 
-    ea_send_email($tCallerEmail, "Subject", $tMessage);
+    ea_send_email($tCallerEmailSg, "Subject", $tMessageSg);
 
     db_insert(array(
-        DatabaseAttributes::date_and_time => current_time('mysql'),
-        DatabaseAttributes::recommended_donation => $tRecDonation,
+        DatabaseAttributes::date_and_time => current_time('mysql', 1),
+        DatabaseAttributes::recommended_donation => $tRecDonationNr,
         DatabaseAttributes::call_length => $tLengthNr,
         DatabaseAttributes::database_token => $tUniqueIdentifierSg,
         DatabaseAttributes::caller_id => $tCallerIdNr,

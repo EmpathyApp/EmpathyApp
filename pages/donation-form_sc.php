@@ -16,9 +16,9 @@ function ea_donation_form_shortcode() {
         echo "<strong>Error: No token given. Please go back to the email and click on the link again</strong>";
         exit();
     }
-    $dbToken = $_GET['dbToken'];
+    $tDbTokenSg = esc_sql($_GET['dbToken']);
     
-    $tItemsMix = getItemsArrayForToken($dbToken);
+    $tItemsMix = getItemsArrayForToken($tDbTokenSg);
     $tNrOfItemsNr = count($tItemsMix);
     if($tNrOfItemsNr > 0){
         if($tNrOfItemsNr > 1){

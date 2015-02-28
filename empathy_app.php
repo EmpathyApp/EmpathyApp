@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.3.7
+ * Version: 0.4.0
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -38,6 +38,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('error_reporting', E_ALL);
+//TODO: Add db error printouts
 
 //##############################################################################
 
@@ -56,8 +57,9 @@ function ea_wp_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
-/*
+
 // Checking the user access level..
+/*
 $tCurrrentUserIdNr = get_current_user_id();
 $tWPUserOt = new WP_User($tCurrrentUserIdNr);
 foreach($tWPUserOt->roles as $role){
@@ -67,8 +69,9 @@ foreach($tWPUserOt->roles as $role){
     }
 }
 */
-add_filter('show_admin_bar', '__return_false');
 
+//add_filter('show_admin_bar', '__return_false');
+/*
 function login_logo(){
 ?>
     <style type="text/css">
@@ -79,6 +82,7 @@ function login_logo(){
     </style>
 <?php
 }
+*/
 
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
@@ -86,6 +90,7 @@ require_once 'includes/lib/firephp/FirePHP.class.php';
 require_once 'classes/Call_Records_Table.php';
 require_once 'classes/constants.php';
 require_once 'includes/database_functions.php';
+require_once 'pages/skype-page_sc.php';
 require_once 'pages/donation-form_sc.php';
 require_once 'pages/donation-sent_sc.php';
 require_once 'pages/email-form_sc.php';

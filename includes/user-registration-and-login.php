@@ -26,11 +26,26 @@
 
 /*
  * Redirects all types of users to the main page after they have logged in
+ * Wordpress documentation:
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
  */
-function ea_login_redirect($iRedirectTo, $iRequest, $iUser){
-    return home_url();
+function ea_login_redirect($iRedirectTo, $iRequest, $user){
+    global $user;
+    if(isset($user->roles) && is_array($user->roles)){
+        if(in_array("subscriber", $user->roles)){
+            return home_url() + pages::skype_page;
+        }elseif(in_array("administrator", $user->roles)){
+            return admin_url();
+        }elseif(in_array("contributor", $user->roles)){
+            return home_url() + pages::email_form;
+        }
+    }else{
+        return $iRedirectTo;
+    }
 }
 add_filter('login_redirect', 'ea_login_redirect', 10, 3);
+
+
 
 
 
