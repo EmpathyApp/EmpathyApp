@@ -9,7 +9,7 @@ Reviewed by:
 
 Please note:
 * Don't test the skype page since this will make ajax requests, instead we emulate this ourselves by making multiple requests
-
+* Tests are run on www.empathyapp.org - if site is running live please choose a time when there is little or no traffic (maybe at US nighttime, or you can check the server stats)
 
 
 ### Procedure
