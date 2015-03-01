@@ -19,9 +19,10 @@ Please note:
 2. Turn on Yslow
 3. Switch to the **net** tab in firebug
 4. Click on the **persist** button to switch to persist mode
-5. Click on the **clear** button to clear any
+5. Click on the **clear** button
 6. Go to [www.empathyapp.org](https://www.empathyapp.org/)
-7. Go to [www.empathyapp.org/skype-page](https://www.empathyapp.org/skype-page)
+7. Click on the **clear** button in the net tab
+8. Go to [www.empathyapp.org/skype-page](https://www.empathyapp.org/skype-page)
 
 
 ### Record
@@ -39,7 +40,8 @@ Please note:
     * The YSlow (percentage) rating
   * Firebug **Net** tab
     * Number of requests
-7. As for 6 above but also:
+7. -
+8. As for 6 above but also:
   * Personal measurement
     * The number of seconds before the nss icon appeared
 
