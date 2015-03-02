@@ -5,7 +5,7 @@ Reviewed by:
 ### Preparation
 
 * A loader.io account
-  * [artile 1](http://support.loader.io/article/15-creating-a-test), [article 2](http://support.loader.io/article/16-test-types)
+  * [artile 1](http://support.loader.io/article/15-creating-a-test), [article 2](http://support.loader.io/article/16-test-types), [article 3](http://support.loader.io/article/19-test-results)
 
 http://cpanel.hyrax.arvixe.com/
 
