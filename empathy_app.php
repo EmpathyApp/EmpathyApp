@@ -42,7 +42,6 @@ ini_set('error_reporting', E_ALL);
 
 //##############################################################################
 
-
 function ea_wp_enqueue_scripts() {
     // jQuery and jQuery UI.
     wp_enqueue_script('jquery'); //, 'http://code.jquery.com/jquery-1.10.2.js'
@@ -57,6 +56,13 @@ function ea_wp_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
+// Add custom plugin scripts here.
+function plugin_scripts()
+{
+    wp_register_script( 'donation-lib', plugins_url( '/js/donation-lib.js', __FILE__ ) );
+    wp_enqueue_script( 'donation-lib' );
+}
+add_action( 'wp_enqueue_scripts', 'plugin_scripts' );
 
 // Checking the user access level..
 /*
