@@ -64,6 +64,24 @@ function plugin_scripts()
 }
 add_action( 'wp_enqueue_scripts', 'plugin_scripts' );
 
+/*
+ * Function for hiding the admin bar for non-admin users.
+ * Code used here is inspired by the following codex page:
+ * http://codex.wordpress.org/Function_Reference/show_admin_bar
+ * TODO: However it seems that this is not a 100% reliable so we may change it
+ * in the future:
+ * http://codex.wordpress.org/Function_Reference/current_user_can
+ * http://docs.appthemes.com/tutorials/wordpress-check-user-role-function/
+ */
+function ea_function_admin_bar($iShowAdminBarBl){
+    $rVal = false;
+    if(current_user_can('administrator')){
+        $rVal = $iShowAdminBarBl;
+    }
+    return $rVal;
+}
+add_filter('show_admin_bar', 'ea_function_admin_bar');
+
 // Checking the user access level..
 /*
 $tCurrrentUserIdNr = get_current_user_id();
