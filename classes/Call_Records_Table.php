@@ -92,7 +92,10 @@ class Call_Records_Table extends WP_List_Table {
         $tTotalNrOfItemsNr = $wpdb->query($tQuerySg);
         $tNumberOfItemsPerPageNr = 100;
         $tCurrentPageMix_Verified = '';
-        $tPagedSg = $_GET["paged"];
+        $tPagedSg = '';
+        if(isset($_GET["paged"])){
+            $tPagedSg = $_GET["paged"];
+        }
         if(empty($tPagedSg) === false){
             if(is_numeric($tPagedSg) === false){
                 handleError("Page number contained non-numeric characters, possible SQL injection attempt");
