@@ -26,3 +26,14 @@ function getUrlParamValue(iParamName) {
       }
       return null;
 }
+
+/*
+ * Updates the tScaleNr variable and changes the size of the heart
+ * using this variable
+ * @param iSliderValueInt
+ */
+function updateHeartSize(iSliderValueInt){
+    tScaleNr = (0.2 * iSliderValueInt.value + 10) / 20;
+    //-these values are based on some testing to see what looks good
+    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+}

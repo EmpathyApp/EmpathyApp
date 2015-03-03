@@ -28,6 +28,7 @@
  * Redirects all types of users to the main page after they have logged in
  * Wordpress documentation:
  * http://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
+ * Please note: The urls returned are relative (not absolute)
  */
 function ea_login_redirect($iRedirectTo, $iRequest, $user){
     global $user;

@@ -39,7 +39,7 @@ function ea_donation_sent_shortcode() {
     // TODO: change to dynamic.
     $tAmountCentsNr = $_POST['amountCents'];
     if(is_numeric($tAmountCentsNr) === false){
-        handleError("Amount of Cents from POST variable included non-numeric characters, possible SQL injection attempt");
+        handleError("Amount of Cents from POST variable included non-numeric characters or was empty, possible SQL injection attempt");
     }
     
     $tDbTokenSg = esc_sql($_POST['dbToken']);
