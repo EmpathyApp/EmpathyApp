@@ -125,56 +125,47 @@ function ea_donation_form_shortcode() {
         <button id="customButton">Donate</button>
         <script>
         // Checkout on button click.
-        jQuery(document).ready(function () {
-            try {
-                jQuery('#customButton').on('click', function (e) {
-                    // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
-                    // TODO: move somewhere else?
-                    <?php
-                       if (is_user_logged_in()) {
-                             $prefill_email = get_userdata(get_current_user_id())->user_email;
-                       } else {
-                             $prefill_email = 'false';
-                       }
-                    ?>
+        try {
+            jQuery('#customButton').on('click', function (e) {
+                // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
+                // TODO: move somewhere else?
+                <?php
+                   if (is_user_logged_in()) {
+                         $prefill_email = get_userdata(get_current_user_id())->user_email;
+                   } else {
+                         $prefill_email = 'false';
+                   }
+                ?>
 
-                    function getDatabaseToken() {
-                        var rVal = getUrlParamValue(gConst.tokenUrlParamName); if (rVal === "") {
-                            //TODO
-                        }
-                        return rVal;
-                    }
-
-                    // Get the amount from the slider.
-                    var tAmount = 100 * jQuery("#sliderDollars").slider("value");
-                    // Open Stripe dialogue.
-                    StripeCheckout.open({
-                        key: '<?php echo get_private_stripe_key(); ?>',
-                        image: '<?php echo getLogoUri(); ?>',
-                        token: function (responseToken) {
-                            // Submit the token that we get back from the Stripe server to _our_ server.
-                            var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
-                            var tDatabaseTokenSg = jQuery('<input type=hidden name=dbToken />').val(getDatabaseToken());
-                            // (The token is used on the server side to create the actual charge).
-                            var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
-                            jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
-                        },
-                        name: 'Demo Site',
-                        description: 'Empathy App Donation',
-                        email: '<?php echo $prefill_email ;?>',
-                        amount: tAmount
-                    });
-                    e.preventDefault();
+                // Get the amount from the slider.
+                var tAmount = 100 * jQuery("#sliderDollars").slider("value");
+                // Open Stripe dialogue.
+                StripeCheckout.open({
+                    key: '<?php echo get_private_stripe_key(); ?>',
+                    image: '<?php echo getLogoUri(); ?>',
+                    token: function (responseToken) {
+                        // Submit the token that we get back from the Stripe server to _our_ server.
+                        var tokenInput = jQuery('<input type=hidden name=stripeToken />').val(responseToken.id);
+                        var tDatabaseTokenSg = jQuery('<input type=hidden name=dbToken />').val(getDatabaseToken());
+                        // (The token is used on the server side to create the actual charge).
+                        var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
+                        jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
+                    },
+                    name: 'Demo Site',
+                    description: 'Empathy App Donation',
+                    email: '<?php echo $prefill_email ;?>',
+                    amount: tAmount
                 });
-                // Close checkout on page navigation.
-                jQuery(window).on('popstate', function () {
-                    handler.close();
-                });
-            }
-            catch (e) {
-                console.error("ERROR: ", e.message);
-            }
-        });
+                e.preventDefault();
+            });
+            // Close checkout on page navigation.
+            jQuery(window).on('popstate', function () {
+                handler.close();
+            });
+        }
+        catch (e) {
+            console.error("ERROR: ", e.message);
+        }
 
         </script>
     </form>

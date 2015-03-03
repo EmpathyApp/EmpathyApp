@@ -37,3 +37,12 @@ function updateHeartSize(iSliderValueInt){
     //-these values are based on some testing to see what looks good
     tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
 }
+
+function getDatabaseToken() {
+    var rVal = getUrlParamValue(gConst.tokenUrlParamName);
+    if (rVal === "") {
+        //TODO
+    }
+    return rVal;
+}
+                    
