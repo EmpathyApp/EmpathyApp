@@ -33,14 +33,16 @@ function ea_login_redirect($iRedirectTo, $iRequest, $user){
     global $user;
     if(isset($user->roles) && is_array($user->roles)){
         if(in_array("subscriber", $user->roles)){
-            return home_url() + pages::skype_page;
+            return pages::skype_page;
         }elseif(in_array("administrator", $user->roles)){
             return admin_url();
         }elseif(in_array("contributor", $user->roles)){
-            return home_url() + pages::email_form;
+            return pages::email_form;
+        }else{
+            echo "Error: Unrecognized user";
         }
     }else{
-        return $iRedirectTo;
+        return "Error: No user types found"; //$iRedirectTo
     }
 }
 add_filter('login_redirect', 'ea_login_redirect', 10, 3);
