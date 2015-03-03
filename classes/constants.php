@@ -18,11 +18,12 @@
  */
 
 class pages {
-    const skype_page    = 'skype-page/';
-    const email_form    = 'email-form/';
-    const email_sent    = 'email-sent/';
-    const donation_form = 'donation-form/';
-    const donation_sent = 'donation-sent/';
+    const skype_page     = 'skype-page/';
+    const email_form     = 'email-form/';
+    const email_sent     = 'email-sent/';
+    const donation_form  = 'donation-form/';
+    const donation_sent  = 'donation-sent/';
+    const privacy_policy = 'privacy-policy/';
 }
 
 class stripe_donation {
