@@ -121,7 +121,7 @@ function ea_donation_form_shortcode() {
     </script>
 
     <form id="stripeForm" action=<?php echo getBaseUrl() . pages::donation_sent; ?> method="POST">
-        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script src="https://checkout.stripe.com/checkout.js"></script> <!-- https is important, otherwise strange errors will occur -->
         <button id="customButton">Donate</button>
         <script>
         // Checkout on button click.
