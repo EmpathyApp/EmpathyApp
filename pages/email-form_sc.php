@@ -37,7 +37,7 @@ function ea_email_form_shortcode() {
     }
     if($tAdminOrContributorBl == false){
         // ..exiting if not empathizer or admin
-        echo "<strong>Access denied!</strong> You need to be logged in as empathizer (or admin) to access this page";
+        echo "<strong>Oops! This page is only for our empathizers</strong>";
         exit();
     }
 

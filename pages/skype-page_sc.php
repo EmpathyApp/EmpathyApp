@@ -34,7 +34,7 @@ function ea_skype_page_shortcode() {
     }
     if($tSubscriberOrContributorOrAdminOrBl == false){
         // ..exiting if not empathizer or admin
-        echo "<strong>Access denied!</strong> -------------------------------------------------------------------";
+        echo "<strong>Oops! You need to log-in first to get access to this page</strong>";
         exit();
     }
     

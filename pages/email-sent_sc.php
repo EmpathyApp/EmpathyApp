@@ -41,12 +41,22 @@ function ea_email_sent_shortcode() {
     $tRecDonationNr = (int)round(get_donation_multiplier() * $tLengthNr);
     $tMessageSg = "
 Hi" . $tDisplayNameForEmailSg . ",
-Please check out this link "
-. getBaseUrl() . pages::donation_form . "?recamount=$tRecDonationNr&dbToken=$tUniqueIdentifierSg " .
-"(your skype name is {$tCallerSkypeNameSg} and the call length was $tLengthNr)
-Warm regards,
-The Empathy App team
+
+Thank you so much for your recent empathy call! Congratulations on contributing to a more empathic world. :)
+
+Your skype session was : {$tLengthNr} minutes long
+Your recommendation contribution is: \${$tRecDonationNr}
+
+Please follow this link to complete payment within 24 hours: " . getBaseUrl() . pages::donation_form . "?recamount={$tRecDonationNr}&dbToken={$tUniqueIdentifierSg}
+
+See you next time!
+
+The Empathy Team
 ";
+
+
+
+
 
     ea_send_email($tCallerEmailSg, "Subject", $tMessageSg);
 
