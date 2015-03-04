@@ -25,3 +25,5 @@ One extra db row for each form submit | Ninja forms | Because of this we are mak
 Stripe error in Firebug for users who are not registered | Stripe | ```POST https://checkout.stripe.com/api/account/lookup Aborted``` This error is expected since a call will be made to the Stripe servers to see if the user already has an account. There is nothing to do for us at Empathy App about this, I've verified this with one of the Stripe devs
 "it looks like the actual version of the installation is 4.1.1 and not 4.1" | cPanel/Softaculous | -
 Undefined property: WP_Query::$post | cPanel error log | Might be a problem with a wp plugin, seends to be wp-releated at least
+Notice: Undefined variable: integrated_class in /home/peijman/public_html/wp-content/plugins/neat-skype-status-pro/neat-skype-status-pro.php on line 413 | NSS | Not seen on the dev sites
+
