@@ -60,7 +60,7 @@ class Call_Records_Table extends WP_List_Table {
     function get_columns() {
         $rColumnsAr = array(
             DatabaseAttributes::id => __('ID'),
-            DatabaseAttributes::date_and_time => __('Time and date'),
+            DatabaseAttributes::date_and_time => __('Time and date (GMT)'),
             DatabaseAttributes::recommended_donation => __('Recommended donation'),
             DatabaseAttributes::actual_donation => __('Actual donation'),
             DatabaseAttributes::call_length => __('Call length'),
