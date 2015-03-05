@@ -89,6 +89,9 @@ Please follow this link to complete payment within 24 hours: " . getBaseUrl() . 
 See you next time!
 
 The Empathy Team
+
+PS
+If you have any feedback please feel free to reply to this email and tell us your ideas or just your experience!
 ";
 
 
