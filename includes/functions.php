@@ -56,7 +56,7 @@ function getIdByUserName($iUserNameSg) {
 
 function ea_send_email($iEmail, $iTitle, $iMessage){
     $tNewLine = "\r\n";
-    $tHeaders = "From: connect@" . $_SERVER['SERVER_NAME'] . $tNewLine .
+    $tHeaders = "From: connect@empathyapp.org" . $tNewLine .
         "X-Mailer: PHP/" . PHP_VERSION;
     mail($iEmail, $iTitle, $iMessage, $tHeaders);
 }
