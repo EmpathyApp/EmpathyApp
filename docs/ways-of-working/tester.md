@@ -2,12 +2,15 @@ Reviewed by:
 * Tord
 
 
-### Preparation
+### Complete procedure for getting started with, running, and reporting tests
 
-1. Copy the manual test case into a new file (so that you can work with this as a guide)
-  * If available, copy the last "test protocol" for this test into the same file or use as a reference
-2. Latest version of the Empathy app plugin
-  * And latest version of the test case
+1. Go through the "preparation" and make sure you have everything, if not contact for example Tord (SunyataZero)
+2. Install the latest version of the Empathy app plugin
+3. Copy the manual test case into a new file (so that you can work with this as a guide)
+4. Fill in these parts of the steps in the procedure
+  * "Expected result: " - fill in with OK or NOK, if NOK then please give details
+  * "Record: " - fill in with what is asked to record
+5. Report the test result by putting it *at the top* of the [test record](https://github.com/EmpathyApp/EmpathyApp/wiki/Test-Overview#test-record)
 
 
 ### Tools
