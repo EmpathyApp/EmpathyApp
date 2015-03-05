@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.4.0
+ * Version: 0.5.0
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -82,18 +82,6 @@ function ea_function_admin_bar($iShowAdminBarBl){
 }
 add_filter('show_admin_bar', 'ea_function_admin_bar');
 
-// Checking the user access level..
-/*
-$tCurrrentUserIdNr = get_current_user_id();
-$tWPUserOt = new WP_User($tCurrrentUserIdNr);
-foreach($tWPUserOt->roles as $role){
-    $role = get_role($role);
-    if($role->name === 'subscriber'){
-        add_filter('show_admin_bar', '__return_false');
-    }
-}
-*/
-
 /*
  * Change the logo from the default wp logo
  * Reference (works with other themes as well, not just with elegant themes):
@@ -108,23 +96,8 @@ function ea_login_logo(){
 }
 add_action('login_head', 'ea_login_logo');
 
-//add_filter('show_admin_bar', '__return_false');
-/*
-function login_logo(){
-?>
-    <style type="text/css">
-        body.login div#login h1 a {
-            background-image: 'http://dalailama.com/assets/banners/943.jpg';
-            padding-bottom: 30px;
-        }
-    </style>
-<?php
-}
-*/
-
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
-
 require_once 'classes/Call_Records_Table.php';
 require_once 'classes/constants.php';
 require_once 'includes/database_functions.php';
