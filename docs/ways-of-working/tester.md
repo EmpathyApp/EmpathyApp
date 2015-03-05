@@ -11,6 +11,10 @@ Reviewed by:
   * "Expected result: " - fill in with OK or NOK, if NOK then please give details
   * "Record: " - fill in with what is asked to record
 5. Report the test result by putting it *at the top* of the [test record](https://github.com/EmpathyApp/EmpathyApp/wiki/Test-Overview#test-record)
+  * Please don't forget to enter the OS and browser where applicable, even though we have special compat test cases these are not as detailed as when for example we are running tcf (functionality test cases)
+6. If any bugs are found:
+  * First look through [this list of open bugs](https://github.com/EmpathyApp/EmpathyApp/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+  * If the bug is not present in that list: Create a new issue with the "bug" tag and choose the closest milestone
 
 
 ### Tools
