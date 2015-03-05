@@ -170,4 +170,21 @@ function ea_callrecords_menu_render() {
     $wp_list_table->display();
 }
 
+function isFirstCall($iCallerIdNr){
+    global $wpdb;
+
+    $tTableNameSg = getCallRecordTableName();
+    $tCallerIdColNameSg = DatabaseAttributes::caller_id;
+    //$tDbToken_EscapedSg = esc_sql($iDbTokenSg);
+    $tQuerySg = "SELECT * FROM {$tTableNameSg} WHERE {$tCallerIdColNameSg}='{$iCallerIdNr}'";
+
+    //exec query and get an array of matching rows
+    $tResultMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+
+    if($tResultMix != false && count($tResultMix) > 0){
+        return false;
+    }else{
+        return true;
+    }
+}
 

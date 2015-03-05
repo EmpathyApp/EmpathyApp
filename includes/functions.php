@@ -63,11 +63,20 @@ function ea_send_email($iEmail, $iTitle, $iMessage){
 
 function getDisplayNameByUserName($iUserNameSg) {
     global $wpdb; //-Getting access to the wordpress database
-    $tUserName_EscapedSg = esc_sql($iUserNameSg);
+    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
     $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$tUserName_EscapedSg}'", OBJECT);
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
     $userDisplayNameString = $resArray[0]->display_name;
     return $userDisplayNameString;
+}
+
+function getDisplayNameById($iUserIdNr) {
+    global $wpdb; //-Getting access to the wordpress database
+    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE ID = '{$iUserIdNr}'", OBJECT);
+    $rUserNameSg = $resArray[0]->display_name;
+    return $rUserNameSg;
 }
 
 function getLogoUri(){

@@ -27,24 +27,61 @@ function ea_email_sent_shortcode() {
         exit();
     }
     
+    
+    
+    
+    
+    
+    
     $tLengthNr = $_POST["length"];
+    
+    //Check for negative number
+    
+    
+    //Checking if this is a first-time call
+    
+    
+    
+    
+    
+    //Check for 
+    
+    
+    
+    
     if(is_numeric($tLengthNr) === false){
         handleError("Length variable was not numeric, possible SQL injection attempt");
     }
     
+
+    
+    
+    
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
+    
+
+    
     $tUniqueIdentifierSg = uniqid("id-", true);
     //-http://php.net/manual/en/function.uniqid.php
     $tCallerDisplayNameSg = getDisplayNameByUserName($tCallerSkypeNameSg);
-    $tDisplayNameForEmailSg = isset($tCallerDisplayNameSg) ? " " . $tCallerDisplayNameSg : "";
+    //$tCallerDisplayNameForEmailSg = isset($tCallerDisplayNameSg) ? " " . $tCallerDisplayNameSg : $tCallerSkypeNameSg;
     $tCallerEmailSg = getEmailByUserName($tCallerSkypeNameSg);
-    $tRecDonationNr = (int)round(get_donation_multiplier() * $tLengthNr);
+    $tEmpathizerDisplayNameSg = getDisplayNameById(get_current_user_id());
+    
+    //TODO: Add this to a functionality test case
+    $tAdjustedLength = $tLengthNr;
+    if(isFirstCall($tCallerIdNr) == true){
+        $tAdjustedLength = $tAdjustedLength - 5;
+    }
+    $tRecDonationNr = (int)round(get_donation_multiplier() * $tAdjustedLength);
+    
     $tMessageSg = "
-Hi" . $tDisplayNameForEmailSg . ",
+Hi " . $tCallerDisplayNameSg . ",
 
 Thank you so much for your recent empathy call! Congratulations on contributing to a more empathic world. :)
 
-Your skype session was : {$tLengthNr} minutes long
+You talked with: {$tEmpathizerDisplayNameSg}
+Your skype session was: {$tLengthNr} minutes long
 Your recommendation contribution is: \${$tRecDonationNr}
 
 Please follow this link to complete payment within 24 hours: " . getBaseUrl() . pages::donation_form . "?recamount={$tRecDonationNr}&dbToken={$tUniqueIdentifierSg}
@@ -56,9 +93,13 @@ The Empathy Team
 
 
 
-
-
-    ea_send_email($tCallerEmailSg, "Subject", $tMessageSg);
+    //We only send an email if the donation is greater than 0
+    if($tRecDonationNr > 0){
+        ea_send_email($tCallerEmailSg, "Subject", $tMessageSg);
+        echo "<h3>Email successfully sent to caller</h3>";
+    }else{
+        echo "<h4>No email sent: First time caller and call length was five minutes or less</h4>";
+    }
 
     db_insert(array(
         DatabaseAttributes::date_and_time => current_time('mysql', 1),
@@ -69,7 +110,7 @@ The Empathy Team
         DatabaseAttributes::empathizer_id => get_current_user_id()
     ));
     
-    echo "<h3>Email successfully sent to caller</h3>";
+    
     
     
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
