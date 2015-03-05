@@ -94,6 +94,15 @@ foreach($tWPUserOt->roles as $role){
 }
 */
 
+function ea_login_logo(){
+    echo '<style type="text/css">'
+        . 'h1 a {'
+            . 'background-image: url(' . getLogoUri() . ') !important;'
+        . '}'
+    . '</style>';
+}
+add_action('login_head', 'ea_login_logo');
+
 //add_filter('show_admin_bar', '__return_false');
 /*
 function login_logo(){
