@@ -83,10 +83,10 @@ class Call_Records_Table extends WP_List_Table {
 
         // Setup of ordering.
         // (At present we don't use the GET params for this, but maybe in the future)
-        $tOrderBySg = !empty($_GET["orderby"]) ? esc_sql($_GET["orderby"]) : 'ASC';
-        $tOrderSg = !empty($_GET["order"]) ? esc_sql($_GET["order"]) : '';
-        if(!empty($tOrderBySg) & !empty($tOrderSg)){
-            $tQuerySg .= ' ORDER BY ' . $tOrderBySg . ' ' . $tOrderSg;
+        $tOrderBySg = !empty($_GET["orderby"]) ? esc_sql($_GET["orderby"]) : 'DESC';
+        $tOrderSg = !empty($_GET["order"]) ? esc_sql($_GET["order"]) : DatabaseAttributes::id;
+        if(!empty($tOrderBySg) && !empty($tOrderSg)){
+            $tQuerySg .= ' ORDER BY ' . $tOrderSg . ' ' . $tOrderBySg;
         }
 
         $tTotalNrOfItemsNr = $wpdb->query($tQuerySg);
