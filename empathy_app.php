@@ -94,6 +94,11 @@ foreach($tWPUserOt->roles as $role){
 }
 */
 
+/*
+ * Change the logo from the default wp logo
+ * Reference (works with other themes as well, not just with elegant themes):
+ * http://www.elegantthemes.com/blog/tips-tricks/how-to-customize-the-wordpress-login-page
+ */
 function ea_login_logo(){
     echo '<style type="text/css">'
         . 'h1 a {'
