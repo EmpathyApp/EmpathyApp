@@ -67,14 +67,14 @@ function ea_settings_init(  ) {
 	);
 	add_settings_field( 
 		'private_stripe_key', 
-		__( 'Private key', 'wordpress' ), 
+		__( 'Private key pk_', 'wordpress' ), 
 		'ea_text_field_private_stripe_key_render', 
 		'pluginPage', 
 		'ea_pluginPage_stripe_keys_section' 
 	);
         add_settings_field( 
 		'shared_stripe_key', 
-		__( 'Shared (public) key', 'wordpress' ), 
+		__( 'Shared (public) key sk_', 'wordpress' ), 
 		'ea_text_field_shared_stripe_key_render', 
 		'pluginPage', 
 		'ea_pluginPage_stripe_keys_section' 
