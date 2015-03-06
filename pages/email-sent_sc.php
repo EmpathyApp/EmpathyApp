@@ -98,7 +98,7 @@ If you have any feedback please feel free to reply to this email and tell us you
 
     //We only send an email if the donation is greater than 0
     if($tRecDonationNr > 0){
-        ea_send_email($tCallerEmailSg, "Subject", $tMessageSg);
+        ea_send_email($tCallerEmailSg, "Empathy App Payment", $tMessageSg);
         echo "<h3>Email successfully sent to caller</h3>";
     }else{
         echo "<h4>No email sent: First time caller and call length was five minutes or less</h4>";
