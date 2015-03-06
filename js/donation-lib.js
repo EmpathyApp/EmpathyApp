@@ -9,6 +9,8 @@ var gConst = {
 
 // Given the name of an URL parameter (normally coming from an email sent to the user),
 // return its associated value.
+// TODO: Possibly we want to move this code as well as the getDatabaseToken function
+// into the php (server) code instead
 function getUrlParamValue(iParamName) {
       // Get the string after the question mark.
       var tUrlVarsString = window.location.search.split('?')[1];

@@ -18,7 +18,11 @@ function ea_donation_form_shortcode() {
     }
     $tDbTokenSg = esc_sql($_GET['dbToken']);
     
+    //$tPrefillEmailSg = getEmailByDbToken($tDbTokenSg);
+    
     $tItemsMix = getItemsArrayForToken($tDbTokenSg);
+    
+    
     $tNrOfItemsNr = count($tItemsMix);
     if($tNrOfItemsNr > 0){
         if($tNrOfItemsNr > 1){
@@ -38,7 +42,8 @@ function ea_donation_form_shortcode() {
         echo "<strong>Error: Incorrect token! (Token does not exist in the database)</strong>";
         exit();
     }
-    
+
+    $tPrefillEmailSg = getCallerEmailByDbToken($tDbTokenSg);
 
     ?>
     <p>
@@ -129,13 +134,6 @@ function ea_donation_form_shortcode() {
             jQuery('#customButton').on('click', function (e) {
                 // Needed to prefill the email field (if the user is logged in) in the Stripe checkout. 
                 // TODO: move somewhere else?
-                <?php
-                   if (is_user_logged_in()) {
-                         $prefill_email = get_userdata(get_current_user_id())->user_email;
-                   } else {
-                         $prefill_email = 'false';
-                   }
-                ?>
 
                 // Get the amount from the slider.
                 var tAmount = 100 * jQuery("#sliderDollars").slider("value");
@@ -153,7 +151,7 @@ function ea_donation_form_shortcode() {
                     },
                     name: 'Demo Site',
                     description: 'Empathy App Donation',
-                    email: '<?php echo $prefill_email ;?>',
+                    email: '<?php echo $tPrefillEmailSg ;?>',
                     amount: tAmount
                 });
                 e.preventDefault();

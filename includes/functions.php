@@ -45,6 +45,15 @@ function getEmailByUserName($iUserNameSg) {
     return $userEmailString;
 }
 
+function getEmailById($iIdNr) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE ID = '{$iIdNr}'", OBJECT);
+    //^Please note that we need to surround the variable with single quotes
+    $rUserEmailSg = $resArray[0]->user_email;
+    return $rUserEmailSg;
+}
+
 function getIdByUserName($iUserNameSg) {
     global $wpdb; //-Getting access to the wordpress database
     //$tUserName_EscapedSg = esc_sql($iUserNameSg);

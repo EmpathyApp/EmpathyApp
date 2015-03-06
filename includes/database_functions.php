@@ -90,20 +90,43 @@ function getCallRecordTableName(){
  * Searching the Call Recreds for matching db tokens.
  * Only one expected match, but all matches are returned; there may be cases
  * where the token is not 100% unique (depending on how it is generated).
+ * 
+ * TODO: Rewrite this function so that it returns the result directly,
+ * or rewrite the name of the function, because right now only one column is returned
  */
 function getItemsArrayForToken($iDbTokenSg){
     global $wpdb;
 
     $tTableNameSg = getCallRecordTableName();
     $tDbTokenColNameSg = DatabaseAttributes::database_token;
-    $tActualDonationSg = DatabaseAttributes::actual_donation;
+    $tActualDonationColumnSg = DatabaseAttributes::actual_donation;
     //$tDbToken_EscapedSg = esc_sql($iDbTokenSg);
-    $tQuerySg = "SELECT {$tActualDonationSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
+    $tQuerySg = "SELECT {$tActualDonationColumnSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
 
+    //SELECT {$tActualDonationSg}
+    
     //exec query and get an array of matching rows
     $rItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
 
     return $rItemsMix;
+}
+
+function getCallerEmailByDbToken($iDbTokenSg) {
+    global $wpdb;
+    $tTableNameSg = getCallRecordTableName();
+    $tDbTokenColNameSg = DatabaseAttributes::database_token;
+    $tCallerColumnSg = DatabaseAttributes::caller_id;
+    $tQuerySg = "SELECT {$tCallerColumnSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
+    $tCallRecordsItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+    
+    
+    $userId = $tCallRecordsItemsMix[0][0];
+    
+    echo "----------------------" . $userId;
+    
+    $rEmailSg = getEmailById($userId);
+    
+    return $rEmailSg;
 }
 
 /*
@@ -116,6 +139,7 @@ function db_insert($iAttributesAy){
         $iAttributesAy
     );
 }
+
 
 /*
  * Updating one row in the Call Records table
