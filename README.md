@@ -41,9 +41,9 @@ The website using EmpathyApp needs to have five pages with different shortcodes.
 A graphical overview in two parts: [before call](https://cloud.githubusercontent.com/assets/10245688/5697024/e43f9c26-99e4-11e4-9060-9edaf79a66dd.jpg) and [after call](https://cloud.githubusercontent.com/assets/10245688/5697023/e3815e96-99e4-11e4-94db-98df20afe3a4.jpg).
 
 
-##### 1. Front page
+##### 1. Skype page
 
-* [Example](http://kuanyin.ihavearrived.org)
+* [Example](http://coetzee.ihavearrived.org)
 * Shortcode: [skype skypenames="skypename1, skypename2, ..."] Example: [skype skypenames="echo123, tord_dellsen, infinitytaal"]
 * Plugin dependencies: Neat Skype status v2 (pro) *please note that "pro" version is required*
 * How it works: Clicking the icon will call one of the people in the list of Skype names
@@ -52,7 +52,7 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 
 ##### 2. Page with form for sending email with donation link
 
-* [Example](http://kuanyin.ihavearrived.org/email_form/)
+* [Example](http://coetzee.ihavearrived.org/email_form/)
 * Empathizer perspective: Form for filling in the user name of caller from just finished call and the length of the call, after submitting the form an email will be automatically sent to the caller
 * Dev perspective: The actual sending of the email is done on the next page below
 * Shortcode: [ea_email_form]
@@ -63,7 +63,7 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 
 ##### 3. Page with confirmation that email has been sent
 
-* [Example](http://kuanyin.ihavearrived.org/email_sent/)
+* [Example](http://coetzee.ihavearrived.org/email_sent/)
 * Empathizer perspective: Verification that the email has been sent to the caller
 * Dev perspective: Sends email and also stores call record in the database
 * Shortcode: [ea_email_sent]
@@ -73,7 +73,7 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 
 ##### 4. Page with donation form
 
-* [Example](http://kuanyin.ihavearrived.org/donation_form/)
+* [Example](http://coetzee.ihavearrived.org/donation_form/)
 * Caller perspective: Arrives at this page after clicking link received in an email (see previous step)
 * Shortcode: [ea_donation_form]
 * For testing, use 4242 4242 4242 4242 as the credit card number and anything for the other fields. We are using a test key so you can test all you want without any real money being transfered. To verify that the transfer was made you need access to the Empathy App stripe account but we also print the result and the amount transfered on the "thank you" page
@@ -83,7 +83,7 @@ A graphical overview in two parts: [before call](https://cloud.githubusercontent
 
 ##### 5. Page with thank you and confirmation that email has been received
 
-* [Example](http://kuanyin.ihavearrived.org/donation_sent/)
+* [Example](http://coetzee.ihavearrived.org/donation_sent/)
 * Dev perspective: Makes the actual charge of the credit card
 * Shortcode: [ea_donation_sent]
 * Plugin dependencies: P2P WP plugin
