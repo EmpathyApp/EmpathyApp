@@ -149,7 +149,7 @@ function ea_donation_form_shortcode() {
                         var tAmountStr = jQuery('<input type=hidden name=amountCents />').val(tAmount);
                         jQuery('#stripeForm').append(tokenInput).append(tAmountStr).append(tDatabaseTokenSg).submit();
                     },
-                    name: 'Demo Site',
+                    name: 'Empathy App',
                     description: 'Empathy App Donation',
                     email: '<?php echo $tPrefillEmailSg ;?>',
                     amount: tAmount
