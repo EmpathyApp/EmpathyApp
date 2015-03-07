@@ -119,10 +119,7 @@ function getCallerEmailByDbToken($iDbTokenSg) {
     $tQuerySg = "SELECT {$tCallerColumnSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
     $tCallRecordsItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
     
-    
     $userId = $tCallRecordsItemsMix[0][0];
-    
-    echo "----------------------" . $userId;
     
     $rEmailSg = getEmailById($userId);
     
