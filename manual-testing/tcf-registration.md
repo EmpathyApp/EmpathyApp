@@ -16,7 +16,7 @@ Expected result: You can see that
 * There is a text describing that the username must be a skype name
 * There are terms and conditions
 
-#### 2. Enter a skype name which has not been registered before with skype, but which is real
+#### 2. Enter a skype name which has not been registered before, but which is real
 #### 3. Enter an email which has not been registered before
 #### 4. Leave the checkbox as it is (unchecked)
 #### 5. Click on the "Register" button
