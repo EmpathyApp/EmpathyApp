@@ -26,4 +26,4 @@ Stripe error in Firebug for users who are not registered | Stripe | ```POST http
 "it looks like the actual version of the installation is 4.1.1 and not 4.1" | cPanel/Softaculous | -
 Undefined property: WP_Query::$post | cPanel error log | Might be a problem with a wp plugin, seends to be wp-releated at least
 Notice: Undefined variable: integrated_class in /home/peijman/public_html/wp-content/plugins/neat-skype-status-pro/neat-skype-status-pro.php on line 413 | NSS | Not seen on the dev sites
-
+Delay when sending multiple emails | Arvixe |
