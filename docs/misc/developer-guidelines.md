@@ -1,4 +1,7 @@
-DocVer: 1.0.4 - **Approved by Peijman 2015-02-12**
+Reviewed by:
+* Tord
+
+**Approved by Peijman 2015-02-12**
 
 
 The idea behind Empathy App comes from Peijman and Mica at the company with the same name as the app. The company is a social enterprise, which means that their goal is not just to make money but also to create a social good.
@@ -20,7 +23,7 @@ Please use [this template](../ways-of-working/templates/bug-report.md).
 ### Decision process
 
 * Overall design and architecture is determined by the people at Empathy App (Peijman and Mica) and Tord. We are using a so-called "benevolent dictatorship" structure
-* We want discussions about decisions to be very open in the project and therefore, conversations that have started out as private can be made public without asking the participants (unless of course the conversation has been of a very personal nature)
+* We want discussions about all decisions to be very open in the project and therefore, conversations that have started out as private can be made public without asking the participants (unless of course the conversation has been of a very personal nature)
 
 People:
 * Peijman and Mica works at Empathy App
@@ -48,7 +51,7 @@ Empathy App is free and open-source software. The license used is GPLv3.
 
 * The issue manager asks someone who doesn't have an issue to pick one
 * Alternatively, people simply pick issues themselves using [this guide](../ways-of-working/howto/finding-an-issue-to-work-on.md)
-* [This directory](../ways-of-working) contains ways of working for programmers and others
+* [This directory](../ways-of-working) contains ways of working for programmers and other project roles
 
 
 ### Open conversation policy
@@ -57,6 +60,7 @@ Unless conversations are clearly of a private nature, we can choose to share the
 
 
 ***
+
 
 #### References
 * Book "Producing open-source software"
