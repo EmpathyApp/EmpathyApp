@@ -25,15 +25,7 @@ function ea_email_form_shortcode() {
     
     
     // Checking the user access level..
-    $tCurrrentUserIdNr = get_current_user_id();
-    $tWPUserOt = new WP_User($tCurrrentUserIdNr);
-    $tContributorBl = false;
-    foreach($tWPUserOt->roles as $role){
-        $role = get_role($role);
-        if($role->name === 'contributor'){
-            $tContributorBl = true;
-        }
-    }
+    $tContributorBl = hasCurrentUserRole(array(WPUserRoles::contributor));
     if($tContributorBl == false){
         // ..exiting if not empathizer or admin
         echo "<strong>Oops! This page is only for our empathizers</strong>";

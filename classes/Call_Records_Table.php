@@ -38,11 +38,12 @@
  */
 if(!class_exists('WP_List_Table')){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+}else{
+    handleError("WP_List_Table does not exist");
 }
 
 
 /*
- * The class itself
  * Wordpress official documentation for WP_List_Table:
  * http://codex.wordpress.org/Class_Reference/WP_List_Table
  */
@@ -59,14 +60,14 @@ class Call_Records_Table extends WP_List_Table {
     
     function get_columns() {
         $rColumnsAr = array(
-            DatabaseAttributes::id => __('ID'),
-            DatabaseAttributes::date_and_time => __('Time and date (GMT)'),
+            DatabaseAttributes::id                   => __('ID'),
+            DatabaseAttributes::date_and_time        => __('Time and date (GMT)'),
             DatabaseAttributes::recommended_donation => __('Recommended donation'),
-            DatabaseAttributes::actual_donation => __('Actual donation'),
-            DatabaseAttributes::call_length => __('Call length'),
-            DatabaseAttributes::database_token => __('Database token'),
-            DatabaseAttributes::caller_id => __('Caller ID'),
-            DatabaseAttributes::empathizer_id => __('Empathizer ID')
+            DatabaseAttributes::actual_donation      => __('Actual donation'),
+            DatabaseAttributes::call_length          => __('Call length'),
+            DatabaseAttributes::database_token       => __('Database token'),
+            DatabaseAttributes::caller_id            => __('Caller ID'),
+            DatabaseAttributes::empathizer_id        => __('Empathizer ID')
         );
         return $rColumnsAr;
     }
@@ -90,8 +91,7 @@ class Call_Records_Table extends WP_List_Table {
         }
 
         $tTotalNrOfItemsNr = $wpdb->query($tQuerySg);
-        $tNumberOfItemsPerPageNr = 100;
-        $tCurrentPageMix_Verified = '';
+        $tNumberOfItemsPerPageNr = Constants::record_rows_display_max;
         $tPagedSg = '';
         if(isset($_GET["paged"])){
             $tPagedSg = $_GET["paged"];
@@ -100,19 +100,18 @@ class Call_Records_Table extends WP_List_Table {
             if(is_numeric($tPagedSg) === false){
                 handleError("Page number contained non-numeric characters, possible SQL injection attempt");
             }
-            $tCurrentPageMix_Verified = $tPagedSg;
         }
 
         // Limiting the range of results returned.
         // (We don't want to display all the rows one a single page)
         // Documenation for MySQL "LIMIT":
         // http://www.w3schools.com/php/php_mysql_select_limit.asp
-        if(empty($tCurrentPageMix_Verified) || !is_numeric($tCurrentPageMix_Verified) || $tCurrentPageMix_Verified <= 0){
-            $tCurrentPageNr = 1;
+        if(empty($tPagedSg) || !is_numeric($tPagedSg) || $tPagedSg <= 0){
+            $tPagedSg = 1;
         }
         $tTotalNrOfPagesNr = ceil($tTotalNrOfItemsNr/$tNumberOfItemsPerPageNr);
-        if(!empty($tCurrentPageNr) && !empty($tNumberOfItemsPerPageNr)){
-            $tNumberOfItemsOffsetNr = ($tCurrentPageNr - 1) * $tNumberOfItemsPerPageNr;
+        if(!empty($tPagedSg) && !empty($tNumberOfItemsPerPageNr)){
+            $tNumberOfItemsOffsetNr = ($tPagedSg - 1) * $tNumberOfItemsPerPageNr;
             $tQuerySg .= ' LIMIT ' . (int)$tNumberOfItemsPerPageNr . ' OFFSET ' . (int)$tNumberOfItemsOffsetNr;
         }
         $this->set_pagination_args( array(

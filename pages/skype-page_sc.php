@@ -19,19 +19,10 @@
 
 function ea_skype_page_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     
-    
-    // Checking the user access level..
-    $tCurrrentUserIdNr = get_current_user_id();
-    $tWPUserOt = new WP_User($tCurrrentUserIdNr);
-    $tSubscriberOrContributorOrAdminOrBl = false;
-    foreach($tWPUserOt->roles as $role){
-        $role = get_role($role);
-        //print_r($role);
-        if($role->name === "subscriber" || $role->name === "contributor" || $role->name === "administrator"){
-            $tSubscriberOrContributorOrAdminOrBl = true;
-        }
-    }
+    $tSubscriberOrContributorOrAdminOrBl = hasCurrentUserRole(array(
+        WPUserRoles::subscriber, WPUserRoles::contributor, WPUserRoles::administrator));
     if($tSubscriberOrContributorOrAdminOrBl == false){
         // ..exiting if not empathizer or admin
         echo "<strong>Oops! You need to log-in first to get access to this page</strong>";
@@ -39,5 +30,8 @@ function ea_skype_page_shortcode() {
     }
     
     
+    $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++
+    ob_end_clean();
+    return $ob_content;
 }
 add_shortcode('ea_skype_page', 'ea_skype_page_shortcode');

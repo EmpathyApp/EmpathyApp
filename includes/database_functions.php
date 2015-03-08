@@ -33,11 +33,12 @@
  ******************************************************************************/
 
 
+// ========== Initiating the database ==========
+
 /*
  * Creating the Call Records table and adding it to the Wordpress database.
  */
 function ea_initiate_database(){
-    
     global $wpdb;
     $tTableName = getCallRecordTableName();
     $tWpCollate = $wpdb->get_charset_collate();
@@ -60,16 +61,9 @@ function ea_initiate_database(){
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $tSqlCreateTableSg );
-
-    //TODO: ***Possible bug***: when experimenting with the db i found that
-    // this part of the code is entered and executed every 5 seconds!
-    // (i found this when i was using insert here for trying out the db)
-    // Is this expected behavior?
-    // Two possible causes that i can think of:
-    // 1. nss and ajax?
-    // 2. WP heartbeat https://wordpress.org/support/topic/admin-ajaxphp-being-called-from-admin-pages-causing-db-connection-issues
 }
 add_action('init', 'ea_initiate_database');
+
 
 
 
@@ -77,11 +71,6 @@ add_action('init', 'ea_initiate_database');
 
 
 
-function getCallRecordTableName(){
-    global $wpdb;
-    $rTableNameSg = $wpdb->prefix . "callrecords";
-    return $rTableNameSg;
-}
 
 
 // ========== Reading and writing in the Call Records table ==========
@@ -164,6 +153,20 @@ function db_write_actual_donation($iDbTokenSg, $iActualDonationDollarsNr){
     }
 }
 
+function isFirstCall($iCallerIdNr){
+    global $wpdb;
+    $tTableNameSg = getCallRecordTableName();
+    $tCallerIdColNameSg = DatabaseAttributes::caller_id;
+    $tQuerySg = "SELECT * FROM {$tTableNameSg} WHERE {$tCallerIdColNameSg}='{$iCallerIdNr}'";
+    //exec query and get an array of matching rows
+    $tResultMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+    if($tResultMix != false && count($tResultMix) > 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 
 // ========== Setting up the Call Records admin menu ==========
 
@@ -183,7 +186,7 @@ add_action( 'admin_menu', 'ea_callrecords_menu_init' );
 /*
  * Creating the admin menu display, using the Call_Records_Table class.
  * This function is not called directly from our code, instead it is referred
- * to from ea_callrecords_menu_init above.
+ * to as a string from ea_callrecords_menu_init above.
  */
 function ea_callrecords_menu_render() {
     $wp_list_table = new Call_Records_Table();
@@ -191,21 +194,12 @@ function ea_callrecords_menu_render() {
     $wp_list_table->display();
 }
 
-function isFirstCall($iCallerIdNr){
+
+// ========== Other functions ==========
+
+function getCallRecordTableName(){
     global $wpdb;
-
-    $tTableNameSg = getCallRecordTableName();
-    $tCallerIdColNameSg = DatabaseAttributes::caller_id;
-    //$tDbToken_EscapedSg = esc_sql($iDbTokenSg);
-    $tQuerySg = "SELECT * FROM {$tTableNameSg} WHERE {$tCallerIdColNameSg}='{$iCallerIdNr}'";
-
-    //exec query and get an array of matching rows
-    $tResultMix = $wpdb->get_results($tQuerySg, ARRAY_N);
-
-    if($tResultMix != false && count($tResultMix) > 0){
-        return false;
-    }else{
-        return true;
-    }
+    $rTableNameSg = $wpdb->prefix . "callrecords";
+    return $rTableNameSg;
 }
 

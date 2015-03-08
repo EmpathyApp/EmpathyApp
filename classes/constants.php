@@ -37,6 +37,14 @@ class Constants {
     const empty_string = "";
     const default_prio = 10;
     const not_set = -1;
+    const initial_call_minute_reduction = 5;
+    const record_rows_display_max = 100;
+}
+
+class WPUserRoles{
+    const subscriber = 'subscriber';
+    const contributor = 'contributor';
+    const administrator = 'administrator';
 }
 
 //TODO: Re-factor to create methods for each Uri that returns a concatenated string of root + [desired URI]

@@ -25,7 +25,7 @@
 
 
 /*
- * Redirects all types of users to the main page after they have logged in
+ * Redirecting all types of users to the main page after they have logged in.
  * Wordpress documentation:
  * http://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
  * Please note: The urls returned are relative (not absolute)
@@ -46,54 +46,54 @@ function ea_login_redirect($iRedirectTo, $iRequest, $user){
         return "Error: No user types found"; //$iRedirectTo
     }
 }
-add_filter('login_redirect', 'ea_login_redirect', 10, 3);
-
-
-
+add_filter('login_redirect', 'ea_login_redirect', Constants::default_prio, 3);
 
 
 /*
- * Text area containing terms and conditions that will be shown at caller user
+ * Link to a page containing terms and conditions that will be shown at caller
  * registration
  */
-function ea_terms_and_conditions_textarea(){
+function ea_terms_and_conditions_link(){
     ?>
 
 <!--
-    <textarea rows="5" cols="30" readonly="true" draggable="false" style="resize: none">TODO: Please enter the terms and conditions here (either directly or in another way). now entering some text to get more to see how it looks. now entering some text to get more to see how it looks. now entering some text to get more to see how it looks, now entering some text to get more to see how it looks. now entering some text to get more to see how it looks</textarea>
+    Used to be a textarea, leaving this code here if we change back:
+    <textarea rows="5" cols="30" readonly="true" draggable="false" style="resize: none">text...</textarea>
 -->
     <a href="https://www.empathyapp.org/terms-and-conditions/">Terms and conditions</a>
-    <!-- TODO: Make this url dynamic -->
+    <!-- -TODO: Make this url dynamic -->
     <br>
     <input id="termsCheckbox" name="termsCheckbox" type="checkbox" value="1">
     <label for="termsCheckbox">I accept these terms and conditions</label>
 
     <?php
 }
-add_action('register_form', 'ea_terms_and_conditions_textarea');
-
+add_action('register_form', 'ea_terms_and_conditions_link');
 
 
 /*
  * WP filter that validates that the skype name exists, if it doesn't an
  * error is added to the list of registration errors
  */
-function ea_validate_skype_name($modErrors, $iSkypeName, $iUserEmail){
+function ea_validate_skype_name($modErrors, $iSkypeNameSg, $iUserEmailSg){
     // Using curl to do a http post request to skype
-    $tUrl = "https://login.skype.com/json/validator";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $tUrl);
-    curl_setopt($ch, CURLOPT_POST , 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER , true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS , "new_username=$iSkypeName");
-    $tResponse = curl_exec($ch);
-    $tResultInfo = curl_getinfo($ch);
-    curl_close($ch);
+    $tUrlSg = "https://login.skype.com/json/validator";
+    $tCurlHandle = curl_init();
+    curl_setopt($tCurlHandle, CURLOPT_URL, $tUrlSg);
+    curl_setopt($tCurlHandle, CURLOPT_POST , 1);
+    curl_setopt($tCurlHandle, CURLOPT_RETURNTRANSFER , true);
+    curl_setopt($tCurlHandle, CURLOPT_POSTFIELDS , "new_username=$iSkypeNameSg");
+    $tResponse = curl_exec($tCurlHandle);
+    $tResultInfo = curl_getinfo($tCurlHandle);
+    curl_close($tCurlHandle);
     // Check if the skype name is avalilable for registration (meaning that no user has it)..
     if( substr_count($tResponse, "not available") == 0 ){
+        /*
+         * -TODO: This check works in practice but i don't understand it,
+         */
         // ..if so, add skype error to the list of registration errors
         $modErrors -> add('skype_error', __('<strong>ERROR:</strong> Skype name could not be verified, please recheck'), 'domain1');
-        //-domain?? doesn't seem to matter what we choose here
+        // -domain?? doesn't seem to matter what we choose here
     }
     return $modErrors;
 }
@@ -104,7 +104,7 @@ add_filter('registration_errors', 'ea_validate_skype_name', Constants::default_p
  * Verifying that the terms have been accepted
  */
 function ea_validate_terms_accepted($modErrors, $iSkypeName, $iUserEmail){
-    if(!isset($_POST[termsCheckbox])){ //-if checkbox false this value will not even be set
+    if(!isset($_POST['termsCheckbox'])){ //-if checkbox false this value will not even be set
         $modErrors -> add('terms_error', __('<strong>ERROR:</strong> You must accept the terms and conditions to register'), 'domain1');
     }
     return $modErrors;
@@ -118,7 +118,10 @@ add_filter('registration_errors', 'ea_validate_terms_accepted', Constants::defau
 function ea_login_and_registration_message(){
     ?>
     
-    <p>Your username is your valid skype name. If you do not have a skype name, <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a></p>
+    <p>
+        Your username is your valid skype name. If you do not have a skype name,
+        <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a>
+    </p>
     
     <?php
 }

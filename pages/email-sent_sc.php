@@ -18,65 +18,35 @@
 function ea_email_sent_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    
+
+    // Reading from superglobals
     $tCallerSkypeNameSg = esc_sql($_POST["skype_name"]);
-    
-    // Verifying that the skype name exists
+    // ..verifying that the skype name exists
     if(verifyUserNameExists($tCallerSkypeNameSg) === false){
         echo "<h3><i><b>Incorrect skype name.</b> Email not sent. Please go back and try again</i></h3>";
         exit();
     }
-    
-    
-    
-    
-    
-    
-    
     $tLengthNr = $_POST["length"];
-    
-    //Check for negative number
-    
-    
-    //Checking if this is a first-time call
-    
-    
-    
-    
-    
-    //Check for 
-    
-    
-    
-    
     if(is_numeric($tLengthNr) === false){
         handleError("Length variable was not numeric, possible SQL injection attempt");
     }
     
-
-    
-    
-    
+    // Setting up variables based on the superglobals
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
-    
-
-    
-    $tUniqueIdentifierSg = uniqid("id-", true);
-    //-http://php.net/manual/en/function.uniqid.php
-    $tCallerDisplayNameSg = getDisplayNameByUserName($tCallerSkypeNameSg);
-    //$tCallerDisplayNameForEmailSg = isset($tCallerDisplayNameSg) ? " " . $tCallerDisplayNameSg : $tCallerSkypeNameSg;
-    $tCallerEmailSg = getEmailByUserName($tCallerSkypeNameSg);
+    $tUniqueDbIdentifierSg = uniqid("id-", true); //-http://php.net/manual/en/function.uniqid.php
+    $tCallerDisplayNameSg = getDisplayNameById($tCallerIdNr);
+    $tCallerEmailSg = getEmailById($tCallerIdNr);
     $tEmpathizerDisplayNameSg = getDisplayNameById(get_current_user_id());
     
-    //TODO: Add this to a functionality test case
-    $tAdjustedLength = $tLengthNr;
+    // If first call: Reducing the donation amount
+    $tAdjustedLengthNr = $tLengthNr;
     if(isFirstCall($tCallerIdNr) == true){
-        $tAdjustedLength = $tAdjustedLength - 5;
+        $tAdjustedLengthNr = $tAdjustedLengthNr - Constants::initial_call_minute_reduction;
     }
-    $tRecDonationNr = (int)round(get_donation_multiplier() * $tAdjustedLength);
-    
-    $tMessageSg = "
-Hi " . $tCallerDisplayNameSg . ",
+    $tRecDonationNr = (int)round(get_donation_multiplier() * $tAdjustedLengthNr);
+
+    // Creating the contents of the email Message
+    $tMessageSg = "Hi " . $tCallerDisplayNameSg . ",
 
 Thank you so much for your recent empathy call! Congratulations on contributing to a more empathic world. :)
 
@@ -84,7 +54,7 @@ You talked with: {$tEmpathizerDisplayNameSg}
 Your skype session was: {$tLengthNr} minutes long
 Your recommendation contribution is: \${$tRecDonationNr}
 
-Please follow this link to complete payment within 24 hours: " . getBaseUrl() . pages::donation_form . "?recamount={$tRecDonationNr}&dbToken={$tUniqueIdentifierSg}
+Please follow this link to complete payment within 24 hours: " . getBaseUrl() . pages::donation_form . "?recamount={$tRecDonationNr}&dbToken={$tUniqueDbIdentifierSg}
 
 See you next time!
 
@@ -94,9 +64,7 @@ PS
 If you have any feedback please feel free to reply to this email and tell us your ideas or just your experience!
 ";
 
-
-
-    //We only send an email if the donation is greater than 0
+    // If the donation is greater than 0: Sending an email to the caller
     if($tRecDonationNr > 0){
         ea_send_email($tCallerEmailSg, "Empathy App Payment", $tMessageSg);
         echo "<h3>Email successfully sent to caller</h3>";
@@ -104,16 +72,15 @@ If you have any feedback please feel free to reply to this email and tell us you
         echo "<h4>No email sent: First time caller and call length was five minutes or less</h4>";
     }
 
+    // Adding a new row to the db CallRecords table
     db_insert(array(
-        DatabaseAttributes::date_and_time => current_time('mysql', 1),
+        DatabaseAttributes::date_and_time        => current_time('mysql', 1),
         DatabaseAttributes::recommended_donation => $tRecDonationNr,
-        DatabaseAttributes::call_length => $tLengthNr,
-        DatabaseAttributes::database_token => $tUniqueIdentifierSg,
-        DatabaseAttributes::caller_id => $tCallerIdNr,
-        DatabaseAttributes::empathizer_id => get_current_user_id()
+        DatabaseAttributes::call_length          => $tLengthNr,
+        DatabaseAttributes::database_token       => $tUniqueDbIdentifierSg,
+        DatabaseAttributes::caller_id            => $tCallerIdNr,
+        DatabaseAttributes::empathizer_id        => get_current_user_id()
     ));
-    
-    
     
     
     $ob_content = ob_get_contents(); //+++++++++++++++++++++++++++++++++++++++++

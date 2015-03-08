@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.5.0
+ * Version: 0.5.1
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -51,8 +51,6 @@ function ea_wp_enqueue_scripts() {
     wp_enqueue_script('jquery-ui-slider');
     // Raphael.
     wp_enqueue_script('raphael', 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js');
-
-    //login_logo();
 }
 add_action('wp_enqueue_scripts', 'ea_wp_enqueue_scripts');
 
@@ -84,8 +82,9 @@ add_filter('show_admin_bar', 'ea_function_admin_bar');
 
 /*
  * Change the logo from the default wp logo
- * Reference (works with other themes as well, not just with elegant themes):
+ * Reference:
  * http://www.elegantthemes.com/blog/tips-tricks/how-to-customize-the-wordpress-login-page
+ * (works with other themes as well, not just with elegant themes)
  */
 function ea_login_logo(){
     echo '<style type="text/css">'
@@ -98,14 +97,14 @@ add_action('login_head', 'ea_login_logo');
 
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
-require_once 'classes/Call_Records_Table.php';
 require_once 'classes/constants.php';
+require_once 'classes/Call_Records_Table.php';
+require_once 'includes/functions.php';
+require_once 'includes/user-registration-and-login.php';
 require_once 'includes/database_functions.php';
+require_once 'adminpages/settings.php';
 require_once 'pages/skype-page_sc.php';
 require_once 'pages/donation-form_sc.php';
 require_once 'pages/donation-sent_sc.php';
 require_once 'pages/email-form_sc.php';
 require_once 'pages/email-sent_sc.php';
-require_once 'adminpages/settings.php';
-require_once 'includes/functions.php';
-require_once 'includes/user-registration-and-login.php';

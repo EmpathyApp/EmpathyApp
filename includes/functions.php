@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (C) 2015 sunyata
  *
@@ -16,6 +15,100 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
+// ========== get ... By ... database functions ==========
+
+function getIdByUserName($iUserNameSg) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
+    $userId = $resArray[0]->ID;
+    return $userId;
+}
+
+function getDisplayNameById($iUserIdNr) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE ID = '{$iUserIdNr}'", OBJECT);
+    $rUserNameSg = $resArray[0]->display_name;
+    return $rUserNameSg;
+}
+
+function getEmailById($iIdNr) {
+    global $wpdb; //-Getting access to the wordpress database
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE ID = '{$iIdNr}'", OBJECT);
+    //^Please note that we need to surround the variable with single quotes
+    $rUserEmailSg = $resArray[0]->user_email;
+    return $rUserEmailSg;
+}
+
+
+// ========== Other functions ==========
+
+function ea_send_email($iEmailAddressSg, $iTitleSg, $iMessageSg){
+    $tNewLineSg = "\r\n";
+    $tHeadersSg = "From: connect@empathyapp.org" . $tNewLineSg .
+        "X-Mailer: PHP/" . PHP_VERSION;
+    mail($iEmailAddressSg, $iTitleSg, $iMessageSg, $tHeadersSg);
+}
+
+
+function getLogoUri(){
+    /*
+        $rUriSg = "";
+    if(file_exists(Uris::logo256)){
+        $rUriSg = Uris::logo256;
+    }
+    return $rUriSg;
+    */
+    return Uris::logo256;
+}
+function getSmallLogoUri(){
+    return Uris::logo16;
+}
+
+function verifyUserNameExists($iCallerSkypeNameSg){
+    global $wpdb;
+    $resArray = $wpdb->get_results(
+        "SELECT * FROM wp_users WHERE user_login = '{$iCallerSkypeNameSg}'");
+    if(count($resArray) > 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/*
+ * Function handling error messages, used as a central point so that it is easy
+ * to switch between different ways to handle errors.
+ * 
+ * Idea: Have different leves of severity, for warning, notice, etc.
+ * 
+ * Idea: Use debug_backtrace to show the line number
+ * http://us3.php.net/manual/en/function.debug-backtrace.php
+ */
+function handleError($iErrorMessageSg){
+    //FirePHP::getInstance(true)->log("ea_initiate_database - init");
+    die("ERROR: {$iErrorMessageSg}");
+}
+
+function hasCurrentUserRole($iRolesAr){
+    // Checking the user access level..
+    $tCurrrentUserIdNr = get_current_user_id();
+    $tWPUserOt = new WP_User($tCurrrentUserIdNr);
+    $rUserHasOneOfRolesBl = false;
+    foreach($tWPUserOt->roles as $role){
+        $role = get_role($role);
+        for($i = 0; $i < count($iRolesAr); $i++){
+            if($role->name === $iRolesAr[$i]){
+                $rUserHasOneOfRolesBl = true;
+            }
+        }
+    }
+    return $rUserHasOneOfRolesBl;
+}
 
 /*
  * We do not filter $_SERVER['HTTPS'], but we do filter $_SERVER['SERVER_NAME'],
@@ -34,105 +127,4 @@ function getBaseUrl(){
 function getCurrentUrlWithoutParams(){
     $tUrlAr = explode("?", $_SERVER['REQUEST_URI']);
     return $tUrlAr[0];
-}
-
-function getEmailByUserName($iUserNameSg) {
-    global $wpdb; //-Getting access to the wordpress database
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
-    //^Please note that we need to surround the variable with single quotes
-    $userEmailString = $resArray[0]->user_email;
-    return $userEmailString;
-}
-
-function getEmailById($iIdNr) {
-    global $wpdb; //-Getting access to the wordpress database
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE ID = '{$iIdNr}'", OBJECT);
-    //^Please note that we need to surround the variable with single quotes
-    $rUserEmailSg = $resArray[0]->user_email;
-    return $rUserEmailSg;
-}
-
-function getIdByUserName($iUserNameSg) {
-    global $wpdb; //-Getting access to the wordpress database
-    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
-    $userId = $resArray[0]->ID;
-    return $userId;
-}
-
-function ea_send_email($iEmail, $iTitle, $iMessage){
-    $tNewLine = "\r\n";
-    $tHeaders = "From: connect@empathyapp.org" . $tNewLine .
-        "X-Mailer: PHP/" . PHP_VERSION;
-    mail($iEmail, $iTitle, $iMessage, $tHeaders);
-}
-
-function getDisplayNameByUserName($iUserNameSg) {
-    global $wpdb; //-Getting access to the wordpress database
-    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iUserNameSg}'", OBJECT);
-    $userDisplayNameString = $resArray[0]->display_name;
-    return $userDisplayNameString;
-}
-
-function getDisplayNameById($iUserIdNr) {
-    global $wpdb; //-Getting access to the wordpress database
-    //$tUserName_EscapedSg = esc_sql($iUserNameSg);
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE ID = '{$iUserIdNr}'", OBJECT);
-    $rUserNameSg = $resArray[0]->display_name;
-    return $rUserNameSg;
-}
-
-function getLogoUri(){
-    /*
-        $rUriSg = "";
-    if(file_exists(Uris::logo256)){
-        $rUriSg = Uris::logo256;
-    }
-    return $rUriSg;
-    */
-    return Uris::logo256;
-}
-
-function getSmallLogoUri(){
-    /*
-    $rUriSg = "";
-    if(file_exists(Uris::logo16)){
-        $rUriSg = Uris::logo16;
-    }
-    return $rUriSg;
-     */
-    return Uris::logo16;
-}
-
-function verifyUserNameExists($iCallerSkypeNameSg){
-    global $wpdb;
-    
-    //$tCallerSkypeName_EscapedSg = esc_sql($iCallerSkypeNameSg);
-    $resArray = $wpdb->get_results(
-        "SELECT * FROM wp_users WHERE user_login = '{$iCallerSkypeNameSg}'");
-    
-    if(count($resArray) > 0){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-/*
- * Function handling error messages, used as a central point so that it is easy
- * to switch between different ways to handle errors.
- * 
- * Idea: Have different leves of severity, for warning, notice, etc.
- * 
- * Idea: Use debug_backtrace to show the line number
- * http://us3.php.net/manual/en/function.debug-backtrace.php
- */
-function handleError($iErrorMessageSg){
-    die("ERROR: {$iErrorMessageSg}");
 }
