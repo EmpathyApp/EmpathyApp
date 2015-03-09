@@ -147,11 +147,17 @@ class Call_Records_Table extends WP_List_Table {
     }
     function column_caller_id($iItemOt){
         $tWordpressUserCs = get_userdata($iItemOt->caller_id);
+        if(empty($tWordpressUserCs)){
+            return "Notice: User does not exist (may have been deleted)";
+        }
         $rUserNameSg = $tWordpressUserCs->user_login;
         return $rUserNameSg;
     }
     function column_empathizer_id($iItemOt){
         $tWordpressUserCs = get_userdata($iItemOt->empathizer_id);
+        if(empty($tWordpressUserCs)){
+            return "Notice: User does not exist (may have been deleted)";
+        }
         $rUserNameSg = $tWordpressUserCs->user_login;
         return $rUserNameSg;
     }
