@@ -47,6 +47,9 @@ function updateHeartSize(iSliderValueInt) {
     }
     // These values are the result of experimentation.
     tScaleNr = (0.2 * iSliderValueInt + 10) / 20;
+    // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
+    // the last two attribute values to 0, the scaling will be made from the top-left point towards
+    // the bottom-right instead.
     gHeartImg.tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
 }
 
