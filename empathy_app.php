@@ -95,6 +95,15 @@ function ea_login_logo(){
 }
 add_action('login_head', 'ea_login_logo');
 
+/*
+ * Importing the WP_List_Table class if it does not exist, this is done to
+ * make our app future-resistant (in case this class dissapears)
+ */
+if(!class_exists('WP_List_Table')){
+    require_once 'includes/lib/wp/class-wp-list-table.php';    
+    //require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+}
+
 require_once 'includes/console_debug.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
 require_once 'classes/constants.php';
