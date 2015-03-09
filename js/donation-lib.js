@@ -4,7 +4,13 @@ var gConst = {
       'noRedirectDonationDollars': 42,
       'minDonationDollars': 1,
       'donationStepSizeDollars': 1,
-      'animationMargin': 2
+      'animationMargin': 2,
+      'initialDonationAmount': 0
+};
+
+var gHeartImg = {
+   'dim': '310',
+   'tHeartSet': null
 };
 
 // Given the name of an URL parameter (normally coming from an email sent to the user),
@@ -35,9 +41,13 @@ function getUrlParamValue(iParamName) {
  * @param iSliderValueInt
  */
 function updateHeartSize(iSliderValueInt){
+    if (gHeartImg.tHeartSet == null) {
+        console.error("updateHeartSize() called when gHeartImg.tHeartSet == null");
+        return;
+    }
     tScaleNr = (0.2 * iSliderValueInt + 10) / 20;
     //-these values are based on some testing to see what looks good
-    tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
+    gHeartImg.tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
 }
 
 function getDatabaseToken() {

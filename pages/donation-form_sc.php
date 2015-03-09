@@ -53,13 +53,14 @@ function ea_donation_form_shortcode() {
     <div id="sliderDollars"></div>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    
     <script>
         jQuery(document).ready(function(){
             //-TODO: Investigate why we need to have a special order of the functions, in reverse of how they
             // are used. We expected to avoid this since we are using "jQuery(function" as per this link:
             // http://www.sitepoint.com/types-document-ready/
             try {
- 
+
                 var tScaleNr = 1;
 
                 // Gives an initial donation amount either from the URL parameter or from a constant value.
@@ -71,8 +72,6 @@ function ea_donation_form_shortcode() {
                     return rVal;
                 }
                 
-                
-
                 // Event handling for when the user drags slider.
                 function slideFunction(iEvent, iUi) {
                     jQuery("#amountDollars").val("$" + iUi.value);
@@ -102,14 +101,10 @@ function ea_donation_form_shortcode() {
                 }
                 */
 
-
-
-
+                gConst.initialDonationAmount = getInitialDonationAmount();
             
-                var tInitialDonationAmount = getInitialDonationAmount();
-                
                 jQuery("#sliderDollars").slider({
-                    value: tInitialDonationAmount,
+                    value: gConst.initialDonationAmount,
                     min: gConst.minDonationDollars,
                     max: <?php $tmp = get_max_donation(); echo "$tmp" ?>,
                     step: gConst.donationStepSizeDollars,
@@ -168,12 +163,13 @@ function ea_donation_form_shortcode() {
         </script>
     </form>
 
-    <!-- Dynamically updated vector image connected to the donation slider. -->
     <div id="container"></div>
-    <script>
 
+    <script>
+        jQuery(document).ready(function() {
+           try {
                 // SVG image made with Inkscape and http://readysetraphael.com/.
-                var paper = Raphael('container', '310', '310'); //'121', '99'
+                var paper = Raphael('container', gHeartImg.dim, gHeartImg.dim);
                 var path3053 = paper.path("");
                 path3053.attr({id: 'path3053',fill: '#000000','stroke-width': '0','stroke-opacity': '1'}).data('id', 'path3053');
                 var path3051 = paper.path("");
@@ -182,8 +178,13 @@ function ea_donation_form_shortcode() {
                 path3049.attr({id: 'path3049',fill: '#000000','stroke-width': '0','stroke-opacity': '1'}).data('id', 'path3049');
                 var path4100 = paper.path("M 27.696928,76.261018 C 19.747206,68.626322 11.266398,60.587164 7.4748915,50.835542 3.6833851,41.083922 3.3734124,26.811381 9.7549518,17.653528 16.136491,8.4956721 22.187901,4.6870338 32.951844,3.819554 43.715784,2.9520766 54.370274,9.8559705 58.825976,15.322773 63.03182,9.0752373 73.149817,2.1597917 82.97532,2.535815 c 9.825503,0.3760235 17.58955,4.1161266 24.45634,14.16105 6.86678,10.04492 6.42359,25.935606 2.63918,34.821536 C 106.2864,60.40433 95.625874,73.161814 87.142497,79.412544 78.659121,85.663272 67.21867,93.59175 59.402765,95.98188 51.60661,93.099221 35.646649,83.895715 27.696928,76.261018 z");
                 path4100.attr({id: 'path4100',fill: '#ff3e35',stroke: '#000000',"stroke-width": '5',"stroke-linecap": 'butt',"stroke-linejoin": 'miter',"stroke-opacity": '1',"stroke-miterlimit": '4',"stroke-dasharray": 'none',"fill-opacity": '1'}).data('id', 'path4100');
-                var tHeartSet = paper.set(path3053, path3051, path3049, path4100);
-
+                gHeartImg.tHeartSet = paper.set(path3053, path3051, path3049, path4100);
+                updateHeartSize(gConst.initialDonationAmount);
+            }
+            catch (e) {
+                console.error("ERROR: " + e.message);
+            }
+        });
     </script>
 
 
