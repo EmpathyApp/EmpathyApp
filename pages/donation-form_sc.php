@@ -76,7 +76,7 @@ function ea_donation_form_shortcode() {
                 // Event handling for when the user drags slider.
                 function slideFunction(iEvent, iUi) {
                     jQuery("#amountDollars").val("$" + iUi.value);
-                    updateHeartSize(iUi); //tInitialDonationAmount
+                    updateHeartSize(iUi.value); //tInitialDonationAmount
                     // By default, Raphael will scale the vector image from its midpoint and outwards. By setting
                     // the last two attribute values to 0, the scaling will be made from the top-left point towards
                     // the bottom-right instead.

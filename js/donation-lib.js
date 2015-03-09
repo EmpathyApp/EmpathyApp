@@ -35,7 +35,7 @@ function getUrlParamValue(iParamName) {
  * @param iSliderValueInt
  */
 function updateHeartSize(iSliderValueInt){
-    tScaleNr = (0.2 * iSliderValueInt.value + 10) / 20;
+    tScaleNr = (0.2 * iSliderValueInt + 10) / 20;
     //-these values are based on some testing to see what looks good
     tHeartSet.attr({"transform": "S" + tScaleNr + "," + tScaleNr + ",0,0"});
 }
