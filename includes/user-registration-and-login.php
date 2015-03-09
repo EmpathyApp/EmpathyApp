@@ -119,6 +119,7 @@ function ea_login_and_registration_message(){
     ?>
     
     <p>
+        <!-- Your username is your valid skype name. If you do not have skype, please <a href="http://www.skype.com/en/download-skype/"> download skype here</a> and then use your skype name to login -->
         Your username is your valid skype name. If you do not have a skype name,
         <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a>
     </p>
