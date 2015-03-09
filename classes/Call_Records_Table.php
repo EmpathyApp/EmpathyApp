@@ -36,11 +36,11 @@
  * class from Wordpress. This is not very important right based on what i
  * (Tord) have read but may become an issue far in the future.
  */
+/*
 if(!class_exists('WP_List_Table')){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-}else{
-    handleError("WP_List_Table does not exist");
 }
+ */
 
 
 /*

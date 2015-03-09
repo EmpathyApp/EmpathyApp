@@ -96,6 +96,7 @@ function ea_login_logo(){
 add_action('login_head', 'ea_login_logo');
 
 require_once 'includes/console_debug.php';
+require_once 'includes/lib/wp/class-wp-list-table.php';
 require_once 'includes/lib/firephp/FirePHP.class.php';
 require_once 'classes/constants.php';
 require_once 'includes/functions.php';
