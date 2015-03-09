@@ -98,6 +98,8 @@ add_action('login_head', 'ea_login_logo');
 /*
  * Importing the WP_List_Table class if it does not exist, this is done to
  * make our app future-resistant (in case this class dissapears)
+ * TODO: Use the class that we have included in the includes/lib/wp directory
+ * to make it more future-resistant
  */
 if(!class_exists('WP_List_Table')){
     //require_once 'includes/lib/wp/class-wp-list-table.php';    
