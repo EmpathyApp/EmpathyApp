@@ -116,6 +116,23 @@ function getCallerEmailByDbToken($iDbTokenSg) {
 }
 
 /*
+ * TODO: Unused at present but will be useful in a future issue where we use
+ * only the db token in the GET paramter
+ */
+function getRecDonationByDbToken($iDbTokenSg) {
+    global $wpdb;
+    $tTableNameSg = getCallRecordTableName();
+    $tDbTokenColNameSg = DatabaseAttributes::database_token;
+    $tRecDonationColumnSg = DatabaseAttributes::recommended_donation;
+    $tQuerySg = "SELECT {$tRecDonationColumnSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
+    $tCallRecordsItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+    
+    $rRecDonation = $tCallRecordsItemsMix[0][0];
+    
+    return $rRecDonation;
+}
+
+/*
  * Adding a new value to the Call Records table
  */
 function db_insert($iAttributesAy){
