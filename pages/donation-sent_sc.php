@@ -38,8 +38,8 @@ function ea_donation_sent_shortcode() {
     $tStripeTokenSg = $_POST['stripeToken']; //-Not escaped since it will only be used by Stripe
     // TODO: change to dynamic.
     $tAmountCentsNr = $_POST['amountCents'];
-    if(is_numeric($tAmountCentsNr) === false){
-        handleError("Amount of Cents from POST variable included non-numeric characters or was empty, possible SQL injection attempt");
+    if (is_numeric($tAmountCentsNr) === false) {
+        handleError("Amount of cents from POST variable included non-numeric characters or was empty - possible SQL injection attempt");
     }
     
     $tDbTokenSg = esc_sql($_POST['dbToken']);
@@ -103,7 +103,7 @@ function ea_donation_sent_shortcode() {
             echo "<h4>Error: Internal Stripe Error </h4>";
         } 
         catch (Exception $e) {
-            echo "Error: " + $e->getMessage();
+            echo "<h4>Error: " + $e->getMessage() + "</h4>";
         }
 
         if ($tSuccess === true) {
