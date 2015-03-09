@@ -53,7 +53,7 @@ TODO
 
 WP official coding standards: http://codex.wordpress.org/WordPress_Coding_Standards
 
-Each person may choose to use the Pseudocode programming process which results in comments that can look a bit different
+Each person may choose to use the Pseudocode programming process (PPP) which results in comments that can look a bit different
 
 
 #### Branching
