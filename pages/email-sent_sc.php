@@ -22,37 +22,37 @@ function ea_email_sent_shortcode() {
     // Reading from superglobals
     $tCallerSkypeNameSg = esc_sql($_POST["skype_name"]);
     // ..verifying that the skype name exists
-    if(verifyUserNameExists($tCallerSkypeNameSg) === false){
-        echo "<h3><i><b>Incorrect skype name.</b> Email not sent. Please go back and try again</i></h3>";
+    if (verifyUserNameExists($tCallerSkypeNameSg) === false) {
+        echo "<h3><i><b>Incorrect Skype name</b> - email not sent. Please go back and try again.</i></h3>";
         exit();
     }
     $tLengthNr = $_POST["length"];
-    if(is_numeric($tLengthNr) === false){
-        handleError("Length variable was not numeric, possible SQL injection attempt");
+    if (is_numeric($tLengthNr) === false) {
+        handleError("Length variable was not numeric - possible SQL injection attempt");
     }
-    
+
     // Setting up variables based on the superglobals
     $tCallerIdNr = getIdByUserName($tCallerSkypeNameSg);
-    $tUniqueDbIdentifierSg = uniqid("id-", true); //-http://php.net/manual/en/function.uniqid.php
+    $tUniqueDbIdentifierSg = uniqid("id-", true); // http://php.net/manual/en/function.uniqid.php
     $tCallerDisplayNameSg = getDisplayNameById($tCallerIdNr);
     $tCallerEmailSg = getEmailById($tCallerIdNr);
     $tEmpathizerDisplayNameSg = getDisplayNameById(get_current_user_id());
     
-    // If first call: Reducing the donation amount
+    // If this is the first call: reduce the donation amount.
     $tAdjustedLengthNr = $tLengthNr;
-    if(isFirstCall($tCallerIdNr) == true){
+    if(isFirstCall($tCallerIdNr) == true) {
         $tAdjustedLengthNr = $tAdjustedLengthNr - Constants::initial_call_minute_reduction;
     }
     $tRecDonationNr = (int)round(get_donation_multiplier() * $tAdjustedLengthNr);
 
-    // Creating the contents of the email Message
+    // Create the contents of the email message.
     $tMessageSg = "Hi " . $tCallerDisplayNameSg . ",
 
 Thank you so much for your recent empathy call! Congratulations on contributing to a more empathic world. :)
 
 You talked with: {$tEmpathizerDisplayNameSg}
-Your skype session was: {$tLengthNr} minutes long
-Your recommendation contribution is: \${$tRecDonationNr}
+Your Skype session duration was: {$tLengthNr} minutes
+Your recommended contribution is: \${$tRecDonationNr}
 
 Please follow this link to complete payment within 24 hours: " . getBaseUrl() . pages::donation_form . "?recamount={$tRecDonationNr}&dbToken={$tUniqueDbIdentifierSg}
 
@@ -64,15 +64,15 @@ PS
 If you have any feedback please feel free to reply to this email and tell us your ideas or just your experience!
 ";
 
-    // If the donation is greater than 0: Sending an email to the caller
-    if($tRecDonationNr > 0){
+    // If the donation is greater than 0: send an email to the caller.
+    if ($tRecDonationNr > 0) {
         ea_send_email($tCallerEmailSg, "Empathy App Payment", $tMessageSg);
-        echo "<h3>Email successfully sent to caller</h3>";
-    }else{
-        echo "<h4>No email sent: First time caller and call length was five minutes or less</h4>";
+        echo "<h3>Email successfully sent to caller.</h3>";
+    } else {
+        echo "<h4>No email sent: first time caller and call length was five minutes or less.</h4>";
     }
 
-    // Adding a new row to the db CallRecords table
+    // Add a new row to the db CallRecords table.
     db_insert(array(
         DatabaseAttributes::date_and_time        => current_time('mysql', 1),
         DatabaseAttributes::recommended_donation => $tRecDonationNr,

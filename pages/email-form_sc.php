@@ -24,10 +24,10 @@ function ea_email_form_shortcode() {
     ob_start(); //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
     
-    // Checking the user access level..
+    // Check user access level.
     $tContributorBl = hasCurrentUserRole(array(WPUserRoles::contributor));
-    if($tContributorBl == false){
-        // ..exiting if not empathizer or admin
+    if ($tContributorBl == false) {
+        // Exit if not empathizer or admin. 
         echo "<strong>Oops! This page is only for our empathizers</strong>";
         exit();
     }
