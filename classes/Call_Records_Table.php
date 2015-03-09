@@ -31,16 +31,14 @@
 
 
 /*
- * Importing the WP_List_Table class.
- * TODO: To make this future resistant we may want to extract the WP_List_Table
- * class from Wordpress. This is not very important right based on what i
- * (Tord) have read but may become an issue far in the future.
+ * Importing the WP_List_Table class if it does not exist, this is done to
+ * make our app future-resistant (in case this class dissapears)
  */
-/*
 if(!class_exists('WP_List_Table')){
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+    require_once '../includes/lib/wp/class-wp-list-table.php';    
+    //require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
- */
+
 
 
 /*
