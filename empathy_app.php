@@ -100,8 +100,8 @@ add_action('login_head', 'ea_login_logo');
  * make our app future-resistant (in case this class dissapears)
  */
 if(!class_exists('WP_List_Table')){
-    require_once 'includes/lib/wp/class-wp-list-table.php';    
-    //require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+    //require_once 'includes/lib/wp/class-wp-list-table.php';    
+    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
 require_once 'includes/console_debug.php';
