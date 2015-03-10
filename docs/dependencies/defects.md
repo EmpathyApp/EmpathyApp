@@ -1,4 +1,5 @@
-DocVer: 1.0
+Reviewed by:
+* Tord
 
 
 This list is used for risks that are external to our own application, but that may affect our application. Please use strikethrough (double tildes on each side) for resolved issues.
