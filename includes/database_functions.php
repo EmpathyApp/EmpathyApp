@@ -115,6 +115,21 @@ function getCallerEmailByDbToken($iDbTokenSg) {
     return $rEmailSg;
 }
 
+function getEmpathizerUserNameByDbToken($iDbTokenSg) {
+    global $wpdb;
+    $tTableNameSg = getCallRecordTableName();
+    $tDbTokenColNameSg = DatabaseAttributes::database_token;
+    $tEmpathizerColumnSg = DatabaseAttributes::empathizer_id;
+    $tQuerySg = "SELECT {$tEmpathizerColumnSg} FROM {$tTableNameSg} WHERE {$tDbTokenColNameSg}='{$iDbTokenSg}'";
+    $tCallRecordsItemsMix = $wpdb->get_results($tQuerySg, ARRAY_N);
+    
+    $userId = $tCallRecordsItemsMix[0][0];
+    
+    $rEmailSg = getUserNameById($userId);
+    
+    return $rEmailSg;
+}
+
 /*
  * TODO: Unused at present but will be useful in a future issue where we use
  * only the db token in the GET paramter

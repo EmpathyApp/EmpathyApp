@@ -58,7 +58,7 @@ function ea_donation_sent_shortcode() {
         //    charged from the user's credit card.
 
         // TODO: remove this?
-        $descr = "test description";
+        $descr = getEmpathizerUserNameByDbToken($tDbTokenSg);//"test description";
 
         // Create the charge on Stripe's servers - this will charge the user's card.
         $tSuccess = false;
