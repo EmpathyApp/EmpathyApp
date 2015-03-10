@@ -3,8 +3,8 @@ DocVer: 1.0
 
 This list is used for risks that are external to our own application, but that may affect our application. Please use strikethrough (double tildes on each side) for resolved issues.
 
-Risk/Defect | Area | Notes/Workaround
---- | --- | ---
+Defect | Area | Notes/Workaround
+-------|------|------------------
 **Skype status not officially supported** | Skype |
 Skype status differs between platforms | Skype | only when the other side is logged in on multiple devices?
 [*Server limitations*](https://support.arvixe.com/index.php?/Knowledgebase/Article/View/289/4/linux-hosting-resource-limits) | Hosting (arvixe) | For example the outbound emails are limited to 200-300 per hour (according to the support). Server limitations can probably be solved by upgrading to a more expensive plan
