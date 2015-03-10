@@ -55,6 +55,10 @@ function getUserNameById($iIdNr) {
 
 // ========== Other functions ==========
 
+/*
+ * If changning this function, please be aware of these issues:
+ * http://stackoverflow.com/questions/4834337/phps-mail-what-are-potential-issues-to-watch-out-for
+ */
 function ea_send_email($iEmailAddressSg, $iTitleSg, $iMessageSg){
     $tNewLineSg = "\r\n";
     $tHeadersSg = "From: connect@empathyapp.org" . $tNewLineSg .
