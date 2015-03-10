@@ -28,3 +28,5 @@ Undefined property: WP_Query::$post | cPanel error log | Might be a problem with
 Notice: Undefined variable: integrated_class in /home/peijman/public_html/wp-content/plugins/neat-skype-status-pro/neat-skype-status-pro.php on line 413 | NSS | Not seen on the dev sites
 Delay when sending multiple emails | Arvixe |
 10-15 s before call goes through | skype |
+Status limited on Android phones to available and invisible | Android |
+Showing on web is unavailable in Android | Android |
