@@ -36,6 +36,8 @@ This is because the new skype app in Windows 8 only support logins with Microsof
 
 If you are using an Android phone you cannot change this setting from the Android skype client software. To fix this you instead need to login with the same account *on another platform* (for example Windows or Ubuntu) and change the settings there. These settings will be global but you need to log out and log back in on your Android phone for the changes to take effect. (As with the rest of the setup you only need to do this once)
 
+Info about how to change status on Android [can be found here](https://support.skype.com/en/faq/FA12192/how-do-i-update-my-status-mood-message-and-profile-in-skype-for-android-tablet#1)
+
 
 ### 3. Register on the Empathy App website
 
