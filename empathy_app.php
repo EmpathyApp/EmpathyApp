@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/EmpathyApp/EmpathyApp
  * Description: Empathy App WP plugin
  * Author: The Empathy App team
- * Version: 0.5.2
+ * Version: 0.5.3
  * Author URI: https://github.com/EmpathyApp
  * License: GPLv3
  */
@@ -35,10 +35,12 @@
  * to be enabled, just the lines below.
  */
 
+/*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('error_reporting', E_ALL);
 //TODO: Add db error printouts
+*/
 
 //##############################################################################
 
