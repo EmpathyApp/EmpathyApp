@@ -73,9 +73,9 @@ Collect call info (Skype name and the call length in minutes) and enter these in
 
 ## Howto
 
-#### Changing the likelihood that you will be called
+### Changing the likelihood that you will be called
 
-##### Background
+#### Background
 There are many different statuses that can be set in skype and they (together with the order in the queue) help to determine which of the empathizers that will get the next call
 
 This table displays who will be called when there are two empathizers in the call queue and emp2 is the "backup empathizer" in the call queue:
@@ -89,12 +89,12 @@ This table displays who will be called when there are two empathizers in the cal
 ***Online/Available*** | *emp1*  | *emp1*    | *emp1*         |*emp1*| *emp1*
 
 
-###### Android phones
+##### Android phones
 
 If you are using an Android phone you do not have this many options, only "Available" and "Invisible"
 
 
-##### Changing the status
+#### Changing the status
 
 To change the status right-click on the skype icon in the lower-right corner. This will bring up a menu similar to this one:
 ![skype_status](_img/skype_status.png)
@@ -102,20 +102,60 @@ To change the status right-click on the skype icon in the lower-right corner. Th
 And you can choose your status here
 
 
-#### Taking a break
+### Taking a break
 
 * Set Skype status to "do not disturb"
 * Set Skype status to (for example) "online" when you get back
 
 
-### Good to know
+## Good to know
 
-#### Skype phone app usage
+### Skype phone app usage
 
 Make sure that you take your phone number off the app, otherwise skype will attempt to call you if you are not online. You can do this easily by going to My Account, then changing your call forwarding option by taking your phone number out. 
 
-#### If you have skype on multiple units
+### If you have skype on multiple units
 
 Please only be logged in on one unit at a time (for example don't use Skype with the empathizer account on both your desktop computer and your smartphone at the same time)
 
 
+## Troubleshooting
+
+### Before starting troubleshooting, please check this:
+
+#### Are you logged in with your empathizer account
+..and not with your private skype account (assuming you have another one)
+
+
+#### Have you updated to the latest version of skype?
+
+You can update skype from the skype menu, on my system it looks like this:
+
+![update_skype](_img/update_skype.png)
+
+
+### My skype name is not showing up in the Neat Skype status icon/button
+
+#### 1. Is there another empathizer with higher availability?
+
+#### 2. Is there an empathizer with the same availability but who is before you in the queue?
+For example: Are you a backup empathizer and there is a main empathizer?
+
+#### 3. Have you set you status to be publically shown on the web
+See instructions above (in the setup section) for how to do this
+
+
+### Still having problems?
+Please contact tord(at)empathyapp.org and write in this in the subject field: "Empathizer support for Empathy App" and include the following information:
+
+#### 1. Operating system and version
+For example: Windows 7, Windows 8, Ubuntu 14
+
+#### 2. Skype client version
+On my system you can click here:
+
+![about_skype](_img/about_skype.png)
+
+And get to this page:
+
+![skype_version](_img/skype_version.png)
