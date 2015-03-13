@@ -114,16 +114,14 @@ add_filter('registration_errors', 'ea_validate_terms_accepted', Constants::defau
 
 /*
  * Adding instructions to login page and registration page
- */
-function ea_login_and_registration_message(){
-    ?>
-    
-    <p>
-        <b>Your username is your valid skype name.</b> If you do not already have skype, please <a href="http://www.skype.com/en/download-skype/"> download skype here</a> and then use your skype name to register with us. Please note: <i>Do not use a Microsoft or Facebook account, use the <b>standard skype account</b> instead</i>
-        <!-- Your username is your valid skype name. If you do not have a skype name,
-        <a href="https://login.skype.com/account/signup-form" >please create an account with them first</a> -->
-    </p>
-    
-    <?php
+*/
+function ea_login_and_registration_message($iMessage){
+    if(strpos($iMessage, 'Register') !== false) {
+        //-TODO: Find a better solution that is independent of language
+        $rNewMessage = '<h2>Registration:</h2><br>Complete this 1 minute process to connect to an empathizer<br><br><b>Your username is your valid skype name.</b> If you do not already have skype, please <a href="http://www.skype.com/en/download-skype/"> download skype here</a> and then use your skype name to register with us. Please note: <i>Do not use a Microsoft or Facebook account, use the <b>standard skype account</b> instead</i>';
+        return "$rNewMessage";
+    }else{
+        return $iMessage;
+    }
 }
-add_filter('login_message', 'ea_login_and_registration_message');
+add_action('login_message', 'ea_login_and_registration_message');
