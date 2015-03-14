@@ -40,5 +40,10 @@ http and https
 
 ## Analysis tools
 
+* AWStats
 * gnome-system-log
+* http://goaccess.io/
+* splunk
+* http://www.hping.org/visitors/
 
+More: http://alternativeto.net/software/awstats/?license=opensource

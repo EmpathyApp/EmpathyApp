@@ -49,12 +49,10 @@ Three parts:
 * External verison
 * Date
 
-Example: 1.0.0 BETA 2015-03-11
+We can add a tag to a commit by using this ```tag``` command in git, or better is to use the [built-in release-tag system inside git](https://github.com/EmpathyApp/EmpathyApp/releases)
 
-We can add a tag to a commit by using this ```tag``` command in git, for example:
-```
-git tag
-```
+Example: [v1.0.0_BETA_2015-03-11](https://github.com/EmpathyApp/EmpathyApp/releases/tag/v1.0.0_BETA_2015-03-11)
+
 
 ***
 
