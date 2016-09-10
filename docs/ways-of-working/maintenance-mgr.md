@@ -3,8 +3,7 @@
 
 
 
-Keeping versions up to date
-
+### Keeping versions up to date
 
 Four types of software with versioning that changes in a way that affects us:
 * Our own plugin
@@ -12,7 +11,7 @@ Four types of software with versioning that changes in a way that affects us:
 * WP themes
 * Wordpress itself
 
-We may want to enable auto-update (can be done in Softaculous) for the three that are not our own plugin but need to make sure the this is safe from the quality perspective, things might break if we are not careful. Otherwise we can test everything in a staging area and only after the testing has been completed update the real site
+We may want to enable auto-update (can be done in Softaculous) for the three that are not our own plugin but need to make sure the this is safe from the quality perspective, things might break if we are not careful. Altrnatively we can test everything in a staging area and only after the testing has been completed update the real site
 
 
 Useful links:
